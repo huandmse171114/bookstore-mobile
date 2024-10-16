@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upload_payment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnChoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Choose"/>
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upload"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/convertedText"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/layout_button"
+        android:hint="OCR Response Text"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/gptResponse"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/convertedText"
+        android:layout_centerHorizontal="true"
+        android:hint="GPT-3.5 Response Text"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+</RelativeLayout>
