@@ -2,6 +2,8 @@ package com.bookstore.constract;
 
 import android.net.Uri;
 
+import com.bookstore.model.PaymentGPTResponse;
+
 import java.io.IOException;
 
 public interface UploadPaymentContract {
@@ -9,12 +11,12 @@ public interface UploadPaymentContract {
     interface View {
         void showSelectImageScreen();
         void showToastMessage(String message);
-        void showSelectedImage();
+        void showSelectedImage(Uri uri);
         void showProcessDialog();
         void setProcessDialogMessage(String message);
         void hideProcessDialog();
-        void setGPTResponse(String response);
-        void setOCRResponse(String response);
+        void redirectPaymentInfoConfirmActivity(PaymentGPTResponse response);
+
     }
 
     interface Model {
@@ -25,6 +27,7 @@ public interface UploadPaymentContract {
         void handleUploadBtn(Uri uri);
         void updateProcessDialogMessage(double progressPercent);
         void handleOnSuccessGPTResponse(String response);
+        void handleOnShowImage(Uri uri);
     }
 
 }

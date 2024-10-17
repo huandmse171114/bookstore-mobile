@@ -16,8 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.bookstore.R;
 import com.bookstore.constract.UploadPaymentContract;
 import com.bookstore.databinding.UploadPaymentBinding;
+import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.UploadPaymentModel;
 import com.bookstore.presenter.UploadPaymentPresenter;
+import com.bumptech.glide.Glide;
 
 public class UploadPaymentActivity extends AppCompatActivity implements UploadPaymentContract.View {
 
@@ -47,7 +49,7 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
         binding.btnChoose.setOnClickListener(v -> showSelectImageScreen());
 
         // On pressing btnUpload
-        binding.btnUpload.setOnClickListener(v -> uploadImage());
+        binding.btnForward.setOnClickListener(v -> uploadImage());
     }
 
     private void uploadImage() {
@@ -71,8 +73,10 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
     }
 
     @Override
-    public void showSelectedImage() {
-
+    public void showSelectedImage(Uri uri) {
+        Glide.with(this)
+                .load(uri)
+                .into(binding.imageView);
     }
 
     @Override
@@ -93,13 +97,15 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
     }
 
     @Override
-    public void setGPTResponse(String response) {
-        binding.convertedText.setText(response);
-    }
+    public void redirectPaymentInfoConfirmActivity(PaymentGPTResponse response) {
+        // Create an Intent to redirect to PaymentInfoConfirmActivity
+        Intent intent = new Intent(this, PaymentInfoConfirmActivity.class);
 
-    @Override
-    public void setOCRResponse(String response) {
-        binding.gptResponse.setText(response);
+        // Attach the PaymentGPTResponse object to the intent
+        intent.putExtra("payment_response", response);
+
+        // Start the PaymentInfoConfirmActivity
+        startActivity(intent);
     }
 
     @Override
@@ -109,6 +115,7 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             // get the uri of data
             filePath = data.getData();
+            showSelectedImage(data.getData());
         }
     }
 }

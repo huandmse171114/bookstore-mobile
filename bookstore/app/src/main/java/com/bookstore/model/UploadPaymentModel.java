@@ -39,7 +39,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
 
     private OkHttpClient okHttpClient;
     private final String stringURLEndPointGPT = "https://api.openai.com/v1/chat/completions";
-    private final String stringAPIKey = "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";
+    private final String stringAPIKey = "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";
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private Context context;
@@ -73,7 +73,6 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
                 dataRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
                         // do something with download url
                         int SDK_INT = Build.VERSION.SDK_INT;
                         if (SDK_INT > 8) {
@@ -102,7 +101,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
                 // progress listener for dialog.
                 // percentage on the dialog box.
                 double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                presenter.updateProcessDialogMessage(progress);
+                presenter.updateProcessDialogMessage(progress);
             }
         });
     }
@@ -151,7 +150,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
 
     private String generatePrompt(String convertedText) {
         return "Extract these information (transaction time, sender name, sender bank account number, sender bank name, receiver name, receiver bank account number,  receiver bank name, transaction time, total amount) from the given text: "
-                + convertedText + " into this format: [transaction time],[sender name],[sender bank account number],[sender bank name],[receiver name],[receiver bank account number],[receiver bank name],[total amount]. Return only the given format, no more extras character.";
+                + convertedText + " into this format: [transaction time];[sender name];[sender bank account number];[sender bank name];[receiver name];[receiver bank account number];[receiver bank name];[total amount]. Return only the given format, no more extras character.";
 
     }
 

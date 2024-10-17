@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.bookstore.constract.UploadPaymentContract;
+import com.bookstore.model.PaymentGPTResponse;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -16,6 +17,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.time.Instant;
+import java.util.List;
 
 public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {
 
@@ -29,7 +31,7 @@ public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {
 
     @Override
     public void handleUploadBtn(Uri uri) {
-//        view.showProcessDialog();
+        view.showProcessDialog();
 
         try {
             model.uploadToFirebaseStorage(this, uri);
@@ -46,8 +48,24 @@ public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {
 
     @Override
     public void handleOnSuccessGPTResponse(String response) {
-//        view.hideProcessDialog();
+        view.hideProcessDialog();
         view.showToastMessage("Uploaded Image Successfully! Information extracted.");
-        view.setGPTResponse(response);
+        String[] responseData = response.split(";");
+        PaymentGPTResponse gptResponse = new PaymentGPTResponse(
+                responseData[7],
+                responseData[0],
+                responseData[5],
+                responseData[6],
+                responseData[4],
+                responseData[2],
+                responseData[3],
+                responseData[1]
+        );
+        view.redirectPaymentInfoConfirmActivity(gptResponse);
+    }
+
+    @Override
+    public void handleOnShowImage(Uri uri) {
+        view.showSelectedImage(uri);
     }
 }
