@@ -14,6 +14,7 @@
         android:layout_weight="1">
 
         <ImageButton
+            android:id="@+id/imgBtnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -55,7 +56,7 @@
             tools:layout_editor_absoluteY="414dp">
 
             <Button
-                android:id="@+id/btnChoose"
+                android:id="@+id/btnBack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -65,7 +66,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnUpload"
+                android:id="@+id/btnConfirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -159,6 +160,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Message"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
             android:id="@+id/textSenderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -223,6 +236,17 @@
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textTotalAmount" />
+
+        <TextView
+            android:id="@+id/textMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/upload_payment"
+    android:id="@+id/qr_code"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#393E75"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Upload Payment"
+            android:text="Checkout"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,14 +45,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="242dp"
-            android:layout_height="349dp"
-            android:layout_marginTop="44dp"
-            android:src="@drawable/baseline_image_24"
+            android:layout_width="307dp"
+            android:layout_height="435dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/qrcode"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,12 +66,12 @@
             tools:layout_editor_absoluteY="414dp">
 
             <Button
-                android:id="@+id/btnChoose"
+                android:id="@+id/btnCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
-                android:text="Upload"
+                android:text="Cancel"
                 android:textSize="18sp"
                 android:backgroundTint="#393E75"/>
 
@@ -85,31 +84,6 @@
                 android:textSize="18sp"
                 android:text="Next" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Please provide us"
-            android:textColor="#D3D3D3"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="your payment screen capture."
-            android:textColor="#D3D3D3"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

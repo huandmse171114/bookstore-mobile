@@ -50,12 +50,24 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
 
         // On pressing btnUpload
         binding.btnForward.setOnClickListener(v -> uploadImage());
+
+        // On pressing btnBack
+        binding.btnBack.setOnClickListener(v -> redirectPaymentQRCodeActivity());
     }
 
     private void uploadImage() {
         if (filePath != null) {
             presenter.handleUploadBtn(filePath);
+        }else {
+            showToastMessage("Please select image.");
         }
+    }
+
+    private void redirectPaymentQRCodeActivity() {
+        Intent intent = new Intent(this, PaymentQRCodeActivity.class);
+        startActivity(intent);
+        showToastMessage("Cancel checkout process.");
+        finish();
     }
 
     @Override

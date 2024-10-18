@@ -17,7 +17,7 @@
         android:name=".MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".view.UploadPaymentActivity"
+            android:name=".view.PaymentQRCodeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.PaymentInfoConfirmActivity"/>
+        <activity android:name=".view.UploadPaymentActivity"/>
+        <activity android:name=".view.SuccessPaymentActivity"/>
     </application>
 
 </manifest>

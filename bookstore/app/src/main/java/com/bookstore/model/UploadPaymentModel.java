@@ -39,8 +39,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
 
     private OkHttpClient okHttpClient;
     private final String stringURLEndPointGPT = "https://api.openai.com/v1/chat/completions";
-//    private final String stringAPIKey = "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";
-    private final String stringAPIKey = "";
+    private final String stringAPIKey = "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";
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private Context context;
@@ -150,8 +149,8 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
     }
 
     private String generatePrompt(String convertedText) {
-        return "Extract these information (transaction time, sender name, sender bank account number, sender bank name, receiver name, receiver bank account number,  receiver bank name, transaction time, total amount) from the given text: "
-                + convertedText + " into this format: [transaction time];[sender name];[sender bank account number];[sender bank name];[receiver name];[receiver bank account number];[receiver bank name];[total amount]. Return only the given format, no more extras character.";
+        return "Extract these information (transaction time, sender name, sender bank account number, sender bank name, receiver name, receiver bank account number,  receiver bank name, transaction time, total amount, message from sender) from the given text: "
+                + convertedText + " into this format: [transaction time];[sender name];[sender bank account number];[sender bank name];[receiver name];[receiver bank account number];[receiver bank name];[total amount];[message from sender]. Return only the given format, no more extras character.";
 
     }
 

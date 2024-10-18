@@ -59,7 +59,8 @@ public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {
                 responseData[4],
                 responseData[2],
                 responseData[3],
-                responseData[1]
+                responseData[1],
+                responseData[8]
         );
         view.redirectPaymentInfoConfirmActivity(gptResponse);
     }

@@ -11,10 +11,12 @@ public class PaymentGPTResponse implements Serializable {
     private String receiverAccount;
     private String date;
     private String totalAmount;
+    private String message;
 
     public PaymentGPTResponse(String totalAmount, String date,
                   String receiverAccount, String receiverBank, String receiverName,
-                  String senderAccount, String senderBank, String senderName) {
+                  String senderAccount, String senderBank, String senderName,
+                              String message) {
         this.totalAmount = totalAmount;
         this.date = date;
         this.receiverAccount = receiverAccount;
@@ -23,6 +25,7 @@ public class PaymentGPTResponse implements Serializable {
         this.senderAccount = senderAccount;
         this.senderBank = senderBank;
         this.senderName = senderName;
+        this.message = message;
     }
 
     public String getSenderName() {
@@ -87,5 +90,13 @@ public class PaymentGPTResponse implements Serializable {
 
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
