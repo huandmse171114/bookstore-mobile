@@ -3,15 +3,13 @@ package com.bookstore.model;
 public class Book {
     private int id;
     private String title;
-    //    private String categoryName;
-//    private int categoryId;
+    private float price;
     private int imageResourceId;
 
-    public Book(int id, String title, int imageResourceId) {
+    public Book(int id, String title, float price, int imageResourceId) {
         this.id = id;
         this.title = title;
-//        this.categoryName = categoryName;
-
+        this.price = price;
         this.imageResourceId = imageResourceId;
     }
 
@@ -24,10 +22,15 @@ public class Book {
         return title;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
     public int getImageResourceId() {
         return imageResourceId;
     }
 
+    // Setter methods for each field
     public int setId(int id) {
         this.id = id;
         return id;
@@ -36,6 +39,11 @@ public class Book {
     public String setTitle(String title) {
         this.title = title;
         return title;
+    }
+
+    public float setPrice(float price) {
+        this.price = price;
+        return price;
     }
 
     public int setImageResourceId(int imageResourceId) {
