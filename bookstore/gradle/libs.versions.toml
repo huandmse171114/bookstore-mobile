@@ -14,15 +14,13 @@ constraintlayout = "2.1.4"
 okhttp = "4.10.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseStorage = "21.0.1"
+gridlayout = "1.0.0"
 
 [libraries]
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebaseAnalyticsKtx" }
 firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity", version.ref = "firebaseAppcheckPlayintegrity" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
-gridlayout = "1.0.0"
-
-[libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
