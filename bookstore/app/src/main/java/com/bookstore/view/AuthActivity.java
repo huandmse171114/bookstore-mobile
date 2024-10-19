@@ -13,15 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.api.AuthApi;
-import com.bookstore.constract.AuthContract;
 import com.bookstore.presenter.AuthPresenter;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AuthActivity extends AppCompatActivity implements AuthContract.View {
+public class AuthActivity extends AppCompatActivity implements com.bookstore.constract.AuthContract.View {
 
-    private EditText usernameField, passwordField, emailField, fullnameField, confirmPasswordField;
+    private EditText usernameField, passwordField, emailField, confirmPasswordField;
     private Button signInButton, signUpButton;
     private TextView toggleText;
     private AuthPresenter presenter;
@@ -34,7 +33,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
 
         // Khởi tạo Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://inkmelo-springboot-be-5sov.onrender.com")
+                .baseUrl("https://bookstore-api-nodejs.onrender.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -46,7 +45,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
         setContentView(R.layout.signin_layout); // Load layout đăng nhập
 
         // Khởi tạo các trường nhập liệu cho đăng nhập
-        usernameField = findViewById(R.id.username);
+        usernameField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         signInButton = findViewById(R.id.signinbtn);
         toggleText = findViewById(R.id.didntaccount);
@@ -70,7 +69,6 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
 
         // Khởi tạo các trường nhập liệu cho đăng ký
         usernameField = findViewById(R.id.username);
-        fullnameField = findViewById(R.id.fullname);
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         confirmPasswordField = findViewById(R.id.cfpassword);
@@ -80,14 +78,13 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
         // Thiết lập sự kiện cho nút đăng ký
         signUpButton.setOnClickListener(v -> {
             String username = usernameField.getText().toString().trim();
-            String fullname = fullnameField.getText().toString().trim();
             String email = emailField.getText().toString().trim();
             String password = passwordField.getText().toString().trim();
             String confirmPassword = confirmPasswordField.getText().toString().trim();
 
             // Kiểm tra mật khẩu
             if (password.equals(confirmPassword)) {
-                presenter.signUp(username, fullname, email, password, confirmPassword, "CUSTOMER");
+                presenter.signUp(username,email, password, confirmPassword);
             } else {
                 showError("Passwords do not match");
             }

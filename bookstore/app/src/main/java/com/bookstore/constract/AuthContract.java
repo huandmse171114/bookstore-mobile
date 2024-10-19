@@ -2,13 +2,15 @@ package com.bookstore.constract;
 
 public interface AuthContract {
     interface View {
-        void showSignInSuccess();
-        void showSignUpSuccess();
-        void showError(String message);
+        void showSignInSuccess();  // Notify the user of successful sign-in
+        void showSignUpSuccess();  // Notify the user of successful sign-up
+        void showError(String message);  // Show error messages (e.g., validation, server issues)
     }
 
-    public interface Presenter {
-        void signIn(String username, String password);
-        void signUp(String username, String fullname, String email, String password, String confirmPassword, String role);
+    interface Presenter {
+
+        void signIn(String email, String password);
+
+        void signUp(String username, String email, String password, String confirmPassword);
     }
 }

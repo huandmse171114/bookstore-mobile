@@ -1,11 +1,11 @@
 package com.bookstore.presenter;
 
 import com.bookstore.api.AuthApi;
+import com.bookstore.constract.AuthContract;
 import com.bookstore.model.SignInRequest;
 import com.bookstore.model.SignInResponse;
 import com.bookstore.model.SignUpRequest;
 import com.bookstore.model.SignUpResponse;
-import com.bookstore.constract.AuthContract;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,9 +20,10 @@ public class AuthPresenter implements AuthContract.Presenter {
         this.authApi = authApi;
     }
 
+    // Updated method to accept email instead of username
     @Override
-    public void signIn(String username, String password) {
-        SignInRequest request = new SignInRequest(username, password); // Create the SignInRequest object
+    public void signIn(String email, String password) {
+        SignInRequest request = new SignInRequest(email, password); // Updated parameter to email
         authApi.signIn(request).enqueue(new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
@@ -40,11 +41,16 @@ public class AuthPresenter implements AuthContract.Presenter {
         });
     }
 
-
-
+    // Updated method signature for signUp
     @Override
-    public void signUp(String username, String fullname, String email, String password, String confirmPassword, String role) {
-        SignUpRequest request = new SignUpRequest(username, fullname, email, password, confirmPassword, role); // Create the SignUpRequest object
+    public void signUp(String username, String email, String password, String confirmPassword) {
+        // Validate password and confirmPassword match
+        if (!password.equals(confirmPassword)) {
+            view.showError("Passwords do not match");
+            return;
+        }
+
+        SignUpRequest request = new SignUpRequest(username, email, password); // Removed fullname
         authApi.signUp(request).enqueue(new Callback<SignUpResponse>() {
             @Override
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {

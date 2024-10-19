@@ -9,10 +9,10 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AuthApi {
-    @POST("/store/api/v1/auth/sign-in")
+    @POST("/api/users/auth")
     Call<SignInResponse> signIn(@Body SignInRequest request);
 
-    @POST("/store/api/v1/users/register")
+    @POST("/api/users/register")
     Call<SignUpResponse> signUp(@Body SignUpRequest request);
 }
 
