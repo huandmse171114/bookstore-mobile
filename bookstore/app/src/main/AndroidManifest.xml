@@ -22,7 +22,7 @@
 
 
         <activity
-            android:name=".view.OnboardingActivity"
+            android:name=".view.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,11 +36,5 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".view.SliderActivity"/>
         <activity android:name=".view.HomePageActivity"/>
-        <activity android:name="com.bookstore.view.AuthActivity"/>
-    </application>
-
-        <!-- Remove or comment out individual SignInActivity and SignUpActivity -->
-        <!-- <activity android:name=".view.SignInActivity" />
-        <activity android:name=".view.SignUpActivity" /> -->
     </application>
 </manifest>
