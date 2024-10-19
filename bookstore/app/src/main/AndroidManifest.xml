@@ -5,6 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,22 +17,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookstore"
+        android:name=".MyApplication"
         tools:targetApi="31">
 
-        <!-- Set AuthActivity as the main launcher activity -->
+
         <activity
-            android:exported="true"
-            android:name="com.bookstore.view.AuthActivity">
+            android:name=".view.OnboardingActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.PaymentQRCodeActivity"/>
+        <activity android:name=".view.PaymentInfoConfirmActivity"/>
+        <activity android:name=".view.UploadPaymentActivity"/>
+        <activity android:name=".view.SuccessPaymentActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".view.SliderActivity"/>
+        <activity android:name=".view.HomePageActivity"/>
+        <activity android:name="com.bookstore.view.AuthActivity"/>
+    </application>
 
         <!-- Remove or comment out individual SignInActivity and SignUpActivity -->
         <!-- <activity android:name=".view.SignInActivity" />
         <activity android:name=".view.SignUpActivity" /> -->
-
-        <activity android:name="com.bookstore.MainActivity" />
     </application>
 </manifest>
