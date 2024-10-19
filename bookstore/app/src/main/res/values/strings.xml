@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">bookstore</string>
+    <string name="signin_title">Sign In</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="didntacc">Did not have any account?<b> Sign up here</b></string>
+    <string name="alreadyacc">If you have an account? <b> Sign in here</b></string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_your_account">Sign in with your Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="signin">Sign In</string>
+    <string name="sign_up_with_your_email">Sign up with your email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="signup">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="fullname">Fullname</string>
 
 </resources>

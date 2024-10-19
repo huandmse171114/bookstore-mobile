@@ -1,0 +1,13 @@
+<!-- res/drawable/book_item_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/white" />
+    <corners android:radius="20dp" />
+    <stroke
+        android:width="5dp"
+        android:color="@color/white" />
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp" />
+</shape>
