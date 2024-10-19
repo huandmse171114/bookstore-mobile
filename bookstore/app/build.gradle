@@ -7,8 +7,8 @@ android {
     namespace 'com.bookstore'
     compileSdk 34
 
-    viewBinding {
-        enabled = true
+    viewBinding{
+        enable = true
     }
 
     defaultConfig {
@@ -50,6 +50,8 @@ dependencies {
     implementation libs.firebase.appcheck.playintegrity // Add this for App Check
     implementation libs.glide
     annotationProcessor libs.compiler
-
+    implementation libs.gridlayout
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    implementation 'com.airbnb.android:lottie:4.2.0'
 
 }
