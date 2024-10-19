@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bookstore">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -17,6 +20,7 @@
         android:name=".MyApplication"
         tools:targetApi="31">
 
+
         <activity
             android:name=".view.OnboardingActivity"
             android:exported="true">
@@ -32,6 +36,11 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".view.SliderActivity"/>
         <activity android:name=".view.HomePageActivity"/>
+        <activity android:name="com.bookstore.view.AuthActivity"/>
     </application>
 
+        <!-- Remove or comment out individual SignInActivity and SignUpActivity -->
+        <!-- <activity android:name=".view.SignInActivity" />
+        <activity android:name=".view.SignUpActivity" /> -->
+    </application>
 </manifest>
