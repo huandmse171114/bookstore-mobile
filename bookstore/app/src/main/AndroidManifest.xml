@@ -15,6 +15,7 @@
 
 
         <activity
+            android:name=".view.HomePageActivity"
             android:name=".view.OnboardingActivity"
             android:exported="true">
             <intent-filter>
