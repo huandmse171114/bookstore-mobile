@@ -9,5 +9,19 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="orange">#ff9853</color>
     <color name="blue_header">#3f4c95</color>
+    <color name="greenmix">#95bbbf</color>
+    <color name="red">#c84b65</color>
+    <color name="blue">#88bef5</color>
+    <color name="grey">#676060</color>
+    <color name="colorPrimaryDark">#93b9ba</color>
+
+    <!-- colors for button style -->
+    <color name="gradient_start_color">#4c84ff</color>
+    <color name="gradient_end_color">#18a3fe</color>
+
+    <!-- colors for tab and sreen text -->
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
 
 </resources>
