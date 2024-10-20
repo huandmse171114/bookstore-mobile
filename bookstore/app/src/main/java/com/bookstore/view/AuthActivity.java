@@ -3,9 +3,6 @@ package com.bookstore.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +11,16 @@ import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.api.AuthApi;
 import com.bookstore.presenter.AuthPresenter;
+import com.bookstore.databinding.SigninLayoutBinding; // Import the generated binding class for sign-in layout
+import com.bookstore.databinding.SignupLayoutBinding; // Import the generated binding class for sign-up layout
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthActivity extends AppCompatActivity implements com.bookstore.constract.AuthContract.View {
 
-    private EditText usernameField, passwordField, emailField, confirmPasswordField;
-    private Button signInButton, signUpButton;
-    private TextView toggleText;
+    private SigninLayoutBinding signInBinding; // View binding for sign-in layout
+    private SignupLayoutBinding signUpBinding; // View binding for sign-up layout
     private AuthPresenter presenter;
     private boolean isSignIn = true;
 
@@ -31,9 +29,9 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
         super.onCreate(savedInstanceState);
         loadSignInLayout();
 
-        // Khởi tạo Retrofit
+        // Initialize Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://bookstore-api-nodejs.onrender.com")
+                .baseUrl("https://inkmelo-springboot-be-5sov.onrender.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -42,56 +40,44 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
     }
 
     private void loadSignInLayout() {
-        setContentView(R.layout.signin_layout); // Load layout đăng nhập
+        signInBinding = SigninLayoutBinding.inflate(getLayoutInflater()); // Inflate the sign-in layout
+        setContentView(signInBinding.getRoot()); // Set the content view to the root of the binding
 
-        // Khởi tạo các trường nhập liệu cho đăng nhập
-        usernameField = findViewById(R.id.email);
-        passwordField = findViewById(R.id.password);
-        signInButton = findViewById(R.id.signinbtn);
-        toggleText = findViewById(R.id.didntaccount);
-
-        // Thiết lập sự kiện cho nút đăng nhập
-        signInButton.setOnClickListener(v -> {
-            String username = usernameField.getText().toString().trim();
-            String password = passwordField.getText().toString().trim();
-            presenter.signIn(username, password);
+        // Set up sign-in button click event
+        signInBinding.signinbtn.setOnClickListener(v -> {
+            String email = signInBinding.email.getText().toString().trim(); // Access email field from binding
+            String password = signInBinding.password.getText().toString().trim(); // Access password field from binding
+            presenter.signIn(email, password);
         });
 
-        // Thiết lập sự kiện cho chuyển đổi sang đăng ký
-        toggleText.setOnClickListener(v -> {
+        // Switch to sign-up layout
+        signInBinding.didntaccount.setOnClickListener(v -> {
             isSignIn = false;
             loadSignUpLayout();
         });
     }
 
     private void loadSignUpLayout() {
-        setContentView(R.layout.signup_layout); // Load layout đăng ký
+        signUpBinding = SignupLayoutBinding.inflate(getLayoutInflater()); // Inflate the sign-up layout
+        setContentView(signUpBinding.getRoot()); // Set the content view to the root of the binding
 
-        // Khởi tạo các trường nhập liệu cho đăng ký
-        usernameField = findViewById(R.id.username);
-        emailField = findViewById(R.id.email);
-        passwordField = findViewById(R.id.password);
-        confirmPasswordField = findViewById(R.id.cfpassword);
-        signUpButton = findViewById(R.id.signupbtn);
-        toggleText = findViewById(R.id.alreadyaccount);
+        // Set up sign-up button click event
+        signUpBinding.signupbtn.setOnClickListener(v -> {
+            String username = signUpBinding.username.getText().toString().trim(); // Access username field from binding
+            String email = signUpBinding.email.getText().toString().trim(); // Access email field from binding
+            String password = signUpBinding.password.getText().toString().trim(); // Access password field from binding
+            String confirmPassword = signUpBinding.cfpassword.getText().toString().trim(); // Access confirm password field from binding
 
-        // Thiết lập sự kiện cho nút đăng ký
-        signUpButton.setOnClickListener(v -> {
-            String username = usernameField.getText().toString().trim();
-            String email = emailField.getText().toString().trim();
-            String password = passwordField.getText().toString().trim();
-            String confirmPassword = confirmPasswordField.getText().toString().trim();
-
-            // Kiểm tra mật khẩu
+            // Validate passwords match
             if (password.equals(confirmPassword)) {
-                presenter.signUp(username,email, password, confirmPassword);
+                presenter.signUp(username, email, password, confirmPassword);
             } else {
                 showError("Passwords do not match");
             }
         });
 
-        // Thiết lập sự kiện cho chuyển đổi sang đăng nhập
-        toggleText.setOnClickListener(v -> {
+        // Switch back to sign-in layout
+        signUpBinding.alreadyaccount.setOnClickListener(v -> {
             isSignIn = true;
             loadSignInLayout();
         });
@@ -100,7 +86,7 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
     @Override
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
-        // Chuyển đến MainActivity sau khi đăng nhập thành công
+        // Redirect to MainActivity after successful sign-in
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -109,7 +95,7 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
     @Override
     public void showSignUpSuccess() {
         Toast.makeText(this, "Sign-up successful", Toast.LENGTH_SHORT).show();
-        // Redirect back to the sign-in page
+        // Redirect back to sign-in page after successful sign-up
         Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
         finish();
