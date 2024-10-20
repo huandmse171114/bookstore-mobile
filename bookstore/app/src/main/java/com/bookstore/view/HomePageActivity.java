@@ -1,15 +1,16 @@
 package com.bookstore.view;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.bookstore.R;
+import com.bookstore.CongfigAPI.RetrofitClient;
+import com.bookstore.api.AuthApi;
+import com.bookstore.constract.BookContract;
+import com.bookstore.constract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
 import com.bookstore.presenter.BookPresenter;
 import com.bookstore.presenter.CategoryPresenter;
@@ -18,12 +19,19 @@ import com.bookstore.model.Category;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class HomePageActivity extends AppCompatActivity {
 
+    private AuthApi authApi;
     private HomePageBinding binding;
     private BookPresenter bookPresenter;
     private CategoryPresenter categoryPresenter;
     private BookAdapter bookAdapter;
+    private List<Category> categoryList;
     private CategoryAdapter categoryAdapter;
 
     @Override
@@ -48,10 +56,12 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Set OnCategoryClickListener
         categoryAdapter.setOnCategoryClickListener(category -> {
+            // Gọi API lấy sách theo danh mục
+            categoryPresenter.loadBooksByCategory(category.getId());
         });
 
         // Initialize presenters
-        bookPresenter = new BookPresenter(new BookView() {
+        bookPresenter = new BookPresenter(new BookContract() {
             @Override
             public void showBooks(List<Book> books) {
                 bookAdapter.setBooks(books);
@@ -64,10 +74,11 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        categoryPresenter = new CategoryPresenter(new CategoryView() {
+        categoryPresenter = new CategoryPresenter(new CategoryContract() {
             @Override
             public void showCategories(List<Category> categories) {
                 categoryAdapter.setCategories(categories);
+                binding.categoryRecyclerView.setAdapter(categoryAdapter);
             }
 
             @Override
@@ -75,11 +86,19 @@ public class HomePageActivity extends AppCompatActivity {
                 // Handle message
                 Toast.makeText(HomePageActivity.this, message, Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void showBooks(List<Book> books) {
+                bookAdapter.setBooks(books);
+                binding.bookRecyclerView.setAdapter(bookAdapter);
+            }
         });
 
         // Load data
-        bookPresenter.loadBooks();
         categoryPresenter.loadCategories();
+        categoryPresenter.loadAllBooks();
+        // Initialize API service
+        authApi = RetrofitClient.getClient().create(AuthApi.class);
 
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
         binding.cartIcon.setOnClickListener(v -> openCart());

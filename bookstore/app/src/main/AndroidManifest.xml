@@ -5,8 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
 
     <application
         android:allowBackup="true"
@@ -22,7 +20,7 @@
 
 
         <activity
-            android:name=".view.AuthActivity"
+            android:name=".view.HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +33,6 @@
         <activity android:name=".view.SuccessPaymentActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".view.SliderActivity"/>
-        <activity android:name=".view.HomePageActivity"/>
+<!--        <activity android:name=".view.HomePageActivity"/>-->
     </application>
 </manifest>

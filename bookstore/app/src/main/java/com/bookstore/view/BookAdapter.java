@@ -1,5 +1,6 @@
 package com.bookstore.view;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookstore.R;
 import com.bookstore.databinding.ItemBookBinding;
 import com.bookstore.model.Book;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
@@ -30,9 +33,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
-        holder.binding.bookTitle.setText(book.getTitle());
+        if (book.getName().length() > 15) book.setName(book.getName().substring(0, 15) + " ...");
+        holder.binding.bookTitle.setText(book.getName());
         holder.binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
-        holder.binding.bookImage.setImageResource(book.getImageResourceId());
+        Glide.with(holder.binding.getRoot())
+                .load(Uri.parse(book.getImage()))
+                .into(holder.binding.bookImage);
+//        holder.binding.bookImage.set(book.getImage());
 
         holder.binding.heartIcon.setOnClickListener(v -> {
             boolean isFavorite = (boolean) holder.binding.heartIcon.getTag();
