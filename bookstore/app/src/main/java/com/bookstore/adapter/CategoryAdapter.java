@@ -1,4 +1,4 @@
-package com.bookstore.view;
+package com.bookstore.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

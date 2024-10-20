@@ -1,5 +1,6 @@
 package com.bookstore.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -8,21 +9,19 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.CongfigAPI.RetrofitClient;
+import com.bookstore.adapter.BookAdapter;
+import com.bookstore.adapter.CategoryAdapter;
 import com.bookstore.api.AuthApi;
 import com.bookstore.constract.BookContract;
 import com.bookstore.constract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
+import com.bookstore.model.SearchBook;
 import com.bookstore.presenter.BookPresenter;
 import com.bookstore.presenter.CategoryPresenter;
 import com.bookstore.model.Book;
 import com.bookstore.model.Category;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -106,7 +105,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng tìm kiếm
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
-//        // Xử lý sự kiện cho Footer BottomNavigationView
+        // Xử lý sự kiện cho Footer BottomNavigationView
 //        binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 //            switch (item.getItemId()) {
 //                case R.id.nav_home:
@@ -135,8 +134,8 @@ public class HomePageActivity extends AppCompatActivity {
     private void openSearch() {
         Toast.makeText(this, "Opening Search", Toast.LENGTH_SHORT).show();
         // Ví dụ mở Activity tìm kiếm
-        // Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
-        // startActivity(intent);
+         Intent intent = new Intent(HomePageActivity.this, SearchBookActivity.class);
+         startActivity(intent);
     }
 
     @Override
