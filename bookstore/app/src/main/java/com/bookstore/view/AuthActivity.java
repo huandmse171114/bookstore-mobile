@@ -31,7 +31,7 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
 
         // Initialize Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://inkmelo-springboot-be-5sov.onrender.com")
+                .baseUrl("https://bookstore-api-nodejs.onrender.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
