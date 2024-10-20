@@ -5,7 +5,7 @@
     android:id="@+id/qr_code"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#393E75"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,14 +73,14 @@
                 android:layout_marginRight="10dp"
                 android:text="Cancel"
                 android:textSize="18sp"
-                android:backgroundTint="#393E75"/>
+                android:backgroundTint="@color/colorPrimaryDark"/>
 
             <Button
                 android:id="@+id/btnForward"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#393E75"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:text="Next" />
         </LinearLayout>
