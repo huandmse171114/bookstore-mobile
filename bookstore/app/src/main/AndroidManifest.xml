@@ -5,9 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,7 +14,6 @@
         android:name=".MyApplication"
         tools:targetApi="31">
 
-
         <activity
             android:name=".view.OnboardingActivity"
             android:exported="true">
@@ -26,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.PaymentQRCodeActivity"/>
         <activity android:name=".view.PaymentInfoConfirmActivity"/>
         <activity android:name=".view.UploadPaymentActivity"/>
         <activity android:name=".view.SuccessPaymentActivity"/>
@@ -35,7 +30,7 @@
         <activity android:name=".view.ProductDetailActivity"/>
         <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.HomePageActivity"/>
-        <activity android:name=".CartActivity"/>
+        <activity android:name=".view.PaymentQRCodeActivity"/>
     </application>
 
 </manifest>
