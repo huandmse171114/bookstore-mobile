@@ -1,12 +1,13 @@
 
-package com.bookstore.view;
+package com.bookstore.constract;
 
-import com.bookstore.model.Category;
 import com.bookstore.model.Book;
+import com.bookstore.model.Category;
 
 import java.util.List;
 
-public interface CategoryView {
+public interface CategoryContract {
     void showCategories(List<Category> categories);
     void showMessage(String message);
+    void showBooks(List<Book> books);
 }
