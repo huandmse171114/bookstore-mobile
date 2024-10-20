@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.CongfigAPI.RetrofitClient;
+import com.bookstore.adapter.BookAdapter;
+import com.bookstore.adapter.CategoryAdapter;
 import com.bookstore.api.AuthApi;
 import com.bookstore.constract.BookContract;
 import com.bookstore.constract.CategoryContract;
@@ -18,11 +20,6 @@ import com.bookstore.model.Book;
 import com.bookstore.model.Category;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class HomePageActivity extends AppCompatActivity {
 

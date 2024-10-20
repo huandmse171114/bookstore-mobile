@@ -1,4 +1,4 @@
-package com.bookstore.view;
+package com.bookstore.adapter;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
