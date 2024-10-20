@@ -1,16 +1,21 @@
 package com.bookstore.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.bookstore.R;
+import com.bookstore.CongfigAPI.RetrofitClient;
+import com.bookstore.adapter.BookAdapter;
+import com.bookstore.adapter.CategoryAdapter;
+import com.bookstore.api.AuthApi;
+import com.bookstore.constract.BookContract;
+import com.bookstore.constract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
+import com.bookstore.model.SearchBook;
 import com.bookstore.presenter.BookPresenter;
 import com.bookstore.presenter.CategoryPresenter;
 import com.bookstore.model.Book;
@@ -20,10 +25,12 @@ import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    private AuthApi authApi;
     private HomePageBinding binding;
     private BookPresenter bookPresenter;
     private CategoryPresenter categoryPresenter;
     private BookAdapter bookAdapter;
+    private List<Category> categoryList;
     private CategoryAdapter categoryAdapter;
 
     @Override
@@ -48,10 +55,12 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Set OnCategoryClickListener
         categoryAdapter.setOnCategoryClickListener(category -> {
+            // Gọi API lấy sách theo danh mục
+            categoryPresenter.loadBooksByCategory(category.getId());
         });
 
         // Initialize presenters
-        bookPresenter = new BookPresenter(new BookView() {
+        bookPresenter = new BookPresenter(new BookContract() {
             @Override
             public void showBooks(List<Book> books) {
                 bookAdapter.setBooks(books);
@@ -64,10 +73,11 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        categoryPresenter = new CategoryPresenter(new CategoryView() {
+        categoryPresenter = new CategoryPresenter(new CategoryContract() {
             @Override
             public void showCategories(List<Category> categories) {
                 categoryAdapter.setCategories(categories);
+                binding.categoryRecyclerView.setAdapter(categoryAdapter);
             }
 
             @Override
@@ -75,11 +85,19 @@ public class HomePageActivity extends AppCompatActivity {
                 // Handle message
                 Toast.makeText(HomePageActivity.this, message, Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void showBooks(List<Book> books) {
+                bookAdapter.setBooks(books);
+                binding.bookRecyclerView.setAdapter(bookAdapter);
+            }
         });
 
         // Load data
-        bookPresenter.loadBooks();
         categoryPresenter.loadCategories();
+        categoryPresenter.loadAllBooks();
+        // Initialize API service
+        authApi = RetrofitClient.getClient().create(AuthApi.class);
 
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
         binding.cartIcon.setOnClickListener(v -> openCart());
@@ -87,7 +105,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng tìm kiếm
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
-//        // Xử lý sự kiện cho Footer BottomNavigationView
+        // Xử lý sự kiện cho Footer BottomNavigationView
 //        binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 //            switch (item.getItemId()) {
 //                case R.id.nav_home:
@@ -108,16 +126,16 @@ public class HomePageActivity extends AppCompatActivity {
     private void openCart() {
         Toast.makeText(this, "Opening Cart", Toast.LENGTH_SHORT).show();
         // Ví dụ mở Activity giỏ hàng
-        // Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
-        // startActivity(intent);
+         Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
+         startActivity(intent);
     }
 
     // Hàm để mở Activity tìm kiếm (hoặc thực hiện logic khác)
     private void openSearch() {
         Toast.makeText(this, "Opening Search", Toast.LENGTH_SHORT).show();
         // Ví dụ mở Activity tìm kiếm
-        // Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
-        // startActivity(intent);
+         Intent intent = new Intent(HomePageActivity.this, SearchBookActivity.class);
+         startActivity(intent);
     }
 
     @Override

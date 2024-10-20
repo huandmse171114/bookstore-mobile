@@ -22,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:background="@color/blue_header"
+                android:background="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,8 +47,9 @@
                 android:layout_marginEnd="56dp"
                 android:src="@drawable/ic_cart"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="openCart" />
+                app:layout_constraintTop_toTopOf="parent" />
+<!--                android:onClick="openCart" -->
+<!--                />-->
 
             <ImageView
                 android:id="@+id/searchIcon"
@@ -56,10 +57,10 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_search"
+                android:src="@drawable/ic_search_nav_bar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="openSearch" />
+                app:layout_constraintTop_toTopOf="parent" />
+<!--                android:onClick="openSearch" />-->
 
             <!-- Header Title -->
             <TextView
@@ -296,14 +297,14 @@
     <!-- Footer Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@color/blue_header"
+        android:layout_width="411dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

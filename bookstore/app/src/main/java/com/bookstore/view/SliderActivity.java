@@ -36,7 +36,7 @@ public class SliderActivity extends AppCompatActivity {
         sliderViewAdapter = new SliderViewAdapter(this);
         binding.viewPager.setAdapter(sliderViewAdapter);
 
-        // if want to user current just use one time in slider activity, before clear data.
+        // này nếu muốn người dùng chỉ xem được một lần
         // use this code
 //        if (isOpenAlready()) {
 //            Intent intent = new Intent(SliderActivity.this, MainActivity.class);
