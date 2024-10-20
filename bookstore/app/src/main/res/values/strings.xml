@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">bookstore</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="decrease_quantity">Decrease Quantity</string>
+    <string name="increase_quantity">Increase Quantity</string>
     <string name="signin_title">Sign In</string>
     <string name="signup_title">Sign Up</string>
     <string name="didntacc">Did not have any account?<b> Sign up here</b></string>
@@ -18,5 +21,4 @@
     <string name="fullname">Fullname</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

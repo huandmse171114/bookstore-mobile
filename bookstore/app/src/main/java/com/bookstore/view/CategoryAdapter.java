@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookstore.R;
 import com.bookstore.databinding.ItemCategoryBinding;
 import com.bookstore.model.Category;
+
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
@@ -18,7 +19,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-        notifyDataSetChanged();
     }
 
     public void setOnCategoryClickListener(OnCategoryClickListener listener) {
@@ -39,8 +39,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.binding.categoryButton.setText(category.getName());
 
         if (position == selectedPosition) {
-//            holder.binding.categoryButton.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.background_selected));
-            holder.binding.categoryButton.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.orange));
+            holder.binding.categoryButton.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.background_selected));
+            holder.binding.categoryButton.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.white));
         } else {
             holder.itemView.setBackground(null);
             holder.binding.categoryButton.setBackground(null);
@@ -53,6 +53,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
             notifyItemChanged(previousPosition);
             notifyItemChanged(selectedPosition);
+            notifyDataSetChanged();
 
             if (listener != null) {
                 listener.onCategoryClick(category);

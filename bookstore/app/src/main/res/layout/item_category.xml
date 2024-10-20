@@ -8,11 +8,9 @@
         android:id="@+id/categoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:backgroundTint="#3f4c95"
         android:backgroundTintMode="add"
         android:padding="8dp"
-        android:text="Category"
+        android:text="name"
         android:textColor="@color/gray"
         android:textSize="14sp" />
 
