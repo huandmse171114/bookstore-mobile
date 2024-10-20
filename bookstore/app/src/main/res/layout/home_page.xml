@@ -1,0 +1,309 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HomePageActivity">
+
+    <!-- NestedScrollView để cuộn nội dung -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Header Background -->
+            <ImageView
+                android:id="@+id/headerBackground"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="@color/blue_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Profile Image on the Left -->
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Cart and Search Icons on the Right -->
+            <ImageView
+                android:id="@+id/cartIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="56dp"
+                android:src="@drawable/ic_cart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="openCart" />
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="openSearch" />
+
+            <!-- Header Title -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="92dp"
+                android:gravity="center"
+                android:text="Enrich your life."
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.102"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/headerSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Find the book you want"
+                android:textColor="#d9d9d9"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.101"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headerTitle" />
+
+            <!-- Bestseller Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bestsellingSection"
+                android:layout_width="344dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="176dp"
+                android:background="@drawable/shape_bests_sale"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/headerBackground">
+
+                <TextView
+                    android:id="@+id/bestsellingTitle"
+                    android:layout_width="128dp"
+                    android:layout_height="86dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="28dp"
+                    android:text="Bestselling Self-Help Books"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/shopNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Shop Now ->"
+                    android:textColor="#FF5722"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bestsellingTitle" />
+
+                <ImageView
+                    android:id="@+id/bookImage"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/img1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.355" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Category RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/newArrivalSection"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bestsellingSection"
+                app:layout_constraintVertical_bias="0.008"
+                tools:listitem="@layout/item_category" />
+
+            <!-- Book RecyclerView -->
+
+            <!-- Load More Button -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryRecyclerView"
+                tools:listitem="@layout/item_book" />
+
+            <Button
+                android:id="@+id/loadMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#3F4C95"
+                android:text="Load More"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@+id/bookRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- New Arrival Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/newArrivalSection"
+                android:layout_width="344dp"
+                android:layout_height="175dp"
+                android:background="@drawable/shape_bests_sale"
+                android:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loadMoreButton"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/newArrivalSectionTitle"
+                    android:layout_width="128dp"
+                    android:layout_height="86dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="28dp"
+                    android:text="New Arrivals"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/shopNow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Shop Now ->"
+                    android:textColor="#FF5722"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newArrivalSectionTitle" />
+
+                <ImageView
+                    android:id="@+id/bookImage1"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/img1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.355" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Another Product Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/anotherProductSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/newArrivalSection">
+
+                <!-- Title "Another Product" -->
+                <TextView
+                    android:id="@+id/anotherProductTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Another Product"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp" />
+
+                <!-- "See All" Button -->
+                <TextView
+                    android:id="@+id/seeAllButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:textColor="#FF5722"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <!-- RecyclerView cho danh sách sản phẩm khác -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/anotherProductRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/anotherProductTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Footer Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:background="@color/blue_header"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
