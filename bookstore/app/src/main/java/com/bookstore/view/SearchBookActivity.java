@@ -83,6 +83,15 @@ public class SearchBookActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        //    xử lý sự kiện khi người dùng ấn vào nút quay lại
+        binding.btnBack.setOnClickListener(v -> backHomePage());
+    }
+
+    // Hàm để quay lại trang chủ
+    private void backHomePage() {
+        Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
+        startActivity(intent);
     }
 
     private void setupLatestSearchRecyclerView() {
@@ -143,11 +152,5 @@ public class SearchBookActivity extends AppCompatActivity {
         // Implement search functionality
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

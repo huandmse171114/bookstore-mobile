@@ -30,7 +30,11 @@
         <activity android:name=".view.ProductDetailActivity"/>
         <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.HomePageActivity"/>
+
+        <activity android:name=".view.CartActivity"/>
+
         <activity android:name=".view.PaymentQRCodeActivity"/>
+
     </application>
 
 </manifest>

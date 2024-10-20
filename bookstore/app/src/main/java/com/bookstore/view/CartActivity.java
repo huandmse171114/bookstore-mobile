@@ -1,5 +1,6 @@
-package com.bookstore;
+package com.bookstore.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bookstore.adapter.CartAdapter;
+import com.bookstore.R;
 import com.bookstore.api.CartApiService;
 import com.bookstore.api.CartItem;
 import com.bookstore.api.RetrofitClient;
@@ -42,6 +45,16 @@ public class CartActivity extends AppCompatActivity {
 
         // Fetch cart details for user "vanh"
         getCartDetails("vanh");
+
+        // xử lý sự kiện khi ngươi dùng ấn nút quay lại
+          findViewById(R.id.btnBack).setOnClickListener(v -> backHomePage());
+          //nào sửa sang binding thì bỏ comment dòng dưới
+        // binding.btnBack.setOnClickListener(v -> backHomePage());
+    }
+
+    private void backHomePage() {
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 
     // Update the total item count
