@@ -35,7 +35,7 @@
         <activity android:name=".view.ProductDetailActivity"/>
         <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.HomePageActivity"/>
-        <activity android:name=".CartActivity"/>
+        <activity android:name=".view.CartActivity"/>
     </application>
 
 </manifest>

@@ -126,8 +126,8 @@ public class HomePageActivity extends AppCompatActivity {
     private void openCart() {
         Toast.makeText(this, "Opening Cart", Toast.LENGTH_SHORT).show();
         // Ví dụ mở Activity giỏ hàng
-        // Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
-        // startActivity(intent);
+         Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
+         startActivity(intent);
     }
 
     // Hàm để mở Activity tìm kiếm (hoặc thực hiện logic khác)
