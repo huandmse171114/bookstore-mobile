@@ -1,5 +1,7 @@
 package com.bookstore.model;
 
+import android.speech.RecognizerIntent;
+
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Book {
     private int numReviews;
     private float price;
     private int countInStock;
-    private List<String> reviews;
+    private List<Reviews> reviews;
     private Date createdAt;
     private Date updatedAt;
 
@@ -24,7 +26,7 @@ public class Book {
     // Constructor
     public Book(String id, String name, String image, String brand, int quantity,
                 String category, String description, float rating, int numReviews,
-                float price, int countInStock, List<String> reviews, Date createdAt,
+                float price, int countInStock, List<Reviews> reviews, Date createdAt,
                 Date updatedAt) {
         this.id = id;
         this.name = name;
@@ -134,11 +136,11 @@ public class Book {
         this.countInStock = countInStock;
     }
 
-    public List<String> getReviews() {
+    public List<Reviews> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<String> reviews) {
+    public void setReviews(List<Reviews> reviews) {
         this.reviews = reviews;
     }
 

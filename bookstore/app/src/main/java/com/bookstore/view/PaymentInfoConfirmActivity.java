@@ -11,11 +11,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bookstore.api.PaymentBillApi;
+import com.bookstore.api.RetrofitClient;
 import com.bookstore.constract.PaymentInfoConfirmContract;
 import com.bookstore.databinding.PaymentInfoConfirmBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.PaymentInfoConfirmModel;
 import com.bookstore.presenter.PaymentInfoConfirmPresenter;
+
+import retrofit2.Retrofit;
 
 public class PaymentInfoConfirmActivity extends AppCompatActivity implements PaymentInfoConfirmContract.View {
 
@@ -57,7 +61,8 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
     }
 
     private void confirmPaymentInfo() {
-        // Create order...
+        // Create payment bills...
+        String id = presenter.createOrder(response);
 
         // Get Order ID
         String orderId = "ABCKDS123N";
@@ -68,7 +73,6 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
         intent.putExtra("order_id", orderId);
 
         startActivity(intent);
-        finish();
     }
 
     private void setScreenFieldData(PaymentGPTResponse response) {
