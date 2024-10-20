@@ -3,6 +3,7 @@ package com.bookstore.view;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -140,5 +141,13 @@ public class SearchBookActivity extends AppCompatActivity {
 
     private void performSearch(String query) {
         // Implement search functionality
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
