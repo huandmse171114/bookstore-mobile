@@ -13,6 +13,12 @@ public class Book {
         this.imageResourceId = imageResourceId;
     }
 
+    public Book(String title, float price, int imageResourceId) {
+        this.title = title;
+        this.price = price;
+        this.imageResourceId = imageResourceId;
+    }
+
     // Getter methods for each field
     public int getId() {
         return id;

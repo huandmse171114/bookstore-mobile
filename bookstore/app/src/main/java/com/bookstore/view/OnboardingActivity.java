@@ -15,12 +15,11 @@ import com.bookstore.databinding.OnboardingLayoutBinding;
 
 public class OnboardingActivity extends AppCompatActivity {
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        // Khởi tạo binding cho layout random_main
+        // Khởi tạo binding cho layout
         com.bookstore.databinding.OnboardingLayoutBinding binding = OnboardingLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -39,7 +38,7 @@ public class OnboardingActivity extends AppCompatActivity {
         binding.lottie.animate().translationY(2400).setDuration(1000).setStartDelay(4000);
 
         // forward slider screen
-        long totalDuration = 5300;
+        long totalDuration = 7000;
         new Handler(Looper.getMainLooper()).postDelayed(this::navigateToSliderActivity, totalDuration);
      }
     private void navigateToSliderActivity() {

@@ -22,7 +22,7 @@
 
 
         <activity
-            android:name=".view.AuthActivity"
+            android:name=".view.OnboardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +35,8 @@
         <activity android:name=".view.SuccessPaymentActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".view.SliderActivity"/>
+        <activity android:name=".view.ProductDetailActivity"/>
+        <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.HomePageActivity"/>
     </application>
 </manifest>
