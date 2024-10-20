@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.databinding.SlideScreenBinding;
+import com.bookstore.view.AuthActivity;
 import com.bookstore.view.SliderActivity;
 
 
@@ -35,7 +36,7 @@ public class SliderViewAdapter extends PagerAdapter {
 
         binding.btnGetStarted.setOnClickListener(v -> {
             //open main activity
-            Intent intent = new Intent(mContext, MainActivity.class);
+            Intent intent = new Intent(mContext, AuthActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         });

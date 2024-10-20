@@ -1,51 +1,42 @@
 package com.bookstore.model;
-
-import java.net.URI;
-import java.util.Date;
 import java.util.List;
-
-public class Book {
+public class SearchBook {
     private String id;
     private String name;
+    private String price;
+    private float rating;
+    private int reviewCount;
     private String image;
     private String brand;
-    private int quantity;
     private String category;
+    private int quantity;
     private String description;
-    private float rating;
     private int numReviews;
-    private float price;
     private int countInStock;
     private List<String> reviews;
-    private Date createdAt;
-    private Date updatedAt;
+    private String createdAt;
+    private String updatedAt;
+    private int v;
 
-
-    // Constructor
-    public Book(String id, String name, String image, String brand, int quantity,
-                String category, String description, float rating, int numReviews,
-                float price, int countInStock, List<String> reviews, Date createdAt,
-                Date updatedAt) {
+    public SearchBook(String id, String name, String price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<String> reviews, String createdAt, String updatedAt, int v) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.rating = rating;
+        this.reviewCount = reviewCount;
         this.image = image;
         this.brand = brand;
-        this.quantity = quantity;
         this.category = category;
+        this.quantity = quantity;
         this.description = description;
-        this.rating = rating;
         this.numReviews = numReviews;
-        this.price = price;
         this.countInStock = countInStock;
         this.reviews = reviews;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-
-
-
+        this.v = v;
     }
-  
-    // Getters and Setters
+
     public String getId() {
         return id;
     }
@@ -60,6 +51,30 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
     }
 
     public String getImage() {
@@ -78,20 +93,20 @@ public class Book {
         this.brand = brand;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getDescription() {
@@ -102,28 +117,12 @@ public class Book {
         this.description = description;
     }
 
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
     public int getNumReviews() {
         return numReviews;
     }
 
     public void setNumReviews(int numReviews) {
         this.numReviews = numReviews;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public int getCountInStock() {
@@ -142,19 +141,27 @@ public class Book {
         this.reviews = reviews;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getV() {
+        return v;
+    }
+
+    public void setV(int v) {
+        this.v = v;
     }
 }
