@@ -3,12 +3,14 @@ package com.bookstore.model;
 import java.util.List;
 
 public class OrderCreateRequest {
+    private String user;
     private List<OrderItem> orderItems;
     private ShippingAddress shippingAddress;
     private String paymentMethod;
     private String paymentBill;
 
-    public OrderCreateRequest(List<OrderItem> orderItems, ShippingAddress shippingAddress, String paymentMethod, String paymentBill) {
+    public OrderCreateRequest(String user, List<OrderItem> orderItems, ShippingAddress shippingAddress, String paymentMethod, String paymentBill) {
+        this.user = user;
         this.orderItems = orderItems;
         this.shippingAddress = shippingAddress;
         this.paymentMethod = paymentMethod;
@@ -45,5 +47,13 @@ public class OrderCreateRequest {
 
     public void setPaymentBill(String paymentBill) {
         this.paymentBill = paymentBill;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
