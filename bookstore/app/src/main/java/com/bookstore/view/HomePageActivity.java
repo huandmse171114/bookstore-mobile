@@ -4,22 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.CongfigAPI.RetrofitClient;
+import com.bookstore.R;
 import com.bookstore.adapter.BookAdapter;
 import com.bookstore.adapter.CategoryAdapter;
 import com.bookstore.api.AuthApi;
-import com.bookstore.constract.BookContract;
-import com.bookstore.constract.CategoryContract;
+import com.bookstore.contract.BookContract;
+import com.bookstore.contract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
-import com.bookstore.model.SearchBook;
+
 import com.bookstore.presenter.BookPresenter;
 import com.bookstore.presenter.CategoryPresenter;
+
 import com.bookstore.model.Book;
 import com.bookstore.model.Category;
+import com.bookstore.presenter.BookPresenter;
+import com.bookstore.presenter.CategoryPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -30,7 +36,6 @@ public class HomePageActivity extends AppCompatActivity {
     private BookPresenter bookPresenter;
     private CategoryPresenter categoryPresenter;
     private BookAdapter bookAdapter;
-    private List<Category> categoryList;
     private CategoryAdapter categoryAdapter;
 
     @Override
@@ -96,6 +101,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Load data
         categoryPresenter.loadCategories();
         categoryPresenter.loadAllBooks();
+
         // Initialize API service
         authApi = RetrofitClient.getClient().create(AuthApi.class);
 
@@ -106,36 +112,49 @@ public class HomePageActivity extends AppCompatActivity {
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
         // Xử lý sự kiện cho Footer BottomNavigationView
-//        binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            switch (item.getItemId()) {
-//                case R.id.nav_home:
-//                    Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
-//                    return true;
-//                case R.id.nav_explore:
-//                    Toast.makeText(this, "Explore clicked", Toast.LENGTH_SHORT).show();
-//                    return true;
-//                case R.id.nav_profile:
-//                    Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show();
-//                    return true;
-//            }
-//            return false;
-//        });
+        setupBottomNavigation();
     }
 
-    // Hàm để mở Activity giỏ hàng (hoặc thực hiện logic khác)
+    // Setup BottomNavigationView actions
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                // Handle navigation to Home
+                Intent homeIntent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                startActivity(homeIntent);
+                return true;
+
+            } else if (itemId == R.id.nav_explore) {
+                // Handle navigation to Explore/Search
+                Intent exploreIntent = new Intent(HomePageActivity.this, CartActivity.class);
+                startActivity(exploreIntent);
+                return true;
+
+            } else if (itemId == R.id.nav_login) {
+                // Handle navigation to Login
+                Intent loginIntent = new Intent(HomePageActivity.this, AuthActivity.class);
+                startActivity(loginIntent);
+                return true;
+            }
+
+            return false;
+        });
+    }
+
+    // Hàm để mở Activity giỏ hàng
     private void openCart() {
         Toast.makeText(this, "Opening Cart", Toast.LENGTH_SHORT).show();
-        // Ví dụ mở Activity giỏ hàng
-         Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
-         startActivity(intent);
+        Intent intent = new Intent(HomePageActivity.this, CartActivity.class);
+        startActivity(intent);
     }
 
-    // Hàm để mở Activity tìm kiếm (hoặc thực hiện logic khác)
+    // Hàm để mở Activity tìm kiếm
     private void openSearch() {
         Toast.makeText(this, "Opening Search", Toast.LENGTH_SHORT).show();
-        // Ví dụ mở Activity tìm kiếm
-         Intent intent = new Intent(HomePageActivity.this, SearchBookActivity.class);
-         startActivity(intent);
+        Intent intent = new Intent(HomePageActivity.this, SearchBookActivity.class);
+        startActivity(intent);
     }
 
     @Override
