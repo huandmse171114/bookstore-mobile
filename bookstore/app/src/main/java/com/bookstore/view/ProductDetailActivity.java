@@ -1,5 +1,6 @@
 package com.bookstore.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.bookstore.R;
+import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.OtherProductsAdapter;
 import com.bookstore.model.TabAdapter;
+import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -24,16 +27,35 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private RecyclerView rvOtherProducts;
     private Button btnAddToCart;
+    private ProductDetailLayoutBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_detail_layout);
+        binding = ProductDetailLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         initViews();
         setupTabLayout();
         setupOtherProducts();
         setupAddToCartButton();
+        displayBookDetails();
+        // Nhận dữ liệu từ Intent
+//        int bookImage = getIntent().getIntExtra("book_image", -1);
+//        String bookTitle = getIntent().getStringExtra("book_title");
+//        int price = getIntent().getIntExtra("book_price", -1);
+//
+//        // Hiển thị hình ảnh và tiêu đề
+//        if (bookImage != -1) {
+//            binding.bookImgView.setImageResource(bookImage);
+//            binding.price.setText(price);
+//        }
+//
+//        binding.titleName.setText(bookTitle);
+        binding.back.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductDetailActivity.this, HomePageActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void initViews() {
@@ -47,6 +69,20 @@ public class ProductDetailActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    private void displayBookDetails() {
+        String bookImage = getIntent().getStringExtra("book_image");
+        String bookTitle = getIntent().getStringExtra("book_title");
+        float price = getIntent().getFloatExtra("book_price", 0f);
+
+        if (bookImage != null && !bookImage.isEmpty()) {
+            Glide.with(this)
+                    .load(bookImage)
+                    .into(binding.bookImgView);
+        }
+        binding.titleName.setText(bookTitle);
+        binding.price.setText(String.format("%,.0f VND", price));
     }
 
     private void setupTabLayout() {

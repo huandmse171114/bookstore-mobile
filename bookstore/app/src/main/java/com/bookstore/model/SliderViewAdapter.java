@@ -41,14 +41,15 @@ public class SliderViewAdapter extends PagerAdapter {
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         });
-        binding.next.setOnClickListener(v -> {
-            //forwards to the next screen
-            SliderActivity.screenPager.setCurrentItem(position + 1);
-        });
-        binding.back.setOnClickListener(v -> {
-            //backwards to the next screen
-            SliderActivity.screenPager.setCurrentItem(position - 1);
-        });
+
+//        binding.next.setOnClickListener(v -> {
+//            //forwards to the next screen
+//            SliderActivity.screenPager.setCurrentItem(position + 1);
+//        });
+//        binding.back.setOnClickListener(v -> {
+//            //backwards to the next screen
+//            SliderActivity.screenPager.setCurrentItem(position - 1);
+//        });
         switch (position){
             case 0:
                 binding.logo.setImageResource(R.drawable.bookslider);

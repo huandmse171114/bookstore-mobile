@@ -105,6 +105,13 @@ public class HomePageActivity extends AppCompatActivity {
         // Initialize API service
         authApi = RetrofitClient.getClient().create(AuthApi.class);
 
+        bookAdapter.setOnBookClickListener(book -> {
+            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            intent.putExtra("book_image", book.getImage());
+            intent.putExtra("book_title", book.getName());
+            intent.putExtra("book_price",(float) book.getPrice());
+            startActivity(intent);
+        });
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
         binding.cartIcon.setOnClickListener(v -> openCart());
 
