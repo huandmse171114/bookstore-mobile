@@ -1,5 +1,7 @@
 package com.bookstore.constract;
 
+import com.bookstore.model.PaymentGPTResponse;
+
 public interface PaymentInfoConfirmContract {
 
     interface View {
@@ -15,7 +17,7 @@ public interface PaymentInfoConfirmContract {
     }
 
     interface Presenter {
-
+        String createOrder(PaymentGPTResponse gptResponse);
     }
 
 }

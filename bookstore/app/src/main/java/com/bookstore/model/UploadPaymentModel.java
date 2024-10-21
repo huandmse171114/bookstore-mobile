@@ -39,7 +39,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
 
     private OkHttpClient okHttpClient;
     private final String stringURLEndPointGPT = "https://api.openai.com/v1/chat/completions";
-    private final String stringAPIKey = "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";
+    private final String stringAPIKey = "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";
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private Context context;
