@@ -2,6 +2,7 @@ package com.bookstore;
 
 import android.app.Application;
 
+import com.bookstore.model.CartItemResponse;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.ShippingAddress;
 import com.google.firebase.FirebaseApp;
@@ -16,6 +17,7 @@ public class MyApplication extends Application {
     private static String userId = "671226027478771599feaedf";
     private static ShippingAddress shippingAddress;
     private static List<OrderItemData> orderItems = new ArrayList<>();
+    private static List<CartItemResponse> cartItemResponses = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -50,5 +52,14 @@ public class MyApplication extends Application {
     public void setOrderItems(List<OrderItemData> orderItems) {
         if (!MyApplication.orderItems.isEmpty()) MyApplication.orderItems.clear();
         MyApplication.orderItems.addAll(orderItems);
+    }
+
+    public List<CartItemResponse> getCartItemResponses() {
+        return cartItemResponses;
+    }
+
+    public void setCartItemResponses(List<CartItemResponse> cartItemResponses) {
+        if (!MyApplication.cartItemResponses.isEmpty()) MyApplication.cartItemResponses.clear();
+        MyApplication.cartItemResponses.addAll(cartItemResponses);
     }
 }

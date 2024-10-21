@@ -4,11 +4,10 @@ public class CartItem {
     private String productId; // Product ID
     private String name;      // Product Name
     private String image;     // Product Image URL
-    private double price;     // Product Price
+    private int price;     // Product Price
     private int quantity;     // Quantity
 
-    // Constructor
-    public CartItem(String productId, String name, String image, double price, int quantity) {
+    public CartItem(String productId, String name, String image, int price, int quantity) {
         this.productId = productId;
         this.name = name;
         this.image = image;
@@ -16,21 +15,36 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    // Getters
     public String getProductId() {
         return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getImage() {
         return image;
     }
 
-    public double getPrice() {
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -40,6 +54,4 @@ public class CartItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-
 }
