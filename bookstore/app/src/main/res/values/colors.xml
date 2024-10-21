@@ -14,7 +14,7 @@
     <color name="blue">#88bef5</color>
     <color name="grey">#676060</color>
     <color name="colorPrimaryDark">#93b9ba</color>
-
+    <color name="yellow">#B8A304</color>
     <!-- colors for button style -->
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#18a3fe</color>

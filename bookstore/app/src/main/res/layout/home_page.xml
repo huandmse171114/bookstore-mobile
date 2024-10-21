@@ -57,7 +57,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_search_nav_bar"
+                android:src="@drawable/ic_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 <!--                android:onClick="openSearch" />-->
@@ -135,7 +135,7 @@
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_marginEnd="32dp"
-                    android:src="@drawable/img1"
+                    android:src="@drawable/picbestseller"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -161,6 +161,7 @@
             <!-- Book RecyclerView -->
 
             <!-- Load More Button -->
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bookRecyclerView"
                 android:layout_width="0dp"
@@ -177,7 +178,7 @@
                 android:id="@+id/loadMoreButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#3F4C95"
+                android:background="@drawable/button_shape"
                 android:text="Load More"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -201,8 +202,8 @@
 
                 <TextView
                     android:id="@+id/newArrivalSectionTitle"
-                    android:layout_width="128dp"
-                    android:layout_height="86dp"
+                    android:layout_width="131dp"
+                    android:layout_height="52dp"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="28dp"
                     android:text="New Arrivals"
@@ -229,7 +230,7 @@
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_marginEnd="32dp"
-                    android:src="@drawable/img1"
+                    android:src="@drawable/picnewarrival"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
