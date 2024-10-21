@@ -2,6 +2,7 @@ package com.bookstore.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -113,10 +114,13 @@ public class HomePageActivity extends AppCompatActivity {
         authApi = RetrofitClient.getClient().create(AuthApi.class);
 
         bookAdapter.setOnBookClickListener(book -> {
+            String bookId = book.getId();
+            Log.d("HomePageActivity", "Book ID: " + bookId);
             Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
             intent.putExtra("book_image", book.getImage());
             intent.putExtra("book_title", book.getName());
             intent.putExtra("book_price",(float) book.getPrice());
+            intent.putExtra("book_id",book.getId());
             startActivity(intent);
         });
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng giỏ hàng
