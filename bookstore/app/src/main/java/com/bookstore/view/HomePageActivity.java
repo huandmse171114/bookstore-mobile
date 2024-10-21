@@ -18,6 +18,7 @@ import com.bookstore.contract.BookContract;
 import com.bookstore.contract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
 
+import com.bookstore.model.SearchBook;
 import com.bookstore.presenter.BookPresenter;
 import com.bookstore.presenter.CategoryPresenter;
 
@@ -44,6 +45,12 @@ public class HomePageActivity extends AppCompatActivity {
         binding = HomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        String bookName = "Thay Đổi Một Suy Nghĩ";
+        String bookImage = "https://product.hstatic.net/1000237375/product/1080x1080_thay_doi_suy_nghi_b732e0443f9a4e0dbea8bffaf76fdd1b_large.jpg";
+        float bookPrice = 90000;
+        String bookName1 = "Vượt Qua Sự Chối Bỏ";
+        String bookImage1 = "https://product.hstatic.net/1000237375/product/1_01043a8867ef41288874e48bf8c61ab9_master.png";
+        float bookPrice1 = 309000;
         // Initialize adapters
         bookAdapter = new BookAdapter();
         categoryAdapter = new CategoryAdapter();
@@ -118,6 +125,28 @@ public class HomePageActivity extends AppCompatActivity {
         // Xử lý sự kiện khi người dùng nhấn vào biểu tượng tìm kiếm
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
+        // Xử lý sự kiện khi người dùng nhấn vào nút Load More
+        binding.loadMoreButton.setOnClickListener(v -> openSearch());
+
+        // Xử lý sự kiện khi người dùng nhấn vào nút see all
+        binding.seeAllButton.setOnClickListener(v -> openSearch());
+
+        binding.shopNow.setOnClickListener(book -> {
+            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            intent.putExtra("book_image",bookImage );
+            intent.putExtra("book_title",bookName);
+            intent.putExtra("book_price",bookPrice);
+            startActivity(intent);
+        });
+
+        binding.shopNow1.setOnClickListener(book -> {
+            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            intent.putExtra("book_image",bookImage1 );
+            intent.putExtra("book_title",bookName1);
+            intent.putExtra("book_price",bookPrice1);
+            startActivity(intent);
+        });
+
         // Xử lý sự kiện cho Footer BottomNavigationView
         setupBottomNavigation();
     }
@@ -135,7 +164,7 @@ public class HomePageActivity extends AppCompatActivity {
 
             } else if (itemId == R.id.nav_explore) {
                 // Handle navigation to Explore/Search
-                Intent exploreIntent = new Intent(HomePageActivity.this, CartActivity.class);
+                Intent exploreIntent = new Intent(HomePageActivity.this, SearchBookActivity.class);
                 startActivity(exploreIntent);
                 return true;
 

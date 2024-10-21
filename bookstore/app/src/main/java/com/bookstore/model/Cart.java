@@ -1,6 +1,6 @@
-package com.bookstore.api;
+package com.bookstore.model;
 
-public class CartItem {
+public class Cart {
     private int id;
     private String bookTitle;
     private String bookAuthor;
@@ -14,10 +14,10 @@ public class CartItem {
     private String lastUpdatedTime;
 
     // Constructor
-    public CartItem(int id, String bookTitle, String bookAuthor, String bookCoverImg,
-                    int bookPackageId, String bookPackageTitle, String bookPackageDescription,
-                    double bookPackagePrice, int bookPackageStock, int quantity,
-                    String lastUpdatedTime) {
+    public Cart(int id, String bookTitle, String bookAuthor, String bookCoverImg,
+                int bookPackageId, String bookPackageTitle, String bookPackageDescription,
+                double bookPackagePrice, int bookPackageStock, int quantity,
+                String lastUpdatedTime) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
