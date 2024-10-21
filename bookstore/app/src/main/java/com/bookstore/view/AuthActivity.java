@@ -101,7 +101,7 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
         // Chuyển đến MainActivity sau khi đăng nhập thành công
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
         finish();
     }
