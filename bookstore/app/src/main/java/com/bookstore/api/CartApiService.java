@@ -1,5 +1,6 @@
 package com.bookstore.api;
 
+import com.bookstore.model.BookDetail;
 import com.bookstore.model.CartRequest;
 import com.bookstore.model.CartResponse;
 
@@ -12,7 +13,8 @@ import retrofit2.http.Path;
 import java.util.List;
 
 public interface CartApiService {
-
+    @GET("/api/products/{id}")
+    Call<BookDetail> getBookDetails(@Path("id") int bookId);
     @GET("/store/api/v1/customer/{username}/cart-details")
     Call<List<CartItem>> getCartDetails(@Path("username") String username);
     @POST("/api/order-items")
