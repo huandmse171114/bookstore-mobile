@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartActivity">
+    tools:context=".view.CartActivity">
 
     <!-- RecyclerView để hiển thị danh sách sản phẩm trong giỏ hàng -->
     <androidx.appcompat.widget.Toolbar

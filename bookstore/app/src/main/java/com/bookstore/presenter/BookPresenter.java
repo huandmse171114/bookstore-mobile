@@ -1,10 +1,8 @@
 package com.bookstore.presenter;
 
-import com.bookstore.R;
 import com.bookstore.model.Book;
-import com.bookstore.constract.BookContract;
+import com.bookstore.contract.BookContract;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookPresenter {

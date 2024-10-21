@@ -80,6 +80,7 @@ public class SearchBookActivity extends AppCompatActivity {
             }
             return false;
         });
+      
             binding.btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
             startActivity(intent);
@@ -143,5 +144,4 @@ public class SearchBookActivity extends AppCompatActivity {
     private void performSearch(String query) {
         // Implement search functionality
     }
-
 }
