@@ -1,4 +1,4 @@
-package com.bookstore;
+package com.bookstore.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bookstore.R;
 import com.bookstore.api.CartItem;
 
 import java.util.List;
