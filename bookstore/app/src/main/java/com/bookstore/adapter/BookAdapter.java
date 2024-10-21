@@ -16,6 +16,15 @@ import java.util.List;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private List<Book> books;
+    private OnBookClickListener onBookClickListener;
+
+    public interface OnBookClickListener {
+        void onBookClick(Book book);
+    }
+
+    public void setOnBookClickListener(OnBookClickListener listener) {
+        this.onBookClickListener = listener;
+    }
 
     public void setBooks(List<Book> books) {
         this.books = books;
@@ -33,12 +42,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
-        if (book.getName().length() > 15) book.setName(book.getName().substring(0, 15) + " ...");
-        holder.binding.bookTitle.setText(book.getName());
-        holder.binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
-        Glide.with(holder.binding.getRoot())
-                .load(Uri.parse(book.getImage()))
-                .into(holder.binding.bookImage);
+        holder.bind(book);
+        holder.binding.getRoot().setOnClickListener(v -> {
+            if (onBookClickListener != null) {
+                onBookClickListener.onBookClick(book);
+            }
+        });
+//        if (book.getName().length() > 15) book.setName(book.getName().substring(0, 15) + " ...");
+//        holder.binding.bookTitle.setText(book.getName());
+//        holder.binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
+//        Glide.with(holder.binding.getRoot())
+//                .load(Uri.parse(book.getImage()))
+//                .into(holder.binding.bookImage);
 //        holder.binding.bookImage.set(book.getImage());
 
         holder.binding.heartIcon.setOnClickListener(v -> {
@@ -68,5 +83,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             super(binding.getRoot());
             this.binding = binding;
         }
+
+        public void bind(Book book) {
+            String title = book.getName();
+            if (title.length() > 15) {
+                title = title.substring(0, 15) + "...";
+            }
+            binding.bookTitle.setText(title);
+            binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
+
+            Glide.with(binding.bookImage.getContext())
+                    .load(Uri.parse(book.getImage()))
+                    .into(binding.bookImage);
+        }
     }
+
 }

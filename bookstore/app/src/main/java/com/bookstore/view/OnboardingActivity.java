@@ -38,7 +38,7 @@ public class OnboardingActivity extends AppCompatActivity {
         binding.lottie.animate().translationY(2400).setDuration(1000).setStartDelay(4000);
 
         // forward slider screen
-        long totalDuration = 7000;
+        long totalDuration = 6000;
         new Handler(Looper.getMainLooper()).postDelayed(this::navigateToSliderActivity, totalDuration);
      }
     private void navigateToSliderActivity() {

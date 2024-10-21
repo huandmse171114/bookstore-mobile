@@ -11,9 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <ImageButton
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -26,21 +28,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Book Detail"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_gravity="center" />
+            android:textSize="18sp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginRight="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Cart"
             android:src="@drawable/ic_cart"
             tools:ignore="TouchTargetSizeCheck"
-            android:layout_marginRight="16dp"
-            tools:layout_editor_absoluteY="12dp"/>
+            tools:layout_editor_absoluteY="12dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -57,21 +59,23 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="IDR 289.000"
+                android:text="189.000 VND"
                 android:textColor="#FF5722"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Atomic Habits - James Clear"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:textStyle="bold" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
@@ -85,24 +89,26 @@
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
-<!--note rằng nố tim anh bia dua vo-->
+            <!--note rằng nố tim anh bia dua vo-->
             <ImageView
+                android:id="@+id/bookImgView"
                 android:layout_width="150dp"
-                android:layout_height="200dp"
 
-                android:src="@drawable/logo"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
 
             <TextView
+                android:id="@+id/Review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Review (96)"
                 android:textColor="#000000"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp" />
+                android:textStyle="bold" />
 
             <!-- Repeat this block for each review -->
             <LinearLayout
@@ -112,6 +118,7 @@
                 android:layout_marginTop="16dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/customer"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/logo" />
@@ -124,6 +131,7 @@
                     android:layout_marginStart="16dp">
 
                     <TextView
+                        android:id="@+id/cus_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Madelina"
@@ -137,6 +145,7 @@
                         style="?android:attr/ratingBarStyleSmall" />
 
                     <TextView
+                        android:id="@+id/des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
@@ -182,6 +191,7 @@
         android:id="@+id/buttonAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="Add To Cart"
         android:textColor="#FFFFFF"
         android:background="#3F51B5"

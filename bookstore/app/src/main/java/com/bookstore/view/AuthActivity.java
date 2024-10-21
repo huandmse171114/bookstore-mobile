@@ -2,7 +2,6 @@ package com.bookstore.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.api.AuthApi;
+import com.bookstore.contract.AuthContract;
 import com.bookstore.presenter.AuthPresenter;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AuthActivity extends AppCompatActivity implements com.bookstore.constract.AuthContract.View {
+public class AuthActivity extends AppCompatActivity implements AuthContract.View {
 
     private EditText usernameField, passwordField, emailField, confirmPasswordField;
     private Button signInButton, signUpButton;
@@ -101,7 +101,7 @@ public class AuthActivity extends AppCompatActivity implements com.bookstore.con
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
         // Chuyển đến MainActivity sau khi đăng nhập thành công
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
         finish();
     }

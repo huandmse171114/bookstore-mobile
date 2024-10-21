@@ -1,7 +1,5 @@
 package com.bookstore.view;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,13 +16,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bookstore.R;
 import com.bookstore.api.SearchBookApi;
-import com.bookstore.databinding.OnboardingLayoutBinding;
 import com.bookstore.databinding.SearchLayoutBinding;
 import com.bookstore.model.LatestSearchAdapter;
 import com.bookstore.model.PopularBooksAdapter;
 import com.bookstore.model.SearchBook;
+import com.bookstore.model.SearchBookResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +80,11 @@ public class SearchBookActivity extends AppCompatActivity {
             }
             return false;
         });
+      
+            binding.btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
+            startActivity(intent);
+            });
     }
 
     private void setupLatestSearchRecyclerView() {
@@ -141,13 +143,5 @@ public class SearchBookActivity extends AppCompatActivity {
 
     private void performSearch(String query) {
         // Implement search functionality
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
