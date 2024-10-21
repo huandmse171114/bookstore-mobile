@@ -1,7 +1,6 @@
 package com.bookstore.view;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -12,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.constract.SuccessPaymentContract;
+import com.bookstore.contract.SuccessPaymentContract;
 import com.bookstore.databinding.SuccessPaymentBinding;
 import com.bookstore.model.SuccessPaymentModel;
 import com.bookstore.presenter.SuccessPaymentPresenter;

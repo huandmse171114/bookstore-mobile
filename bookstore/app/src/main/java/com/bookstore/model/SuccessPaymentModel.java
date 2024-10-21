@@ -1,6 +1,6 @@
 package com.bookstore.model;
 
-import com.bookstore.constract.SuccessPaymentContract;
+import com.bookstore.contract.SuccessPaymentContract;
 
 public class SuccessPaymentModel implements SuccessPaymentContract.Model {
 }

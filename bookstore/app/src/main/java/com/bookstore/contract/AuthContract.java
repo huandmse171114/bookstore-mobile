@@ -1,10 +1,13 @@
-package com.bookstore.constract;
+package com.bookstore.contract;
+
+import android.content.Context;
 
 public interface AuthContract {
     interface View {
         void showSignInSuccess();  // Notify the user of successful sign-in
         void showSignUpSuccess();  // Notify the user of successful sign-up
         void showError(String message);  // Show error messages (e.g., validation, server issues)
+        Context getApplicationContext();
     }
 
     interface Presenter {

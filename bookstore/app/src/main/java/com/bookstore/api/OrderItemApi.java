@@ -14,4 +14,7 @@ public interface OrderItemApi {
     @GET("/api/order-items")
     Call<OrderItemsGetResponse> getAll();
 
+//    @GET("/api/order-items/mine")
+//    Call<OrderItemsGetResponse> getUserItems(@Body OrderItem);
+
 }

@@ -14,9 +14,13 @@ import com.bookstore.R;
 import com.bookstore.adapter.BookAdapter;
 import com.bookstore.adapter.CategoryAdapter;
 import com.bookstore.api.AuthApi;
-import com.bookstore.constract.BookContract;
-import com.bookstore.constract.CategoryContract;
+import com.bookstore.contract.BookContract;
+import com.bookstore.contract.CategoryContract;
 import com.bookstore.databinding.HomePageBinding;
+
+import com.bookstore.presenter.BookPresenter;
+import com.bookstore.presenter.CategoryPresenter;
+
 import com.bookstore.model.Book;
 import com.bookstore.model.Category;
 import com.bookstore.presenter.BookPresenter;
