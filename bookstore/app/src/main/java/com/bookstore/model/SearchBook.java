@@ -13,12 +13,12 @@ public class SearchBook {
     private String description;
     private int numReviews;
     private int countInStock;
-    private List<String> reviews;
+    private List<Reviews> reviews;
     private String createdAt;
     private String updatedAt;
     private int v;
 
-    public SearchBook(String id, String name, String price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<String> reviews, String createdAt, String updatedAt, int v) {
+    public SearchBook(String id, String name, String price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<Reviews> reviews, String createdAt, String updatedAt, int v) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -133,11 +133,11 @@ public class SearchBook {
         this.countInStock = countInStock;
     }
 
-    public List<String> getReviews() {
+    public List<Reviews> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<String> reviews) {
+    public void setReviews(List<Reviews> reviews) {
         this.reviews = reviews;
     }
 
