@@ -19,7 +19,7 @@
 
 
         <activity
-            android:name=".view.OnboardingActivity"
+            android:name=".view.HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,10 +34,11 @@
         <activity android:name=".view.SliderActivity"/>
         <activity android:name=".view.ProductDetailActivity"/>
         <activity android:name=".view.SearchBookActivity"/>
-        <activity android:name=".view.HomePageActivity"/>
+<!--        <activity android:name=".view.HomePageActivity"/>-->
         <activity android:name=".view.CartActivity"/>
         <activity android:name=".view.AuthActivity"/>
         <activity android:name=".view.OrderPreviewActivity"/>
+        <activity android:name=".view.ProductListActivity"/>
     </application>
 
 </manifest>

@@ -126,10 +126,10 @@ public class HomePageActivity extends AppCompatActivity {
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
         // Xử lý sự kiện khi người dùng nhấn vào nút Load More
-        binding.loadMoreButton.setOnClickListener(v -> openSearch());
+        binding.loadMoreButton.setOnClickListener(v -> openProductList());
 
         // Xử lý sự kiện khi người dùng nhấn vào nút see all
-        binding.seeAllButton.setOnClickListener(v -> openSearch());
+        binding.seeAllButton.setOnClickListener(v -> openProductList());
 
         binding.shopNow.setOnClickListener(book -> {
             Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
@@ -190,6 +190,13 @@ public class HomePageActivity extends AppCompatActivity {
     private void openSearch() {
         Toast.makeText(this, "Opening Search", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HomePageActivity.this, SearchBookActivity.class);
+        startActivity(intent);
+    }
+
+    // Hàm để mở Activity load more, see alll
+    private void openProductList() {
+        Toast.makeText(this, "Opening Search", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(HomePageActivity.this, ProductListActivity.class);
         startActivity(intent);
     }
 
