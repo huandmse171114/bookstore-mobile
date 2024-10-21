@@ -37,7 +37,8 @@ public class SliderViewAdapter extends PagerAdapter {
 
         binding.btnGetStarted.setOnClickListener(v -> {
             //open main activity
-            Intent intent = new Intent(mContext, HomePageActivity.class);
+//            Intent intent = new Intent(mContext, HomePageActivity.class);
+            Intent intent = new Intent(mContext, MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         });

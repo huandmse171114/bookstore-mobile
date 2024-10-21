@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CartApiService {
 
-    @GET("/store/api/v1/customer/{username}/cart-details")
-    Call<List<CartItem>> getCartDetails(@Path("username") String username);
+    @GET("/api/order-items")
+    Call<List<CartItem>> getAllCartItems();
 }

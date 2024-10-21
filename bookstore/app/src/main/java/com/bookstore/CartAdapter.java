@@ -34,8 +34,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         // Set the product image, title, author, price, and quantity
         holder.imgProduct.setImageResource(R.drawable.img); // Placeholder, replace with actual image loading
-        holder.txtProductName.setText(cartItem.getBookTitle());
-        holder.txtProductPrice.setText(String.format("%,.0f VND", cartItem.getBookPackagePrice()));
+        holder.txtProductName.setText(cartItem.getName());
+        holder.txtProductPrice.setText(String.format("%,.0f VND", cartItem.getPrice()));
         holder.txtQuantity.setText(String.valueOf(cartItem.getQuantity()));
 
         // Optionally set up the quantity buttons if needed
