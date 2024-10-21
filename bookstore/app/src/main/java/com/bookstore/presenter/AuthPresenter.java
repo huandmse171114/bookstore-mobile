@@ -1,7 +1,8 @@
 package com.bookstore.presenter;
 
+import com.bookstore.MyApplication;
 import com.bookstore.api.AuthApi;
-import com.bookstore.constract.AuthContract;
+import com.bookstore.contract.AuthContract;
 import com.bookstore.model.SignInRequest;
 import com.bookstore.model.SignInResponse;
 import com.bookstore.model.SignUpRequest;
@@ -28,6 +29,9 @@ public class AuthPresenter implements AuthContract.Presenter {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    //store user id
+                    storeUserId(response.body().get_id());
+
                     view.showSignInSuccess();
                 } else {
                     view.showError("Sign in failed: " + response.message());
@@ -66,5 +70,10 @@ public class AuthPresenter implements AuthContract.Presenter {
                 view.showError("Sign-up failed: " + t.getMessage());
             }
         });
+    }
+
+    private void storeUserId(String id) {
+        MyApplication app = (MyApplication) view.getApplicationContext();
+        app.setUserId(id);
     }
 }

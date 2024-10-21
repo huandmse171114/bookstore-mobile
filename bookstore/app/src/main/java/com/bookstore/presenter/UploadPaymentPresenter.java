@@ -1,23 +1,9 @@
 package com.bookstore.presenter;
 
 import android.net.Uri;
-import android.os.Build;
-import android.os.StrictMode;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.bookstore.constract.UploadPaymentContract;
+import com.bookstore.contract.UploadPaymentContract;
 import com.bookstore.model.PaymentGPTResponse;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.time.Instant;
-import java.util.List;
 
 public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {
 
