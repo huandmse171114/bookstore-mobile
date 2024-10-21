@@ -91,6 +91,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             }
             binding.bookTitle.setText(title);
             binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
+            binding.bookRating.setText(String.valueOf(book.getRating()));
+            binding.reviewsCount.setText(String.valueOf(book.getNumReviews()));
             Glide.with(binding.bookImage.getContext())
                     .load(Uri.parse(book.getImage()))
                     .into(binding.bookImage);

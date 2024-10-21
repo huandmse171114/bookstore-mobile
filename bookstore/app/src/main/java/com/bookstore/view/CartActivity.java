@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookstore.adapter.CartAdapter;
 import com.bookstore.R;
 import com.bookstore.api.CartApiService;
-import com.bookstore.api.CartItem;
+import com.bookstore.model.Cart;
 import com.bookstore.api.RetrofitClient;
 
 import retrofit2.Call;
@@ -73,28 +73,28 @@ public class CartActivity extends AppCompatActivity {
         // Initialize TextView for total price
         TextView txtTotalPrice = findViewById(R.id.txtTotalPrice);
 
-        Call<List<CartItem>> call = apiService.getCartDetails(username);
-        call.enqueue(new Callback<List<CartItem>>() {
+        Call<List<Cart>> call = apiService.getCartDetails(username);
+        call.enqueue(new Callback<List<Cart>>() {
             @Override
-            public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
+            public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     // Cart details fetched successfully
-                    List<CartItem> cartItems = response.body();
+                    List<Cart> carts = response.body();
                     Log.d("Cart", "Cart details fetched successfully");
 
                     // Update the total item count
-                    int totalItems = cartItems.size();
+                    int totalItems = carts.size();
                     txtTotalItems.setText("Total " + totalItems + " items"); // Update TextView
 
                     // Calculate the total price
                     double totalPrice = 0;
-                    for (CartItem item : cartItems) {
+                    for (Cart item : carts) {
                         totalPrice += item.getBookPackagePrice() * item.getQuantity();
                     }
                     txtTotalPrice.setText("Total: " + String.format("%.2f VND", totalPrice)); // Update TextView
 
                     // Set the adapter with fetched cart items
-                    CartAdapter cartAdapter = new CartAdapter(cartItems);
+                    CartAdapter cartAdapter = new CartAdapter(carts);
                     recyclerViewCartItems.setAdapter(cartAdapter);
                 } else {
                     // Failed to fetch cart details
@@ -103,7 +103,7 @@ public class CartActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<CartItem>> call, Throwable t) {
+            public void onFailure(Call<List<Cart>> call, Throwable t) {
                 Log.e("Cart", "API call failed: " + t.getMessage());
             }
 
