@@ -56,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/price"
@@ -83,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:tabMode="fixed"
-                app:tabGravity="fill" />
+                app:tabGravity="fill"
+                />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
