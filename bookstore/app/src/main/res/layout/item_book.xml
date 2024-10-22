@@ -108,16 +108,20 @@
             android:text="Reviews"
             android:textColor="@color/yellow"
             android:textSize="16sp" />
-
         <TextView
             android:id="@+id/book_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=""
+            android:text="31231"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-5dp"
+            tools:layout_editor_absoluteY="311dp" />
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

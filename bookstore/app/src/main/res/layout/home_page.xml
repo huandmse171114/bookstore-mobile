@@ -14,15 +14,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <!-- Header Background -->
             <ImageView
                 android:id="@+id/headerBackground"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
                 android:background="@color/colorPrimaryDark"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,8 +49,8 @@
                 android:src="@drawable/ic_cart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<!--                android:onClick="openCart" -->
-<!--                />-->
+            <!--                android:onClick="openCart" -->
+            <!--                />-->
 
             <ImageView
                 android:id="@+id/searchIcon"
@@ -60,7 +61,7 @@
                 android:src="@drawable/ic_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<!--                android:onClick="openSearch" />-->
+            <!--                android:onClick="openSearch" />-->
 
             <!-- Header Title -->
             <TextView
@@ -148,6 +149,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 android:scrollbars="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/newArrivalSection"
@@ -179,12 +181,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_shape"
-                android:text="Load More"
                 android:gravity="center"
+                android:text="Load More"
                 android:textColor="@android:color/white"
-                app:layout_constraintTop_toBottomOf="@+id/bookRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookRecyclerView" />
 
             <!-- New Arrival Section -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -251,43 +253,43 @@
                     android:id="@+id/anotherProductTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="Another Product"
                     android:textColor="#333"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- "See All" Button -->
                 <TextView
                     android:id="@+id/seeAllButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text="See All"
                     android:textColor="#FF5722"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- RecyclerView cho danh sách sản phẩm khác -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/anotherProductRecyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:scrollbars="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/anotherProductTitle"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp" />
+                    android:paddingEnd="16dp"
+                    android:scrollbars="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/anotherProductTitle" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

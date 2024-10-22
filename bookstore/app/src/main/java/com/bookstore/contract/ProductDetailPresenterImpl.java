@@ -1,5 +1,5 @@
-package com.bookstore.constract;
 
+package com.bookstore.contract;
 import com.bookstore.api.CartApiService;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.CartRequest;

@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface SearchBookApi {
     @GET("/api/products")
-    Call<SearchBookResponse> getPopularBooks(@Query("brand") String query);
+    Call<SearchBookResponse> getPopularBooks(@Query("keyword") String query);
     @GET("/api/products")
     Call<ProductDetailResponse> getAllBooks();
 }

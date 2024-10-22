@@ -33,7 +33,6 @@ public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         BookDetail book = products.get(position);
         holder.binding.tvTitle.setText(book.getName());
-        holder.binding.tvAuthor.setText(book.getCategory());
         holder.binding.tvPrice.setText(book.getPrice() + " VND");
         // Load image using Glide
         Glide.with(holder.binding.getRoot().getContext())

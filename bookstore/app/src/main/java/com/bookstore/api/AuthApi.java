@@ -27,7 +27,7 @@ public interface AuthApi {
     Call<List<Category>> getCategories();
 
     @GET("/api/products")
-    Call<BookRequest> getBooks(@Query("category") Integer categoryId);
+    Call<BookRequest> getBooks(@Query("keyword") Integer categoryId);
 }
 
 

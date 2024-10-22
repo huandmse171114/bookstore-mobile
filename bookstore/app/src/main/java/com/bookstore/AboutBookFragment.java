@@ -18,8 +18,8 @@ public class AboutBookFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
         TextView tvOverview = view.findViewById(R.id.tvOverview);
-        tvOverview.setText("Quyen sách mang đến một cái nhìn toàn diện về mọi mặt trong cuộc ống, cung cấp cho người đọc những hướng dẫn rõ ràng về cuộc sống. Thông qua những lời khuyên sâu sắc, tác giả , biến cuốn sách này thành một lựa chọn không thể bỏ qua " +
-                "cho những ai muốn cải thiện lĩnh vực liên quan trong cuộc sống hoặc công việc.\"");
+        tvOverview.setText("The book offers a comprehensive view of all aspects of life, providing readers with clear guidelines for life. Through insightful advice, the author, makes this book a must-have choice" +
+                "For those who want to improve a related area in their life or work.");
         return view;
     }
 }

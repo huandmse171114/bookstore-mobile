@@ -90,9 +90,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 title = title.substring(0, 15) + "...";
             }
             binding.bookTitle.setText(title);
-            binding.bookPrice.setText(String.format("%,.0f VND", book.getPrice()));
+            binding.bookPrice.setText(String.format("%.0f VND", book.getPrice()));
             binding.bookRating.setText(String.valueOf(book.getRating()));
             binding.reviewsCount.setText(String.valueOf(book.getNumReviews()));
+            binding.bookId.setText(book.getId());
             Glide.with(binding.bookImage.getContext())
                     .load(Uri.parse(book.getImage()))
                     .into(binding.bookImage);
