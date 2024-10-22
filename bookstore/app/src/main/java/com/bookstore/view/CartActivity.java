@@ -26,6 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +37,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     private CartAdapter cartAdapter;
     private MyApplication app;
     private List<CartItemResponse> cartItems;
+    private int totalItems = 0, totalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +52,12 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
 
         if (cartItems != null && !cartItems.isEmpty()) {
             cartAdapter = new CartAdapter(cartItems.stream()
-                    .map(item -> new CartItem(item.get_id(), item.getName(), item.getImage(), item.getQty(), item.getPrice()))
+                    .map(item -> new CartItem(item.getId(), item.getName(), item.getImage(), item.getQty(), item.getPrice()))
                     .collect(Collectors.toList()));
         }else {
             cartAdapter = new CartAdapter(new ArrayList<>());
         }
+        binding.recyclerViewCartItems.setLayoutManager(new LinearLayoutManager(this));
 
         binding.recyclerViewCartItems.setAdapter(cartAdapter);
     }
@@ -67,8 +70,21 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void updateCartItemsRecyclerView(List<CartItemResponse> data) {
         cartAdapter.setCartItems(data.stream()
-                .map(item -> new CartItem(item.get_id(), item.getName(), item.getImage(), item.getQty(), item.getPrice()))
+                .map(item -> new CartItem(item.getId(), item.getName(), item.getImage(), item.getPrice(), item.getQty()))
                 .collect(Collectors.toList()));
+
+        totalPrice = 0;
+        totalItems = 0;
+
+        data.forEach(item -> {
+            totalPrice += item.getPrice();
+            totalItems += item.getQty();
+        });
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        binding.totalItems.setText(String.valueOf("Total: " + totalItems + " item(s)"));
+        binding.totalPrice.setText(String.valueOf(numberFormat.format(totalPrice) + " VND"));
         binding.recyclerViewCartItems.setAdapter(cartAdapter);
     }
 }

@@ -22,7 +22,6 @@ public class Book {
     private Date createdAt;
     private Date updatedAt;
 
-
     // Constructor
     public Book(String id, String name, String image, String brand, int quantity,
                 String category, String description, float rating, int numReviews,

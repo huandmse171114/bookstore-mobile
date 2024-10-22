@@ -18,7 +18,7 @@ public interface CartApiService {
     Call<CartResponse> getAll();
 
     @GET("/api/order-items/{id}")
-    Call<OrderItemsGetResponse> getUserItems(@Path("id") String id);
+    Call<CartResponse> getUserItems(@Path("id") String id);
 
     @POST("/api/order-items")
     Call<CartResponse> addToCart(@Body CartRequest cartRequest);
