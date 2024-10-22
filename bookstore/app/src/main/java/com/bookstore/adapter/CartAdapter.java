@@ -1,5 +1,6 @@
 package com.bookstore.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,63 +11,61 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.R;
-import com.bookstore.model.Cart;
+import com.bookstore.api.CartItem;
+import com.bookstore.databinding.CartItemBinding;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<Cart> carts;
+    private List<CartItem> cartItems;
 
-    public CartAdapter(List<Cart> carts) {
-        this.carts = carts;
+    public CartAdapter(List<CartItem>cartItems) {
+        this.cartItems = cartItems;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false);
-        return new CartViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        CartItemBinding binding = CartItemBinding.inflate(inflater, parent, false);
+        return new CartViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Cart cart = carts.get(position);
+        CartItem cartItem = cartItems.get(position);
 
-        // Set the product image, title, author, price, and quantity
-        holder.imgProduct.setImageResource(R.drawable.img); // Placeholder, replace with actual image loading
-        holder.txtProductName.setText(cart.getBookTitle());
-        holder.txtProductPrice.setText(String.format("%,.0f VND", cart.getBookPackagePrice()));
-        holder.txtQuantity.setText(String.valueOf(cart.getQuantity()));
+        holder.binding.txtProductName.setText(cartItem.getName());
+        holder.binding.txtProductPrice.setText(String.format("%,.0f VND", cartItem.getPrice()));
+        holder.binding.txtQuantity.setText(String.valueOf(cartItem.getQuantity()));
+        Glide.with(holder.binding.getRoot())
+                .load(Uri.parse(cartItem.getImage()))
+                .into(holder.binding.imgProduct);
 
-        // Optionally set up the quantity buttons if needed
-        holder.btnDecreaseQuantity.setOnClickListener(v -> {
-            // Decrease quantity logic
-        });
+    }
 
-        holder.btnIncreaseQuantity.setOnClickListener(v -> {
-            // Increase quantity logic
-        });
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     @Override
     public int getItemCount() {
-        return carts.size();
+        return cartItems.size();
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgProduct;
-        TextView txtProductName, txtProductPrice, txtQuantity;
-        ImageButton btnDecreaseQuantity, btnIncreaseQuantity;
+        CartItemBinding binding;
 
-        public CartViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imgProduct = itemView.findViewById(R.id.imgProduct);
-            txtProductName = itemView.findViewById(R.id.txtProductName);
-            txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
-            txtQuantity = itemView.findViewById(R.id.txtQuantity);
-            btnDecreaseQuantity = itemView.findViewById(R.id.btnDecreaseQuantity);
-            btnIncreaseQuantity = itemView.findViewById(R.id.btnIncreaseQuantity);
+        public CartViewHolder(@NonNull CartItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

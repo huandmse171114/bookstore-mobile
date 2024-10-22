@@ -1,68 +1,57 @@
-package com.bookstore.model;
+package com.bookstore.api;
 
-public class Cart {
-    private int id;
-    private String bookTitle;
-    private String bookAuthor;
-    private String bookCoverImg;
-    private int bookPackageId;
-    private String bookPackageTitle;
-    private String bookPackageDescription;
-    private double bookPackagePrice;
-    private int bookPackageStock;
-    private int quantity;
-    private String lastUpdatedTime;
+public class CartItem {
+    private String productId; // Product ID
+    private String name;      // Product Name
+    private String image;     // Product Image URL
+    private int price;     // Product Price
+    private int quantity;     // Quantity
 
-    // Constructor
-    public Cart(int id, String bookTitle, String bookAuthor, String bookCoverImg,
-                int bookPackageId, String bookPackageTitle, String bookPackageDescription,
-                double bookPackagePrice, int bookPackageStock, int quantity,
-                String lastUpdatedTime) {
-        this.id = id;
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
-        this.bookCoverImg = bookCoverImg;
-        this.bookPackageId = bookPackageId;
-        this.bookPackageTitle = bookPackageTitle;
-        this.bookPackageDescription = bookPackageDescription;
-        this.bookPackagePrice = bookPackagePrice;
-        this.bookPackageStock = bookPackageStock;
+    public CartItem(String productId, String name, String image, int price, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.image = image;
+        this.price = price;
         this.quantity = quantity;
-        this.lastUpdatedTime = lastUpdatedTime;
     }
 
-    // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getProductId() {
+        return productId;
+    }
 
-    public String getBookTitle() { return bookTitle; }
-    public void setBookTitle(String bookTitle) { this.bookTitle = bookTitle; }
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
-    public String getBookAuthor() { return bookAuthor; }
-    public void setBookAuthor(String bookAuthor) { this.bookAuthor = bookAuthor; }
+    public String getName() {
+        return name;
+    }
 
-    public String getBookCoverImg() { return bookCoverImg; }
-    public void setBookCoverImg(String bookCoverImg) { this.bookCoverImg = bookCoverImg; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public int getBookPackageId() { return bookPackageId; }
-    public void setBookPackageId(int bookPackageId) { this.bookPackageId = bookPackageId; }
+    public String getImage() {
+        return image;
+    }
 
-    public String getBookPackageTitle() { return bookPackageTitle; }
-    public void setBookPackageTitle(String bookPackageTitle) { this.bookPackageTitle = bookPackageTitle; }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-    public String getBookPackageDescription() { return bookPackageDescription; }
-    public void setBookPackageDescription(String bookPackageDescription) { this.bookPackageDescription = bookPackageDescription; }
+    public int getPrice() {
+        return price;
+    }
 
-    public double getBookPackagePrice() { return bookPackagePrice; }
-    public void setBookPackagePrice(double bookPackagePrice) { this.bookPackagePrice = bookPackagePrice; }
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-    public int getBookPackageStock() { return bookPackageStock; }
-    public void setBookPackageStock(int bookPackageStock) { this.bookPackageStock = bookPackageStock; }
+    public int getQuantity() {
+        return quantity;
+    }
 
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    public String getLastUpdatedTime() { return lastUpdatedTime; }
-    public void setLastUpdatedTime(String lastUpdatedTime) { this.lastUpdatedTime = lastUpdatedTime; }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
-
