@@ -37,7 +37,7 @@ public class SliderViewAdapter extends PagerAdapter {
 
         binding.btnGetStarted.setOnClickListener(v -> {
             //open main activity
-            Intent intent = new Intent(mContext, MainActivity.class);
+            Intent intent = new Intent(mContext, HomePageActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         });
@@ -61,6 +61,7 @@ public class SliderViewAdapter extends PagerAdapter {
                 binding.desc.setText("We have a wide range of books for you to choose from.");
                 binding.back.setVisibility(View.GONE);
                 binding.next.setVisibility(View.VISIBLE);
+                binding.btnGetStarted.setVisibility(View.GONE);
                 break;
              case 1:
                  binding.logo.setImageResource(R.drawable.shipper);
@@ -72,6 +73,7 @@ public class SliderViewAdapter extends PagerAdapter {
                  binding.desc.setText("We deliver your order as soon as possible.");
                  binding.back.setVisibility(View.VISIBLE);
                  binding.next.setVisibility(View.VISIBLE);
+                 binding.btnGetStarted.setVisibility(View.GONE);
                 break;
             case 2:
                 binding.logo.setImageResource(R.drawable.payment);
