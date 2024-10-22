@@ -1,20 +1,19 @@
 package com.bookstore.model;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bookstore.R;
+import com.bookstore.databinding.ItemOtherProductBinding;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
-import java.util.Locale;
 
-public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdapter.ProductViewHolder> {
+public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdapter.ViewHolder> {
 
     private List<BookDetail> products;
 
@@ -24,15 +23,24 @@ public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdap
 
     @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_other_product, parent, false);
-        return new ProductViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        ItemOtherProductBinding binding = ItemOtherProductBinding.inflate(inflater, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         BookDetail book = products.get(position);
-        holder.bind(book);
+        holder.binding.tvTitle.setText(book.getName());
+        holder.binding.tvAuthor.setText(book.getCategory());
+        holder.binding.tvPrice.setText(book.getPrice() + " VND");
+        // Load image using Glide
+        Glide.with(holder.binding.getRoot().getContext())
+                .load(book.getImage())
+                .placeholder(R.drawable.book_placeholder)
+                .error(R.drawable.error_image)
+                .into(holder.binding.ivCover);
     }
 
     @Override
@@ -40,23 +48,17 @@ public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdap
         return products.size();
     }
 
-    static class ProductViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivCover;
-        TextView tvTitle, tvAuthor, tvPrice;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final ItemOtherProductBinding binding;
 
-        ProductViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivCover = itemView.findViewById(R.id.ivCover);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvAuthor = itemView.findViewById(R.id.tvAuthor);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
+        ViewHolder(ItemOtherProductBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
+    }
 
-        void bind(BookDetail product) {
-            ivCover.setImageResource(product.getCoverResourceId());
-            tvTitle.setText(product.getTitle());
-            tvAuthor.setText(product.getAuthor());
-            tvPrice.setText(String.format(Locale.getDefault(), "IDR %,d", product.getPrice()));
-        }
+    public void setProducts(List<BookDetail> products) {
+        this.products = products;
+        notifyDataSetChanged();
     }
 }

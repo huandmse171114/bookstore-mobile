@@ -18,7 +18,8 @@ public class AboutBookFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
         TextView tvOverview = view.findViewById(R.id.tvOverview);
-        tvOverview.setText("Baba sup ler is the definitive guide to breaking bad behaviors and adopting good ones in four steps, showing you how small, incremental, everyday routines compound into massive, positive change over time.");
+        tvOverview.setText("Quyen sách mang đến một cái nhìn toàn diện về mọi mặt trong cuộc ống, cung cấp cho người đọc những hướng dẫn rõ ràng về cuộc sống. Thông qua những lời khuyên sâu sắc, tác giả , biến cuốn sách này thành một lựa chọn không thể bỏ qua " +
+                "cho những ai muốn cải thiện lĩnh vực liên quan trong cuộc sống hoặc công việc.\"");
         return view;
     }
 }
