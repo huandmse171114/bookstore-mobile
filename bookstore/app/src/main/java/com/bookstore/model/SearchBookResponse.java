@@ -1,6 +1,5 @@
-package com.bookstore.view;
+package com.bookstore.model;
 
-import com.bookstore.model.SearchBook;
 import java.util.List;
 public class SearchBookResponse  {
     private List<SearchBook> products;

@@ -32,7 +32,7 @@ public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SearchBook book = books.get(position);
         holder.binding.bookTitleTextView.setText(book.getName());
-        holder.binding.PriceTextView.setText(book.getPrice());
+        holder.binding.PriceTextView.setText(book.getPrice() + " VND");
         holder.binding.bookRatingBar.setRating(book.getRating());
         holder.binding.bookRatingTextView.setText(String.valueOf(book.getReviewCount()));
         // Load image using Glide
