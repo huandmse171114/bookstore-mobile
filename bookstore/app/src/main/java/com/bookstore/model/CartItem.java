@@ -1,4 +1,4 @@
-package com.bookstore.api;
+package com.bookstore.model;
 
 public class CartItem {
     private String productId; // Product ID
