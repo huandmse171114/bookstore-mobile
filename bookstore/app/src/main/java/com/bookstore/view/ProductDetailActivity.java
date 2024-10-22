@@ -37,7 +37,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     private RecyclerView rvOtherProducts;
     private ProductDetailLayoutBinding binding;
     private ProductDetailPresenter presenter;
-    private int bookId;
+    private String bookId;
     private SearchBookApi apiService;
     private List<BookDetail> products;
     private OtherProductsAdapter otherProducts;
