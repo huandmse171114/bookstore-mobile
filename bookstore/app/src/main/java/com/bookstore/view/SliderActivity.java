@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bookstore.databinding.SliderActivityBinding;
-import com.bookstore.model.SliderViewAdapter;
+import com.bookstore.adapter.SliderViewAdapter;
 
 
 public class SliderActivity extends AppCompatActivity {

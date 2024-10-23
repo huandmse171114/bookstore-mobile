@@ -1,6 +1,6 @@
 package com.bookstore.presenter;
 
-import com.bookstore.api.BookReviewContract;
+import com.bookstore.contract.BookReviewContract;
 import com.bookstore.model.UserReview;
 import java.util.List;
 

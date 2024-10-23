@@ -12,12 +12,14 @@ import com.bookstore.api.SearchBookApi;
 import com.bookstore.contract.ProductDetailContract;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
-import com.bookstore.model.OtherProductsAdapter;
+import com.bookstore.adapter.OtherProductsAdapter;
 import com.bookstore.model.ProductDetailResponse;
 import com.bookstore.model.TabAdapter;
 import com.bookstore.presenter.ProductDetailPresenter;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -41,9 +43,8 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         super.onCreate(savedInstanceState);
         binding = ProductDetailLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        presenter = new ProductDetailPresenter(this);
         initViews();
-//        setupPresenter();
+        setupPresenter();
         setupTabLayout();
         setupOtherProducts();
         displayBookDetails();
@@ -58,7 +59,8 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     private void setupPresenter() {
         // Initialize your presenter here
-//         presenter = new ProductDetailPresenterImpl(this);
+        presenter = new ProductDetailPresenter(this);
+
     }
 
     private void setupTabLayout() {
@@ -102,20 +104,27 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         String bookTitle = intent.getStringExtra("book_title");
         float price = intent.getFloatExtra("book_price", 0f);
 
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
         if (bookImage != null && !bookImage.isEmpty()) {
             Glide.with(this).load(bookImage).into(binding.bookImgView);
         }
         binding.titleName.setText(bookTitle);
-        binding.price.setText(String.format("%.0f VND", price));
+        binding.price.setText(numberFormat.format(price) +" VND");
     }
 
     private void setupListeners() {
         binding.back.setOnClickListener(v -> navigateToHomePage());
+        binding.btnCartToolbar.setOnClickListener(v -> navigateToViewCart());
         binding.buttonAddToCart.setOnClickListener(v -> addToCart());
     }
 
     private void navigateToHomePage() {
         startActivity(new Intent(this, HomePageActivity.class));
+        finish();
+    }
+    private void navigateToViewCart() {
+        startActivity(new Intent(this, CartActivity.class));
         finish();
     }
 
@@ -141,7 +150,9 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     @Override
     public void showAddToCartError(String message) {
-        showError("Lỗi khi thêm vào giỏ hàng: " + message);
+        showError(message + ": Vui lòng đăng nhập trước khi thêm vào giỏ hàng");
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 
     @Override

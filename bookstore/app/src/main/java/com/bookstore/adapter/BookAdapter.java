@@ -11,6 +11,7 @@ import com.bookstore.databinding.ItemBookBinding;
 import com.bookstore.model.Book;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
@@ -90,7 +91,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 title = title.substring(0, 15) + "...";
             }
             binding.bookTitle.setText(title);
-            binding.bookPrice.setText(String.format("%.0f VND", book.getPrice()));
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            binding.bookPrice.setText(numberFormat.format(book.getPrice()) + " VND");
             binding.bookRating.setText(String.valueOf(book.getRating()));
             binding.reviewsCount.setText(String.valueOf(book.getNumReviews()));
             binding.bookId.setText(book.getId());

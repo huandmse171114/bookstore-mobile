@@ -54,6 +54,16 @@
             android:text="86 Reviews"
             android:textColor="@color/black" />
 
+        <TextView
+            android:id="@+id/book_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="86 Reviews"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            />
+
     </LinearLayout>
 
 </LinearLayout>
