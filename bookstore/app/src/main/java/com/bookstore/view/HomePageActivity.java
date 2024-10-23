@@ -116,7 +116,7 @@ public class HomePageActivity extends AppCompatActivity {
         bookAdapter.setOnBookClickListener(book -> {
             String bookId = book.getId();
             Log.d("HomePageActivity", "Book ID: " + bookId);
-            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            Intent intent = new Intent(this, ProductDetailActivity.class);
             intent.putExtra("book_image", book.getImage());
             intent.putExtra("book_title", book.getName());
             intent.putExtra("book_price",(float) book.getPrice());

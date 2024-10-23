@@ -1,26 +1,36 @@
-package com.bookstore.contract;
+package com.bookstore.presenter;
 
+import com.bookstore.MyApplication;
 import com.bookstore.api.CartApiService;
+import com.bookstore.contract.ProductDetailContract;
 import com.bookstore.model.CartRequest;
 import com.bookstore.model.CartResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProductDetailPresenterImpl implements ProductDetailPresenter {
-    private ProductDetailContract view;
+public class ProductDetailPresenter implements ProductDetailContract.Presenter {
+    private ProductDetailContract.View view;
     private CartApiService apiService;
 
-    public ProductDetailPresenterImpl(ProductDetailContract view, CartApiService apiService) {
+    public ProductDetailPresenter(ProductDetailContract.View view) {
         this.view = view;
-        this.apiService = apiService;
     }
 
     @Override
-    public void addToCart(int bookId) {
+    public void addToCart(String bookId) {
         view.showLoading();
-        CartRequest cartRequest = new CartRequest(bookId, 1);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://bookstore-api-nodejs.onrender.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(CartApiService.class);
+        MyApplication app = (MyApplication) view.getMyApplicationContext();
+        CartRequest cartRequest = new CartRequest(bookId, 1, app.getUserId());
         apiService.addToCart(cartRequest).enqueue(new Callback<CartResponse>() {
             @Override
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {

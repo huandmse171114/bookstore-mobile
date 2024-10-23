@@ -82,8 +82,7 @@ public class SearchBookActivity extends AppCompatActivity {
         });
       
             binding.btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
-            startActivity(intent);
+            finish();
             });
     }
 
