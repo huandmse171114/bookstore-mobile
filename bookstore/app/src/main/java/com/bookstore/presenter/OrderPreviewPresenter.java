@@ -29,26 +29,19 @@ public class OrderPreviewPresenter implements OrderPreviewContract.Presenter {
         orderItemApi = retrofit.create(OrderItemApi.class);
     }
 
-
     @Override
     public List<OrderItemData> getOrderItems() {
         List<OrderItemData> response = new ArrayList<>();
 
-        orderItemApi.getAll().enqueue(new Callback<OrderItemsGetResponse>() {
+        MyApplication app = (MyApplication) view.getApplicationContext();
+
+        orderItemApi.getUserItems(app.getUserId()).enqueue(new Callback<OrderItemsGetResponse>() {
             @Override
             public void onResponse(Call<OrderItemsGetResponse> call, Response<OrderItemsGetResponse> response) {
                 List<OrderItemData> data = response.body().getData();
+                app.setOrderItems(data);
+                view.updateOrderItemRecyclerView(data);
 
-                if (data.size() > 2) {
-                    MyApplication app = (MyApplication) view.getApplicationContext();
-                    app.setOrderItems(data.subList(data.size() - 2, data.size()));
-                    view.updateOrderItemRecyclerView(data.subList(data.size() - 2, data.size()));
-
-                }else {
-                    MyApplication app = (MyApplication) view.getApplicationContext();
-                    app.setOrderItems(data);
-                    view.updateOrderItemRecyclerView(data);
-                }
             }
 
             @Override

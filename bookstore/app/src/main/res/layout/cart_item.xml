@@ -1,98 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cart_item"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!-- res/layout/cart_item.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center_vertical">
 
+    <!-- Item Image -->
     <ImageView
-        android:id="@+id/imgProduct"
-        android:layout_width="87dp"
-        android:layout_height="108dp"
-        android:contentDescription="Product Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:src="@drawable/img"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/txtProductName"
-        android:layout_width="110dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="9dp"
-        android:text="Product Name"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtProductPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@id/imgProduct"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText,TextSizeCheck" />
-
+        android:id="@+id/item_image"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/qrcode" />
+    <!-- Item Name -->
     <LinearLayout
-        android:id="@+id/quantityLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/sub_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toEndOf="@id/imgProduct"
-        app:layout_constraintTop_toBottomOf="@id/txtProductName">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <!-- Decrease Quantity Button with icon -->
-        <ImageButton
-            android:id="@+id/btnDecreaseQuantity"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/grey"
-            android:contentDescription="@string/decrease_quantity"
-            android:src="@drawable/ic_minus"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <!-- Quantity Display -->
         <TextView
-            android:id="@+id/txtQuantity"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Vi Than Cua Nhung Quyet Dinh"
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
 
-        <!-- Increase Quantity Button with icon -->
-        <ImageButton
-            android:id="@+id/btnIncreaseQuantity"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/grey"
-            android:contentDescription="@string/increase_quantity"
-            android:src="@drawable/ic_add"
-            tools:ignore="TouchTargetSizeCheck" />
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="12,000 VND"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="">
+
+            <ImageButton
+                android:id="@+id/decreaseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/shape_stroke_1_primary_bg_trans"
+                android:src="@drawable/baseline_horizontal_rule_24_cart_item"/>
+
+            <!-- Quantity -->
+            <TextView
+                android:id="@+id/item_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="5"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:paddingHorizontal="20dp"
+                />
+
+            <ImageButton
+                android:id="@+id/increaseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/shape_stroke_1_primary_bg_trans"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:src="@drawable/baseline_add_24_cart_item"/>
+
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtProductPrice"
-        android:layout_width="105dp"
-        android:layout_height="26dp"
-        android:text="200.000 VND"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toEndOf="@+id/imgProduct"
-        app:layout_constraintTop_toBottomOf="@id/quantityLayout"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="HardcodedText,TextSizeCheck" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

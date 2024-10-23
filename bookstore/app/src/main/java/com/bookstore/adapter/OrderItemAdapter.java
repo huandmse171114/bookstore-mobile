@@ -15,6 +15,7 @@ import com.bookstore.databinding.OrderItemBinding;
 import com.bookstore.model.OrderItemView;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.OrderItemViewHolder> {
@@ -37,11 +38,14 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.Orde
     @Override
     public void onBindViewHolder(@NonNull OrderItemViewHolder holder, int position) {
         OrderItemView item = orderItemList.get(position);
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
         String name = item.getName();
         if (name.length() > 25) name = name.substring(0, 25) + "...";
         holder.binding.itemName.setText(name);
-        holder.binding.itemPrice.setText(String.valueOf(item.getPrice()) + " VND");
-        holder.binding.itemQuantity.setText("Qty: " + String.valueOf(item.getQuantity()));
+        holder.binding.itemPrice.setText(numberFormat.format(item.getPrice()) + " VND");
+        holder.binding.itemQuantity.setText(String.valueOf(item.getQuantity()) + " items");
         Glide.with(holder.binding.getRoot())
                 .load(Uri.parse(item.getImageURL()))
                 .into(holder.binding.itemImage);

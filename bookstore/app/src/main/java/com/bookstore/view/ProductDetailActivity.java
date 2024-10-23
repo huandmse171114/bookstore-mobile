@@ -1,18 +1,21 @@
 package com.bookstore.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
-import com.bookstore.R;
+
+import com.bookstore.api.SearchBookApi;
+import com.bookstore.contract.ProductDetailContract;
+import com.bookstore.contract.ProductDetailPresenter;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.OtherProductsAdapter;
+import com.bookstore.model.ProductDetailResponse;
 import com.bookstore.model.TabAdapter;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
@@ -21,13 +24,23 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetailActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ProductDetailActivity extends AppCompatActivity implements ProductDetailContract {
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private RecyclerView rvOtherProducts;
-    private Button btnAddToCart;
     private ProductDetailLayoutBinding binding;
+    private ProductDetailPresenter presenter;
+    private String bookId;
+    private SearchBookApi apiService;
+    private List<BookDetail> products;
+    private OtherProductsAdapter otherProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -36,9 +49,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initViews();
+        setupAllBooksRecyclerView();
         setupTabLayout();
         setupOtherProducts();
-        setupAddToCartButton();
         displayBookDetails();
         // Nhận dữ liệu từ Intent
 //        int bookImage = getIntent().getIntExtra("book_image", -1);
@@ -52,6 +65,18 @@ public class ProductDetailActivity extends AppCompatActivity {
 //        }
 //
 //        binding.titleName.setText(bookTitle);
+
+        // note
+//        CartApiService apiService = RetrofitClient.getClient().create(CartApiService.class);
+//        presenter = new ProductDetailPresenterImpl(this, apiService);
+//        bookId = getIntent().getIntExtra("book_id", -1);
+//        if (bookId != -1) {
+//            setupAddToCartButton();
+//        } else {
+//            showAddToCartError("Không tìm thấy thông tin sách");
+//            finish();
+//        }
+
         binding.back.setOnClickListener(v -> {
             Intent intent = new Intent(ProductDetailActivity.this, HomePageActivity.class);
             startActivity(intent);
@@ -59,18 +84,14 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
-        rvOtherProducts = findViewById(R.id.rvOtherProducts);
-        btnAddToCart = findViewById(R.id.buttonAddToCart);
+        tabLayout = binding.tabLayout;
+        viewPager = binding.viewPager;
+        rvOtherProducts = binding.rvOtherProducts;
+        products = new ArrayList<>();
 
-        // Setup toolbar
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
-
+    // Hiển thị thông tin sách
     private void displayBookDetails() {
         String bookImage = getIntent().getStringExtra("book_image");
         String bookTitle = getIntent().getStringExtra("book_title");
@@ -82,7 +103,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     .into(binding.bookImgView);
         }
         binding.titleName.setText(bookTitle);
-        binding.price.setText(String.format("%,.0f VND", price));
+        binding.price.setText(String.format("%.0f VND", price));
     }
 
     private void setupTabLayout() {
@@ -94,31 +115,81 @@ public class ProductDetailActivity extends AppCompatActivity {
         ).attach();
     }
 
-    private void setupOtherProducts() {
-        List<BookDetail> otherProducts = getOtherProducts(); // Method to get product data
-        OtherProductsAdapter adapter = new OtherProductsAdapter(otherProducts);
-        rvOtherProducts.setAdapter(adapter);
+    private void setupAllBooksRecyclerView() {
+        otherProducts = new OtherProductsAdapter(products);
         rvOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvOtherProducts.setAdapter(otherProducts);
     }
+    // api get allProduct
+    private void setupOtherProducts() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://bookstore-api-nodejs.onrender.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-    private void setupAddToCartButton() {
-        btnAddToCart.setOnClickListener(v -> {
-            // Implement add to cart logic
-            Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+        SearchBookApi service = retrofit.create(SearchBookApi.class);
+        Call<ProductDetailResponse> call = service.getAllBooks();
+
+        call.enqueue(new Callback<ProductDetailResponse>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(Call<ProductDetailResponse> call, Response<ProductDetailResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    products.clear();
+                    products.addAll(response.body().getProducts());
+                    otherProducts.setProducts(products);
+                    otherProducts.notifyDataSetChanged();
+                    rvOtherProducts.setAdapter(otherProducts);
+                } else {
+                    Toast.makeText(ProductDetailActivity.this, "Không thể tải danh sách sản phẩm khác", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ProductDetailResponse> call, Throwable t) {
+                Toast.makeText(ProductDetailActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    private List<BookDetail> getOtherProducts() {
-        // In a real app, this would come from a database or API
-        List<BookDetail> products = new ArrayList<>();
-        products.add(new BookDetail("The Subtle Art of Not Giving a F*ck", "Mark Manson", 189000, R.drawable.logo));
-        products.add(new BookDetail("The Magic of Thinking Big", "David J. Schwartz", 199000, R.drawable.logo));
-        return products;
+            private void setupAddToCartButton() {
+        binding.buttonAddToCart.setOnClickListener(v -> {
+            // Implement add to cart logic
+            Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+            presenter.addToCart(bookId);
+        });
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void showBookDetails(BookDetail book) {
+
+    }
+
+    @Override
+    public void showAddToCartSuccess() {
+        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showAddToCartError(String message) {
+        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!" + message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showLoading() {
+        System.out.println("Đang tải...");
+        // Có thể thêm logic để hiển thị một biểu tượng loading hoặc progress bar
+    }
+
+    @Override
+    public void hideLoading() {
+        System.out.println("Đã tải xong.");
+        // Có thể thêm logic để ẩn biểu tượng loading hoặc progress bar
     }
 }

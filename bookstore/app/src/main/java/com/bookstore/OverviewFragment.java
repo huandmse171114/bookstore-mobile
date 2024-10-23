@@ -17,7 +17,7 @@ public class OverviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
         TextView tvOverview = view.findViewById(R.id.tvOverview);
-        tvOverview.setText("Atomic Habits is the definitive guide to breaking bad behaviors and adopting good ones in four steps, showing you how small, incremental, everyday routines compound into massive, positive change over time.");
+        tvOverview.setText("This book explores new horizons, breaking down complex concepts into easy-to-understand ideas. Whether you are a beginner or already experienced in philosophy, the book will help you better understand life and apply it to [personal or professional context]. With practical advice, this book aims to increase productivity, develop creative thinking, and solve problems.");
         return view;
     }
 }

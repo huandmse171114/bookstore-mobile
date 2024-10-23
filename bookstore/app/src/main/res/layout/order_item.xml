@@ -10,8 +10,8 @@
     <!-- Item Image -->
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/qrcode" />
 
@@ -29,7 +29,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Vi Than Cua Nhung Quyet Dinh"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -38,7 +38,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="12,000 VND"
-            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             />
@@ -51,7 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Qty: 5"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         />
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.bookstore.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -111,10 +112,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Book click listener
         bookAdapter.setOnBookClickListener(book -> {
+            String bookId = book.getId();
+            Log.d("HomePageActivity", "Book ID: " + bookId);
             Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
             intent.putExtra("book_image", book.getImage());
             intent.putExtra("book_title", book.getName());
-            intent.putExtra("book_price", (float) book.getPrice());
+            intent.putExtra("book_price",(float) book.getPrice());
+            intent.putExtra("book_id",book.getId());
             startActivity(intent);
         });
 
