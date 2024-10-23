@@ -4,7 +4,7 @@ import com.bookstore.MyApplication;
 import com.bookstore.api.OrderApi;
 import com.bookstore.api.PaymentBillApi;
 import com.bookstore.api.RetrofitClient;
-import com.bookstore.constract.PaymentInfoConfirmContract;
+import com.bookstore.contract.PaymentInfoConfirmContract;
 import com.bookstore.model.OrderCreateRequest;
 import com.bookstore.model.OrderCreateResponse;
 import com.bookstore.model.OrderItem;

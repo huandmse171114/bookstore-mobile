@@ -1,6 +1,6 @@
 package com.bookstore.model;
 
-import com.bookstore.constract.OrderPreviewContract;
+import com.bookstore.contract.OrderPreviewContract;
 
 public class OrderPreviewModel implements OrderPreviewContract.Model {
 }

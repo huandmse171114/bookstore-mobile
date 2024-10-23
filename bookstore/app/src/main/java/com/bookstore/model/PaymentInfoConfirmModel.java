@@ -1,6 +1,6 @@
 package com.bookstore.model;
 
-import com.bookstore.constract.PaymentInfoConfirmContract;
+import com.bookstore.contract.PaymentInfoConfirmContract;
 
 public class PaymentInfoConfirmModel implements PaymentInfoConfirmContract.Model {
 
