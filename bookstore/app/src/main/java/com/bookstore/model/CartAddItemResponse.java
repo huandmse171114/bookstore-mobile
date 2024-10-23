@@ -1,18 +1,18 @@
 package com.bookstore.model;
 
-public class CartItemResponse {
+public class CartAddItemResponse {
     private String _id;
     private String name;
     private String user;
     private int qty;
     private String image;
     private int price;
-    private OrderItemProduct product;
+    private String product;
     private String createAt;
     private String updateAt;
 
 
-    public CartItemResponse(String _id, String name, String user, int qty, String image, int price, OrderItemProduct product, String createAt, String updateAt) {
+    public CartAddItemResponse(String _id, String name, String user, int qty, String image, int price, String product, String createAt, String updateAt) {
         this._id = _id;
         this.name = name;
         this.user = user;
@@ -24,11 +24,11 @@ public class CartItemResponse {
         this.updateAt = updateAt;
     }
 
-    public OrderItemProduct getProduct() {
+    public String getProduct() {
         return product;
     }
 
-    public void setProduct(OrderItemProduct product) {
+    public void setProduct(String product) {
         this.product = product;
     }
 

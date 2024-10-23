@@ -3,6 +3,8 @@ package com.bookstore.presenter;
 import com.bookstore.MyApplication;
 import com.bookstore.api.CartApiService;
 import com.bookstore.contract.ProductDetailContract;
+import com.bookstore.model.CartAddRequest;
+import com.bookstore.model.CartAddResponse;
 import com.bookstore.model.CartRequest;
 import com.bookstore.model.CartResponse;
 
@@ -30,13 +32,13 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
 
         apiService = retrofit.create(CartApiService.class);
         MyApplication app = (MyApplication) view.getMyApplicationContext();
-        CartRequest cartRequest = new CartRequest(bookId, 1, app.getUserId());
-        apiService.addToCart(cartRequest).enqueue(new Callback<CartResponse>() {
+        CartAddRequest cartRequest = new CartAddRequest(bookId, 1, app.getUserId());
+        apiService.addToCart(cartRequest).enqueue(new Callback<CartAddResponse>() {
             @Override
-            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
+            public void onResponse(Call<CartAddResponse> call, Response<CartAddResponse> response) {
                 view.hideLoading();
                 if (response.isSuccessful() && response.body() != null) {
-                    CartResponse cartResponse = response.body();
+                    CartAddResponse cartResponse = response.body();
                     if (cartResponse.isSuccess()) {
                         view.showAddToCartSuccess();
                     } else {
@@ -48,7 +50,7 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<CartResponse> call, Throwable t) {
+            public void onFailure(Call<CartAddResponse> call, Throwable t) {
                 view.hideLoading();
                 view.showAddToCartError("Lỗi kết nối: " + t.getMessage());
             }
