@@ -1,4 +1,4 @@
-package com.bookstore.contract;
+package com.bookstore.constract;
 
 public interface PaymentQRCodeContract {
 

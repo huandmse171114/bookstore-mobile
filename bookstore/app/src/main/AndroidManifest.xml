@@ -33,6 +33,7 @@
         <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.HomePageActivity"/>
         <activity android:name=".view.AuthActivity"/>
+        <activity android:name=".view.ProfileActivity"/>
     </application>
 
 </manifest>

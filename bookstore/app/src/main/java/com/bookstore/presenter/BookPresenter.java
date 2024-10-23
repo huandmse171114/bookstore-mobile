@@ -1,7 +1,7 @@
 package com.bookstore.presenter;
 
 import com.bookstore.model.Book;
-import com.bookstore.contract.BookContract;
+import com.bookstore.constract.BookContract;
 
 import java.util.List;
 

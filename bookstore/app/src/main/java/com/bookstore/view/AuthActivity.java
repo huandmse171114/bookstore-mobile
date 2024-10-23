@@ -2,6 +2,7 @@ package com.bookstore.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,16 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.api.AuthApi;
-import com.bookstore.contract.AuthContract;
+import com.bookstore.api.RetrofitClient;
 import com.bookstore.presenter.AuthPresenter;
 
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AuthActivity extends AppCompatActivity implements AuthContract.View {
+public class AuthActivity extends AppCompatActivity implements com.bookstore.constract.AuthContract.View {
 
     private EditText usernameField, passwordField, emailField, confirmPasswordField;
     private Button signInButton, signUpButton;
@@ -31,33 +30,29 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
         super.onCreate(savedInstanceState);
         loadSignInLayout();
 
-        // Khởi tạo Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://bookstore-api-nodejs.onrender.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
+        // Use RetrofitClient to create an instance of AuthApi
+        Retrofit retrofit = RetrofitClient.getClient();
         AuthApi authApi = retrofit.create(AuthApi.class);
         presenter = new AuthPresenter(this, authApi);
     }
 
     private void loadSignInLayout() {
-        setContentView(R.layout.signin_layout); // Load layout đăng nhập
+        setContentView(R.layout.signin_layout); // Load login layout
 
-        // Khởi tạo các trường nhập liệu cho đăng nhập
+        // Initialize input fields for sign in
         usernameField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         signInButton = findViewById(R.id.signinbtn);
         toggleText = findViewById(R.id.didntaccount);
 
-        // Thiết lập sự kiện cho nút đăng nhập
+        // Set click listener for sign in button
         signInButton.setOnClickListener(v -> {
             String username = usernameField.getText().toString().trim();
             String password = passwordField.getText().toString().trim();
             presenter.signIn(username, password);
         });
 
-        // Thiết lập sự kiện cho chuyển đổi sang đăng ký
+        // Set click listener for switching to sign up
         toggleText.setOnClickListener(v -> {
             isSignIn = false;
             loadSignUpLayout();
@@ -65,9 +60,9 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
     }
 
     private void loadSignUpLayout() {
-        setContentView(R.layout.signup_layout); // Load layout đăng ký
+        setContentView(R.layout.signup_layout); // Load sign up layout
 
-        // Khởi tạo các trường nhập liệu cho đăng ký
+        // Initialize input fields for sign up
         usernameField = findViewById(R.id.username);
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
@@ -75,22 +70,22 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
         signUpButton = findViewById(R.id.signupbtn);
         toggleText = findViewById(R.id.alreadyaccount);
 
-        // Thiết lập sự kiện cho nút đăng ký
+        // Set click listener for sign up button
         signUpButton.setOnClickListener(v -> {
             String username = usernameField.getText().toString().trim();
             String email = emailField.getText().toString().trim();
             String password = passwordField.getText().toString().trim();
             String confirmPassword = confirmPasswordField.getText().toString().trim();
 
-            // Kiểm tra mật khẩu
+            // Check password confirmation
             if (password.equals(confirmPassword)) {
-                presenter.signUp(username,email, password, confirmPassword);
+                presenter.signUp(username, email, password, confirmPassword);
             } else {
                 showError("Passwords do not match");
             }
         });
 
-        // Thiết lập sự kiện cho chuyển đổi sang đăng nhập
+        // Set click listener for switching back to sign in
         toggleText.setOnClickListener(v -> {
             isSignIn = true;
             loadSignInLayout();
@@ -100,7 +95,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
     @Override
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
-        // Chuyển đến MainActivity sau khi đăng nhập thành công
+        // Redirect to HomePageActivity after successful sign in
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
         finish();

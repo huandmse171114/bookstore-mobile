@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.MyApplication;
 import com.bookstore.adapter.OrderItemAdapter;
-import com.bookstore.contract.OrderPreviewContract;
+import com.bookstore.constract.OrderPreviewContract;
 import com.bookstore.databinding.OrderPreviewBinding;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.OrderItemView;
