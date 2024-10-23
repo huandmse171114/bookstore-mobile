@@ -37,7 +37,7 @@ public class CartPresenter implements CartContract.Presenter {
 
         MyApplication app = (MyApplication) view.getApplicationContext();
 
-        cartApiService.getAll().enqueue(new Callback<CartResponse>() {
+        cartApiService.getUserItems(app.getUserId()).enqueue(new Callback<CartResponse>() {
             @Override
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
                 if (!response.isSuccessful()) {

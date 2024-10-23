@@ -20,27 +20,30 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/upload_payment_back_button_desc"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,RedundantDescriptionCheck,ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Upload Payment"
+            android:text="@string/upload_payment_title"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:background="@drawable/shap_border_radius_top_15">
 
         <ImageView
@@ -48,11 +51,13 @@
             android:layout_width="242dp"
             android:layout_height="349dp"
             android:layout_marginTop="44dp"
+            android:contentDescription="@string/upload_payment_upload_image_view"
             android:src="@drawable/baseline_image_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:ignore="ImageContrastCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,11 +75,13 @@
                 android:id="@+id/btnChoose"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                android:text="Upload"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/upload_payment_upload"
                 android:textSize="18sp"
-                android:backgroundTint="@color/colorPrimaryDark"/>
+                app:cornerRadius="10dp"
+                tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
 
             <Button
                 android:id="@+id/btnForward"
@@ -82,8 +89,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/upload_payment_next_btn"
                 android:textSize="18sp"
-                android:text="Next" />
+                app:cornerRadius="10dp"
+                tools:ignore="ButtonStyle,VisualLintButtonSize,TextContrastCheck" />
         </LinearLayout>
 
         <TextView
@@ -91,25 +100,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="Please provide us"
+            android:text="@string/upload_payment_please_provide_us"
             android:textColor="#D3D3D3"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="your payment screen capture."
+            android:text="@string/upload_payment_image_hint"
             android:textColor="#D3D3D3"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

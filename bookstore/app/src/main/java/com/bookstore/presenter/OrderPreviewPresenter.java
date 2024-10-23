@@ -3,13 +3,11 @@ package com.bookstore.presenter;
 import com.bookstore.MyApplication;
 import com.bookstore.api.OrderItemApi;
 import com.bookstore.api.RetrofitClient;
-import com.bookstore.contract.OrderPreviewContract;
+import com.bookstore.constract.OrderPreviewContract;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.OrderItemsGetResponse;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -52,20 +50,7 @@ public class OrderPreviewPresenter implements OrderPreviewContract.Presenter {
             }
         });
 
-//        try {
-//            Response<OrderItemsGetResponse> responseRaw = orderItemApi.getAll().execute();
-//
-//            if (responseRaw.isSuccessful() && responseRaw.body() != null) {
-//                response = responseRaw.body().getData();
-//                view.showToastMessage("success get order items");
-//            }else {
-//                response = null;
-//                view.showToastMessage("failed get order items");
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 
         return response;
     }

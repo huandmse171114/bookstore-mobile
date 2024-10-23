@@ -20,28 +20,30 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/success_payment_back_button"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Successfully"
+            android:text="@string/success_payment_done"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:background="@drawable/shap_border_radius_top_15">
 
         <TextView
@@ -49,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            android:text="Thank you for choosing us!"
+            android:text="@string/success_payment_title"
             android:textSize="24sp"
             android:textStyle="italic|bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,19 +63,21 @@
             android:id="@+id/imageView2"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="208dp"
+            android:contentDescription="@string/success_payment_green_check_icon"
             android:src="@drawable/check_green_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Your order payment is verified and in preparation step."
+            android:text="@string/success_payment_note"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="Back to Home Page"
+            android:text="@string/success_payment_back_to_home_page"
             android:background="@drawable/shape_stroke_2_primary_bg_trans"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="#393E75"
@@ -96,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Your Order ID: AJSB123"
+            android:text="@string/success_payment_order_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

@@ -2,7 +2,7 @@ package com.bookstore.presenter;
 
 import android.net.Uri;
 
-import com.bookstore.contract.UploadPaymentContract;
+import com.bookstore.constract.UploadPaymentContract;
 import com.bookstore.model.PaymentGPTResponse;
 
 public class UploadPaymentPresenter implements UploadPaymentContract.Presenter {

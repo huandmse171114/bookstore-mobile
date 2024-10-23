@@ -1,6 +1,7 @@
 <!-- res/layout/cart_item.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -10,8 +11,8 @@
     <!-- Item Image -->
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/qrcode" />
 
@@ -29,19 +30,20 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Vi Than Cua Nhung Quyet Dinh"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/item_price"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="12,000 VND"
-            android:textSize="12sp"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
-            />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
 
     </LinearLayout>
@@ -51,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Qty: 5"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         />
 </LinearLayout>

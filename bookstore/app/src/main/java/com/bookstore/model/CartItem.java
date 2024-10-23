@@ -1,4 +1,4 @@
-package com.bookstore.api;
+package com.bookstore.model;
 
 public class CartItem {
     private String productId; // Product ID
@@ -54,4 +54,6 @@ public class CartItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+
 }
