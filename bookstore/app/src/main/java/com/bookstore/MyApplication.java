@@ -13,7 +13,8 @@ import java.util.List;
 
 public class MyApplication extends Application {
 
-    private static String userId = "671226027478771599feaedf";
+    private static String userId;
+//    private static String userId = "671226027478771599feaedf";
     private static ShippingAddress shippingAddress;
     private static List<OrderItemData> orderItems = new ArrayList<>();
 
