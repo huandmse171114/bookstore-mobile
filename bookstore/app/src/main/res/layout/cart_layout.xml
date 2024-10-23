@@ -20,20 +20,23 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/cart_layout_back_button_desc"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Cart"
+            android:text="@string/cart_layout_cart_title"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,12 +73,13 @@
                 android:id="@+id/btnProceed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:text="Proceed To Checkout  >"
+                android:text="@string/cart_layout_proceed_to_checkout"
                 android:textSize="18sp"
-                app:cornerRadius="10dp" />
+                app:cornerRadius="10dp"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
         <TextView
@@ -83,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Total item: 12 items"
+            android:text="@string/cart_layout_total_item"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="120,000 VND"
+            android:text="@string/cart_layout_120_000_vnd"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
