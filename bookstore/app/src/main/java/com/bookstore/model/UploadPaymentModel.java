@@ -10,7 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.bookstore.contract.UploadPaymentContract;
+import com.bookstore.constract.UploadPaymentContract;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,7 +37,7 @@ public class UploadPaymentModel implements UploadPaymentContract.Model {
 
     private OkHttpClient okHttpClient;
     private final String stringURLEndPointGPT = "https://api.openai.com/v1/chat/completions";
-    private final String stringAPIKey = "";
+    private final String stringAPIKey = "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";
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private Context context;

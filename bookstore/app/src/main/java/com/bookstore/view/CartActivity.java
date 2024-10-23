@@ -4,109 +4,121 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bookstore.MyApplication;
 import com.bookstore.adapter.CartAdapter;
 import com.bookstore.R;
 import com.bookstore.api.CartApiService;
-import com.bookstore.model.Cart;
 import com.bookstore.api.RetrofitClient;
+import com.bookstore.contract.CartContract;
+import com.bookstore.databinding.CartLayoutBinding;
+import com.bookstore.model.CartItem;
+import com.bookstore.model.CartItemResponse;
+import com.bookstore.model.CartModel;
+import com.bookstore.presenter.CartPresenter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class CartActivity extends AppCompatActivity {
-
-    private CartApiService apiService;
-    private RecyclerView recyclerViewCartItems;
-    private int totalItemCount = 0; // Initialize total item count
-
+public class CartActivity extends AppCompatActivity implements CartContract.View {
+    private CartLayoutBinding binding;
+    private CartContract.Presenter presenter;
+    private CartAdapter cartAdapter;
+    private MyApplication app;
+    private List<CartItemResponse> cartItems;
+    private int totalItems = 0, totalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cart_layout);
 
-        // Initialize TextView for total items
-        TextView txtTotalItems = findViewById(R.id.txtTotalItems);
+        binding = CartLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        // Initialize Retrofit API service
-        apiService = RetrofitClient.getClient().create(CartApiService.class);
+        presenter = new CartPresenter(this, new CartModel());
 
-        // Set up RecyclerView
-        recyclerViewCartItems = findViewById(R.id.recyclerViewCartItems);
-        recyclerViewCartItems.setLayoutManager(new LinearLayoutManager(this));
+        presenter.getCartItems();
 
-        // Fetch cart details for user "vanh"
-        getCartDetails("vanh");
+        if (cartItems != null && !cartItems.isEmpty()) {
+            cartAdapter = new CartAdapter(cartItems.stream()
+                    .map(item -> new CartItem(item.getId(), item.getName(), item.getImage(), item.getQty(), item.getPrice()))
+                    .collect(Collectors.toList()), this);
+        }else {
+            cartAdapter = new CartAdapter(new ArrayList<>(), this);
+        }
+        binding.recyclerViewCartItems.setLayoutManager(new LinearLayoutManager(this));
 
-        // xử lý sự kiện khi ngươi dùng ấn nút quay lại
-          findViewById(R.id.btnBack).setOnClickListener(v -> backHomePage());
-          //nào sửa sang binding thì bỏ comment dòng dưới
-        // binding.btnBack.setOnClickListener(v -> backHomePage());
+        binding.recyclerViewCartItems.setAdapter(cartAdapter);
+
+        binding.imgBtnBack.setOnClickListener(v -> finish());
+
+        binding.btnProceed.setOnClickListener(v -> redirectOrderPreviewActivity());
     }
 
-    private void backHomePage() {
-        Intent intent = new Intent(this, HomePageActivity.class);
+    private void redirectOrderPreviewActivity() {
+        Intent intent = new Intent(this, OrderPreviewActivity.class);
+
+        MyApplication.setCartItems(cartAdapter.getCartItems());
+        MyApplication.setTotalPrice(totalPrice);
+        MyApplication.setTotalItems(totalItems);
+
         startActivity(intent);
     }
 
-    // Update the total item count
-    private void updateTotalItemCount() {
-        totalItemCount = 0;
-
-        // Loop through all items in the RecyclerView
-
+    @Override
+    public void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void getCartDetails(String username) {
+    @Override
+    public void updateCartItemsRecyclerView2(List<CartItem> data) {
+        cartAdapter.setCartItems(data);
 
-        // Initialize TextView for total items
-        TextView txtTotalItems = findViewById(R.id.txtTotalItems);
+        totalPrice = 0;
+        totalItems = 0;
 
-        // Initialize TextView for total price
-        TextView txtTotalPrice = findViewById(R.id.txtTotalPrice);
-
-        Call<List<Cart>> call = apiService.getCartDetails(username);
-        call.enqueue(new Callback<List<Cart>>() {
-            @Override
-            public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Cart details fetched successfully
-                    List<Cart> carts = response.body();
-                    Log.d("Cart", "Cart details fetched successfully");
-
-                    // Update the total item count
-                    int totalItems = carts.size();
-                    txtTotalItems.setText("Total " + totalItems + " items"); // Update TextView
-
-                    // Calculate the total price
-                    double totalPrice = 0;
-                    for (Cart item : carts) {
-                        totalPrice += item.getBookPackagePrice() * item.getQuantity();
-                    }
-                    txtTotalPrice.setText("Total: " + String.format("%.2f VND", totalPrice)); // Update TextView
-
-                    // Set the adapter with fetched cart items
-                    CartAdapter cartAdapter = new CartAdapter(carts);
-                    recyclerViewCartItems.setAdapter(cartAdapter);
-                } else {
-                    // Failed to fetch cart details
-                    Log.e("Cart", "Failed to fetch cart details. Response Code: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Cart>> call, Throwable t) {
-                Log.e("Cart", "API call failed: " + t.getMessage());
-            }
-
+        data.forEach(item -> {
+            totalPrice += item.getPrice() * item.getQuantity();
+            totalItems += item.getQuantity();
         });
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        binding.totalItems.setText(String.valueOf("Total: " + totalItems + " item(s)"));
+        binding.totalPrice.setText(String.valueOf(numberFormat.format(totalPrice) + " VND"));
+        binding.recyclerViewCartItems.setAdapter(cartAdapter);
     }
+
+    @Override
+    public void updateCartItemsRecyclerView(List<CartItemResponse> data) {
+        cartAdapter.setCartItems(data.stream()
+                .map(item -> new CartItem(item.getId(), item.getName(), item.getImage(), item.getPrice(), item.getQty()))
+                .collect(Collectors.toList()));
+
+        totalPrice = 0;
+        totalItems = 0;
+
+        data.forEach(item -> {
+            totalPrice += item.getPrice() * item.getQty();
+            totalItems += item.getQty();
+        });
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        binding.totalItems.setText(String.valueOf("Total: " + totalItems + " item(s)"));
+        binding.totalPrice.setText(String.valueOf(numberFormat.format(totalPrice) + " VND"));
+        binding.recyclerViewCartItems.setAdapter(cartAdapter);
+    }
+
+
 }

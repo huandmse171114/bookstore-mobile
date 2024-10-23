@@ -1,5 +1,6 @@
-package com.bookstore.constract;
 
+package com.bookstore.contract;
+import com.bookstore.MyApplication;
 import com.bookstore.api.CartApiService;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.CartRequest;
@@ -19,9 +20,10 @@ public class ProductDetailPresenterImpl implements ProductDetailPresenter {
     }
 
     @Override
-    public void addToCart(int bookId) {
+    public void addToCart(String bookId) {
+        MyApplication app = (MyApplication) view.getApplicationContext();
         view.showLoading();
-        CartRequest cartRequest = new CartRequest(bookId, 1);
+        CartRequest cartRequest = new CartRequest(bookId, 1, app.getUserId());
         apiService.addToCart(cartRequest).enqueue(new Callback<CartResponse>() {
             @Override
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {

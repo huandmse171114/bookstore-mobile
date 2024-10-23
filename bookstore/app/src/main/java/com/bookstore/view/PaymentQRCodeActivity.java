@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.contract.PaymentQRCodeContract;
+import com.bookstore.constract.PaymentQRCodeContract;
 import com.bookstore.databinding.PaymentQrcodeBinding;
 
 public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQRCodeContract.View {
@@ -32,25 +32,15 @@ public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQ
             return insets;
         });
 
-        binding.btnBack.setOnClickListener(v -> redirectPaymentPreviewActivity());
+        binding.btnBack.setOnClickListener(v -> finish());
 
         binding.btnForward.setOnClickListener((v -> redirectUploadPaymentActivity()));
 
     }
 
-    private void redirectPaymentPreviewActivity() {
-//        Intent intent = new Intent();
-//
-//        startActivity(intent);
-//        finish();
-
-        showToastMessage("Back To Payment Preview Page");
-    }
-
     private void redirectUploadPaymentActivity() {
         Intent intent = new Intent(this, UploadPaymentActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

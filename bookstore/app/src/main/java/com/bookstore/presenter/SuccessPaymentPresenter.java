@@ -1,6 +1,6 @@
 package com.bookstore.presenter;
 
-import com.bookstore.contract.SuccessPaymentContract;
+import com.bookstore.constract.SuccessPaymentContract;
 
 public class SuccessPaymentPresenter implements SuccessPaymentContract.Presenter {
 

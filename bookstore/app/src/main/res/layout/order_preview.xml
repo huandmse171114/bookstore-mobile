@@ -20,21 +20,23 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/order_preview_back_button"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Checkout"
+            android:text="@string/order_preview_checkout"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -48,7 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -63,8 +65,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:text="Proceed to Checkout"
-                android:textSize="18sp" />
+                android:text="@string/order_preview_proceed_to_checkout"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
         <!-- res/layout/activity_main.xml -->
@@ -74,8 +77,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="16dp"
-            android:text="Your order items"
-            android:textSize="16sp"
+            android:text="@string/order_preview_your_order_items"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -83,19 +86,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_item_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="24dp"
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textTotalItems" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="44dp"
-            android:text="Shipping Information"
+            android:layout_marginTop="8dp"
+            android:text="@string/order_preview_shipping_information_title"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,9 +120,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="Name"
-                android:text="minh huan"
-                android:textSize="14sp" />
+                android:autofillHints="Name"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_name"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:text="@string/order_preview_minh_huan"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/text_addr"
@@ -128,9 +136,16 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="Address"
-                android:text="24 nguyen vsdfsdfsfan tang"
-                android:textSize="14sp" />
+                android:autofillHints="Address"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_address"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:text="@string/order_preview_24_nguyen_van_tang"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
@@ -150,9 +165,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="City"
-                android:text="ho chi minh"
-                android:textSize="14sp" />
+                android:autofillHints="City"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_city"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:text="@string/order_preview_ho_chi_minh"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/text_postalcode"
@@ -161,9 +181,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="Postal code"
-                android:text="70000"
-                android:textSize="14sp"/>
+                android:autofillHints="Postal code"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_postal_code"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:text="@string/order_preview_70000"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
@@ -183,9 +208,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="Country"
-                android:text="Viet Nam"
-                android:textSize="14sp"/>
+                android:autofillHints="Country"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_country"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:text="@string/order_preview_viet_nam"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/text_phonenum"
@@ -194,11 +224,42 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:hint="Phone number"
-                android:text="0999817364"
-                android:textSize="14dp"/>
-
+                android:autofillHints="phone number"
+                android:background="@drawable/shape_order_preview_bg"
+                android:hint="@string/order_preview_phone_number"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:text="@string/order_preview_0999817364"
+                android:textSize="14sp"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTotalItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/order_preview_texttotalitems"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textTotalAmountItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/order_preview_texttotalprices"
+            android:textColor="@color/greenmix"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            tools:ignore="TextContrastCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

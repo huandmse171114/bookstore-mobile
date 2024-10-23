@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.contract.PaymentInfoConfirmContract;
+import com.bookstore.constract.PaymentInfoConfirmContract;
 import com.bookstore.databinding.PaymentInfoConfirmBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.PaymentInfoConfirmModel;
@@ -43,17 +43,11 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
 
         setScreenFieldData(response);
 
-        binding.btnBack.setOnClickListener(v -> redirectUploadPaymentActivity());
+        binding.btnBack.setOnClickListener(v -> finish());
 
-        binding.imgBtnBack.setOnClickListener(v -> redirectUploadPaymentActivity());
+        binding.imgBtnBack.setOnClickListener(v -> finish());
 
         binding.btnConfirm.setOnClickListener(v -> confirmPaymentInfo());
-    }
-
-    private void redirectUploadPaymentActivity() {
-        Intent intent = new Intent(this, UploadPaymentActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     private void confirmPaymentInfo() {

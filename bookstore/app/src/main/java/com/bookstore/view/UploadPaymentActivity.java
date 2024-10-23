@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.contract.UploadPaymentContract;
+import com.bookstore.constract.UploadPaymentContract;
 import com.bookstore.databinding.UploadPaymentBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.UploadPaymentModel;
@@ -51,7 +51,7 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
         binding.btnForward.setOnClickListener(v -> uploadImage());
 
         // On pressing btnBack
-        binding.btnBack.setOnClickListener(v -> redirectPaymentQRCodeActivity());
+        binding.btnBack.setOnClickListener(v -> finish());
     }
 
     private void uploadImage() {
@@ -60,13 +60,6 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
         }else {
             showToastMessage("Please select image.");
         }
-    }
-
-    private void redirectPaymentQRCodeActivity() {
-        Intent intent = new Intent(this, PaymentQRCodeActivity.class);
-        startActivity(intent);
-        showToastMessage("Cancel checkout process.");
-        finish();
     }
 
     @Override

@@ -5,6 +5,6 @@ import java.util.List;
 public class OrderCreateResponse {
     private String user;
     private String paymentBill;
-    private List<OrderItemResponse> orderItems;
+    private List<String> orderItems;
     private ShippingAddress shippingAddress;
 }

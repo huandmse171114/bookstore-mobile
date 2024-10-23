@@ -1,5 +1,5 @@
 
-package com.bookstore.contract;
+package com.bookstore.constract;
 
 import com.bookstore.model.Book;
 import com.bookstore.model.Category;

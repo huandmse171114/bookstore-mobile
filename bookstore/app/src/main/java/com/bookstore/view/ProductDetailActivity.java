@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bookstore.api.SearchBookApi;
-import com.bookstore.constract.ProductDetailContract;
-import com.bookstore.constract.ProductDetailPresenter;
+import com.bookstore.contract.ProductDetailContract;
+import com.bookstore.contract.ProductDetailPresenter;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.OtherProductsAdapter;
@@ -37,7 +37,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     private RecyclerView rvOtherProducts;
     private ProductDetailLayoutBinding binding;
     private ProductDetailPresenter presenter;
-    private int bookId;
+    private String bookId;
     private SearchBookApi apiService;
     private List<BookDetail> products;
     private OtherProductsAdapter otherProducts;
@@ -47,8 +47,6 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         super.onCreate(savedInstanceState);
         binding = ProductDetailLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
 
         initViews();
         setupAllBooksRecyclerView();
@@ -83,6 +81,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
             Intent intent = new Intent(ProductDetailActivity.this, HomePageActivity.class);
             startActivity(intent);
         });
+
+        binding.btnCartToolbar.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void initViews() {
@@ -91,13 +94,9 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         rvOtherProducts = binding.rvOtherProducts;
         products = new ArrayList<>();
 
-        // Setup toolbar
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
 
+    }
+    // Hiển thị thông tin sách
     private void displayBookDetails() {
         String bookImage = getIntent().getStringExtra("book_image");
         String bookTitle = getIntent().getStringExtra("book_title");
@@ -109,7 +108,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                     .into(binding.bookImgView);
         }
         binding.titleName.setText(bookTitle);
-        binding.price.setText(String.format("%,.0f VND", price));
+        binding.price.setText(String.format("%.0f VND", price));
     }
 
     private void setupTabLayout() {
@@ -126,7 +125,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         rvOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvOtherProducts.setAdapter(otherProducts);
     }
-
+    // api get allProduct
     private void setupOtherProducts() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://bookstore-api-nodejs.onrender.com")
@@ -178,12 +177,13 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     @Override
     public void showAddToCartSuccess() {
-        System.out.println("Sách đã được thêm vào giỏ hàng thành công!");
+        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showAddToCartError(String message) {
-        System.out.println("Lỗi khi thêm sách vào giỏ hàng: " + message);
+        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!" + message, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

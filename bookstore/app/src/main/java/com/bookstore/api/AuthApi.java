@@ -6,6 +6,7 @@ import com.bookstore.model.SignInRequest;
 import com.bookstore.model.SignInResponse;
 import com.bookstore.model.SignUpRequest;
 import com.bookstore.model.SignUpResponse;
+import com.bookstore.model.UserProfile;
 
 import java.util.List;
 
@@ -27,7 +28,15 @@ public interface AuthApi {
     Call<List<Category>> getCategories();
 
     @GET("/api/products")
-    Call<BookRequest> getBooks(@Query("category") Integer categoryId);
+    Call<BookRequest> getBooks(@Query("keyword") Integer categoryId);
+
+    // GET request for profile
+    @GET("/api/users/{userId}")
+    Call<UserProfile> getUserProfile(@Path("userId") String userId);
+
+    // POST request for logout
+    @POST("/api/users/logout")
+    Call<Void> logout();
 }
 
 
