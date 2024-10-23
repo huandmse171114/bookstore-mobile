@@ -15,9 +15,20 @@ import java.util.List;
 public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapter.ViewHolder> {
 
     private List<SearchBook> books;
+    private OnBookClickListener listener;
 
     public PopularBooksAdapter(List<SearchBook> books) {
         this.books = books;
+    }
+
+    // Interface để xử lý sự kiện click vào sách
+    public interface OnBookClickListener {
+        void onBookClick(SearchBook book);
+    }
+
+    // Phương thức để thiết lập listener
+    public void setOnBookClickListener(OnBookClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,12 +46,20 @@ public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapte
         holder.binding.PriceTextView.setText(book.getPrice() + " VND");
         holder.binding.bookRatingBar.setRating(book.getRating());
         holder.binding.bookRatingTextView.setText(String.valueOf(book.getReviewCount()));
+
         // Load image using Glide
         Glide.with(holder.binding.getRoot().getContext())
                 .load(book.getImage())
                 .placeholder(R.drawable.book_placeholder)
                 .error(R.drawable.error_image)
                 .into(holder.binding.bookCoverImageView);
+
+        // Thiết lập sự kiện click cho itemView
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onBookClick(book);
+            }
+        });
     }
 
     @Override

@@ -81,6 +81,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
             Intent intent = new Intent(ProductDetailActivity.this, HomePageActivity.class);
             startActivity(intent);
         });
+
+        binding.btnCartToolbar.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void initViews() {
