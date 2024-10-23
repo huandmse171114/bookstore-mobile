@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Book {
-    private String id;
+    private String _id;
     private String name;
     private String image;
     private String brand;
@@ -27,7 +27,7 @@ public class Book {
                 String category, String description, float rating, int numReviews,
                 float price, int countInStock, List<Reviews> reviews, Date createdAt,
                 Date updatedAt) {
-        this.id = id;
+        this._id = id;
         this.name = name;
         this.image = image;
         this.brand = brand;
@@ -48,11 +48,11 @@ public class Book {
   
     // Getters and Setters
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName() {

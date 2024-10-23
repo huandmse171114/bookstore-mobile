@@ -1,200 +1,169 @@
 package com.bookstore.view;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
+import com.bookstore.api.CartApiService;
 import com.bookstore.api.SearchBookApi;
 import com.bookstore.contract.ProductDetailContract;
-import com.bookstore.contract.ProductDetailPresenter;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
 import com.bookstore.model.OtherProductsAdapter;
 import com.bookstore.model.ProductDetailResponse;
 import com.bookstore.model.TabAdapter;
+import com.bookstore.presenter.ProductDetailPresenter;
 import com.bumptech.glide.Glide;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProductDetailActivity extends AppCompatActivity implements ProductDetailContract {
+public class ProductDetailActivity extends AppCompatActivity implements ProductDetailContract.View {
 
-    private TabLayout tabLayout;
-    private ViewPager2 viewPager;
-    private RecyclerView rvOtherProducts;
     private ProductDetailLayoutBinding binding;
-    private ProductDetailPresenter presenter;
-    private String bookId;
+    private ProductDetailContract.Presenter presenter;
+    private OtherProductsAdapter otherProductsAdapter;
+    private List<BookDetail> products = new ArrayList<>();
     private SearchBookApi apiService;
-    private List<BookDetail> products;
-    private OtherProductsAdapter otherProducts;
+    private CartApiService cartApiService;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ProductDetailLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        presenter = new ProductDetailPresenter(this);
         initViews();
-        setupAllBooksRecyclerView();
+//        setupPresenter();
         setupTabLayout();
         setupOtherProducts();
         displayBookDetails();
-        // Nhận dữ liệu từ Intent
-//        int bookImage = getIntent().getIntExtra("book_image", -1);
-//        String bookTitle = getIntent().getStringExtra("book_title");
-//        int price = getIntent().getIntExtra("book_price", -1);
-//
-//        // Hiển thị hình ảnh và tiêu đề
-//        if (bookImage != -1) {
-//            binding.bookImgView.setImageResource(bookImage);
-//            binding.price.setText(price);
-//        }
-//
-//        binding.titleName.setText(bookTitle);
-
-        // note
-//        CartApiService apiService = RetrofitClient.getClient().create(CartApiService.class);
-//        presenter = new ProductDetailPresenterImpl(this, apiService);
-//        bookId = getIntent().getIntExtra("book_id", -1);
-//        if (bookId != -1) {
-//            setupAddToCartButton();
-//        } else {
-//            showAddToCartError("Không tìm thấy thông tin sách");
-//            finish();
-//        }
-
-        binding.back.setOnClickListener(v -> {
-            Intent intent = new Intent(ProductDetailActivity.this, HomePageActivity.class);
-            startActivity(intent);
-        });
-
-        binding.btnCartToolbar.setOnClickListener(v -> {
-            Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
-            startActivity(intent);
-        });
+        setupListeners();
     }
 
     private void initViews() {
-        tabLayout = binding.tabLayout;
-        viewPager = binding.viewPager;
-        rvOtherProducts = binding.rvOtherProducts;
-        products = new ArrayList<>();
-
-
+        otherProductsAdapter = new OtherProductsAdapter(products);
+        binding.rvOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.rvOtherProducts.setAdapter(otherProductsAdapter);
     }
-    // Hiển thị thông tin sách
-    private void displayBookDetails() {
-        String bookImage = getIntent().getStringExtra("book_image");
-        String bookTitle = getIntent().getStringExtra("book_title");
-        float price = getIntent().getFloatExtra("book_price", 0f);
 
-        if (bookImage != null && !bookImage.isEmpty()) {
-            Glide.with(this)
-                    .load(bookImage)
-                    .into(binding.bookImgView);
-        }
-        binding.titleName.setText(bookTitle);
-        binding.price.setText(String.format("%.0f VND", price));
+    private void setupPresenter() {
+        // Initialize your presenter here
+//         presenter = new ProductDetailPresenterImpl(this);
     }
 
     private void setupTabLayout() {
         TabAdapter tabAdapter = new TabAdapter(this);
-        viewPager.setAdapter(tabAdapter);
+        binding.viewPager.setAdapter(tabAdapter);
 
-        new TabLayoutMediator(tabLayout, viewPager,
+        new TabLayoutMediator(binding.tabLayout, binding.viewPager,
                 (tab, position) -> tab.setText(TabAdapter.TAB_TITLES[position])
         ).attach();
     }
 
-    private void setupAllBooksRecyclerView() {
-        otherProducts = new OtherProductsAdapter(products);
-        rvOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvOtherProducts.setAdapter(otherProducts);
-    }
-    // api get allProduct
     private void setupOtherProducts() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://bookstore-api-nodejs.onrender.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        SearchBookApi service = retrofit.create(SearchBookApi.class);
-        Call<ProductDetailResponse> call = service.getAllBooks();
-
-        call.enqueue(new Callback<ProductDetailResponse>() {
-            @SuppressLint("NotifyDataSetChanged")
+        apiService = retrofit.create(SearchBookApi.class);
+        apiService.getAllBooks().enqueue(new Callback<ProductDetailResponse>() {
             @Override
             public void onResponse(Call<ProductDetailResponse> call, Response<ProductDetailResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     products.clear();
                     products.addAll(response.body().getProducts());
-                    otherProducts.setProducts(products);
-                    otherProducts.notifyDataSetChanged();
-                    rvOtherProducts.setAdapter(otherProducts);
+                    otherProductsAdapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(ProductDetailActivity.this, "Không thể tải danh sách sản phẩm khác", Toast.LENGTH_SHORT).show();
+                    showError("Không thể tải danh sách sản phẩm khác");
                 }
             }
+
             @Override
             public void onFailure(Call<ProductDetailResponse> call, Throwable t) {
-                Toast.makeText(ProductDetailActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                showError("Lỗi kết nối: " + t.getMessage());
             }
         });
     }
 
-            private void setupAddToCartButton() {
-        binding.buttonAddToCart.setOnClickListener(v -> {
-            // Implement add to cart logic
-            Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
-            presenter.addToCart(bookId);
-        });
+    private void displayBookDetails() {
+        Intent intent = getIntent();
+        String bookImage = intent.getStringExtra("book_image");
+        String bookTitle = intent.getStringExtra("book_title");
+        float price = intent.getFloatExtra("book_price", 0f);
+
+        if (bookImage != null && !bookImage.isEmpty()) {
+            Glide.with(this).load(bookImage).into(binding.bookImgView);
+        }
+        binding.titleName.setText(bookTitle);
+        binding.price.setText(String.format("%.0f VND", price));
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+    private void setupListeners() {
+        binding.back.setOnClickListener(v -> navigateToHomePage());
+        binding.buttonAddToCart.setOnClickListener(v -> addToCart());
+    }
+
+    private void navigateToHomePage() {
+        startActivity(new Intent(this, HomePageActivity.class));
+        finish();
+    }
+
+    private void addToCart() {
+        // Implement add to cart logic
+        String bookId = getIntent().getStringExtra("book_id");
+        if (bookId != null) {
+            presenter.addToCart(bookId);
+        } else {
+            showError("Không tìm thấy thông tin sách");
+        }
     }
 
     @Override
     public void showBookDetails(BookDetail book) {
-
+        // Implement if needed
     }
 
     @Override
     public void showAddToCartSuccess() {
-        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
+        showToast("Sách đã được thêm vào giỏ hàng thành công!");
     }
 
     @Override
     public void showAddToCartError(String message) {
-        Toast.makeText(ProductDetailActivity.this, "Sách đã được thêm vào giỏ hàng thành công!" + message, Toast.LENGTH_SHORT).show();
-
+        showError("Lỗi khi thêm vào giỏ hàng: " + message);
     }
 
     @Override
     public void showLoading() {
-        System.out.println("Đang tải...");
-        // Có thể thêm logic để hiển thị một biểu tượng loading hoặc progress bar
+        // Implement loading UI
     }
 
     @Override
     public void hideLoading() {
-        System.out.println("Đã tải xong.");
-        // Có thể thêm logic để ẩn biểu tượng loading hoặc progress bar
+        // Hide loading UI
+    }
+
+    @Override
+    public Context getMyApplicationContext() {
+        return getApplicationContext();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
