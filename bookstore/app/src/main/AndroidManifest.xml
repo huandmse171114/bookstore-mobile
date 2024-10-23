@@ -35,6 +35,7 @@
         <activity android:name=".view.OrderPreviewActivity"/>
         <activity android:name=".view.PaymentQRCodeActivity"/>
         <activity android:name=".view.ProfileActivity"/>
+        <activity android:name=".view.HomePageActivity"/>
 
     </application>
 
