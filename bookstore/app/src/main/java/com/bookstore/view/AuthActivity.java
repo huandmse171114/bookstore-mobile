@@ -2,7 +2,6 @@ package com.bookstore.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,11 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bookstore.R;
 import com.bookstore.api.AuthApi;
 import com.bookstore.api.RetrofitClient;
+import com.bookstore.contract.AuthContract;
 import com.bookstore.presenter.AuthPresenter;
 
 import retrofit2.Retrofit;
 
-public class AuthActivity extends AppCompatActivity implements com.bookstore.constract.AuthContract.View {
+public class AuthActivity extends AppCompatActivity implements AuthContract.View {
 
     private EditText usernameField, passwordField, emailField, confirmPasswordField;
     private Button signInButton, signUpButton;

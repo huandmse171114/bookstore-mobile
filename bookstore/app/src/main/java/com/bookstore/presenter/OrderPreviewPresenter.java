@@ -3,7 +3,7 @@ package com.bookstore.presenter;
 import com.bookstore.MyApplication;
 import com.bookstore.api.OrderItemApi;
 import com.bookstore.api.RetrofitClient;
-import com.bookstore.constract.OrderPreviewContract;
+import com.bookstore.contract.OrderPreviewContract;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.OrderItemsGetResponse;
 
