@@ -20,20 +20,23 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/payment_qrcode_button_back_desc"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Checkout"
+            android:text="@string/payment_qrcode_title"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -48,6 +51,7 @@
             android:layout_width="314dp"
             android:layout_height="593dp"
             android:layout_marginTop="36dp"
+            android:contentDescription="@string/payment_qrcode_image_title"
             android:src="@drawable/qrcode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,20 +73,21 @@
                 android:id="@+id/btnCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                android:text="Cancel"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/payment_qrcode_back_btn"
                 android:textSize="18sp"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-
+                tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
             <Button
                 android:id="@+id/btnForward"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/payment_qrcode_next_btn"
                 android:textSize="18sp"
-                android:text="Next" />
+                tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

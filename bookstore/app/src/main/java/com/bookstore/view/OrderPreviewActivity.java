@@ -33,14 +33,12 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
     private OrderPreviewBinding binding;
     private OrderPreviewContract.Presenter presenter;
     private ShippingAddress shippingAddress;
-    private List<CartItem> orderItemsData;
     private OrderItemAdapter orderItemAdapter;
     private MyApplication app;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         binding = OrderPreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -55,10 +53,13 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
 
         NumberFormat numberFormat = NumberFormat.getInstance();
 
-        binding.textTotalItems.setText(String.valueOf("Total " + MyApplication.getTotalItems()) + " items");
-        binding.textTotalAmountItems.setText("Price: " + numberFormat.format(MyApplication.getTotalPrice()));
+        String totalItemsText = String.valueOf("Total " + MyApplication.getTotalItems() + " items");
+        String totalAmountItemsText = "Price: " + numberFormat.format(MyApplication.getTotalPrice());
 
-        orderItemsData = MyApplication.getCartItems();
+        binding.textTotalItems.setText(totalItemsText);
+        binding.textTotalAmountItems.setText(totalAmountItemsText);
+
+        List<CartItem> orderItemsData = MyApplication.getCartItems();
 
         binding.btnProceed.setOnClickListener(v -> proceedCheckout());
 

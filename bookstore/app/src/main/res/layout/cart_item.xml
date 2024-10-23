@@ -1,6 +1,7 @@
 <!-- res/layout/cart_item.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -12,13 +13,14 @@
         android:id="@+id/item_image"
         android:layout_width="70dp"
         android:layout_height="100dp"
+        android:contentDescription="@string/cart_item_item_image"
         android:scaleType="centerCrop"
         android:layout_marginEnd="16dp"
         android:src="@drawable/qrcode" />
     <!-- Item Name -->
     <LinearLayout
         android:id="@+id/sub_layout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -28,21 +30,22 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Vi Than Cua Nhung Quyet Dinh"
+            android:text="@string/cart_item_title"
             android:textSize="14sp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/item_price"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="12,000 VND"
+            android:text="@string/cart_item_price"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <LinearLayout
             android:layout_marginTop="5dp"
@@ -55,9 +58,11 @@
                 android:id="@+id/decreaseBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
                 android:background="@drawable/shape_stroke_1_primary_bg_trans"
-                android:src="@drawable/baseline_horizontal_rule_24_cart_item"/>
+                android:contentDescription="@string/cart_item_decrease_quantity"
+                android:padding="6dp"
+                android:src="@drawable/baseline_horizontal_rule_24_cart_item"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <!-- Quantity -->
             <TextView
@@ -65,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="5"
+                android:text="@string/cart_item_5"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:paddingHorizontal="20dp"
@@ -75,10 +80,12 @@
                 android:id="@+id/increaseBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
                 android:background="@drawable/shape_stroke_1_primary_bg_trans"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:src="@drawable/baseline_add_24_cart_item"/>
+                android:contentDescription="@string/cart_item_increase_quantity"
+                android:padding="6dp"
+                android:src="@drawable/baseline_add_24_cart_item"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
         </LinearLayout>
     </LinearLayout>
