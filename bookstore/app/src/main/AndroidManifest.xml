@@ -31,7 +31,6 @@
         <activity android:name=".view.ProductDetailActivity"/>
         <activity android:name=".view.SearchBookActivity"/>
         <activity android:name=".view.ProductListActivity"/>
-        <activity android:name=".view.HomePageActivity"/>
         <activity android:name=".view.AuthActivity"/>
         <activity android:name=".view.OrderPreviewActivity"/>
         <activity android:name=".view.PaymentQRCodeActivity"/>

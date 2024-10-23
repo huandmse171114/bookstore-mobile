@@ -118,7 +118,9 @@
             android:textSize="16sp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="-5dp"
-            tools:layout_editor_absoluteY="311dp" />
+            tools:layout_editor_absoluteY="311dp"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 

@@ -1,5 +1,7 @@
 package com.bookstore.api;
 
+import com.bookstore.model.CartAddRequest;
+import com.bookstore.model.CartAddResponse;
 import com.bookstore.model.CartRequest;
 import com.bookstore.model.CartResponse;
 import com.bookstore.model.OrderItemsGetResponse;
@@ -21,5 +23,5 @@ public interface CartApiService {
     Call<CartResponse> getUserItems(@Path("id") String id);
 
     @POST("/api/order-items")
-    Call<CartResponse> addToCart(@Body CartRequest cartRequest);
+    Call<CartAddResponse> addToCart(@Body CartAddRequest cartRequest);
 }
