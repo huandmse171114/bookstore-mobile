@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.R;
+import com.bookstore.contract.CartContract;
 import com.bookstore.databinding.CartItemBinding;
 import com.bookstore.model.CartItem;
+import com.bookstore.view.CartActivity;
 import com.bumptech.glide.Glide;
 
 import java.text.NumberFormat;
@@ -23,9 +25,11 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private List<CartItem> cartItems;
+    private CartContract.View view;
 
-    public CartAdapter(List<CartItem>cartItems) {
+    public CartAdapter(List<CartItem>cartItems, CartContract.View view) {
         this.cartItems = cartItems;
+        this.view = view;
         notifyDataSetChanged();
     }
 
@@ -54,6 +58,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             holder.binding.itemQuantity.setText(String.valueOf(Integer.parseInt(
                     holder.binding.itemQuantity.getText().toString()
             ) + 1));
+            cartItem.setQuantity(Integer.parseInt(
+                    holder.binding.itemQuantity.getText().toString()
+            ));
+            cartItems.set(position, cartItem);
+            view.updateCartItemsRecyclerView2(cartItems);
+
         });
 
         holder.binding.decreaseBtn.setOnClickListener(v -> {
@@ -62,9 +72,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             );
             if (currQty > 1) {
                 holder.binding.itemQuantity.setText(String.valueOf( currQty - 1));
+                cartItem.setQuantity(Integer.parseInt(
+                        holder.binding.itemQuantity.getText().toString()
+                ));
+                cartItems.set(position, cartItem);
+                view.updateCartItemsRecyclerView2(cartItems);
             }else {
                 cartItems.remove(position);
                 notifyItemRemoved(position);
+                view.updateCartItemsRecyclerView2(cartItems);
                 Toast.makeText(v.getContext(), "Product remove from cart", Toast.LENGTH_SHORT).show();
             }
         });

@@ -32,25 +32,15 @@ public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQ
             return insets;
         });
 
-        binding.btnBack.setOnClickListener(v -> redirectPaymentPreviewActivity());
+        binding.btnBack.setOnClickListener(v -> finish());
 
         binding.btnForward.setOnClickListener((v -> redirectUploadPaymentActivity()));
 
     }
 
-    private void redirectPaymentPreviewActivity() {
-//        Intent intent = new Intent();
-//
-//        startActivity(intent);
-//        finish();
-
-        showToastMessage("Back To Payment Preview Page");
-    }
-
     private void redirectUploadPaymentActivity() {
         Intent intent = new Intent(this, UploadPaymentActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

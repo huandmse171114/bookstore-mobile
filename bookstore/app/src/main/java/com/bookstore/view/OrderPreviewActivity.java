@@ -16,12 +16,14 @@ import com.bookstore.MyApplication;
 import com.bookstore.adapter.OrderItemAdapter;
 import com.bookstore.contract.OrderPreviewContract;
 import com.bookstore.databinding.OrderPreviewBinding;
+import com.bookstore.model.CartItem;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.OrderItemView;
 import com.bookstore.model.OrderPreviewModel;
 import com.bookstore.model.ShippingAddress;
 import com.bookstore.presenter.OrderPreviewPresenter;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +33,7 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
     private OrderPreviewBinding binding;
     private OrderPreviewContract.Presenter presenter;
     private ShippingAddress shippingAddress;
-    private List<OrderItemData> orderItemsData;
+    private List<CartItem> orderItemsData;
     private OrderItemAdapter orderItemAdapter;
     private MyApplication app;
 
@@ -51,13 +53,16 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
             return insets;
         });
 
-        app = (MyApplication) getApplicationContext();
+        NumberFormat numberFormat = NumberFormat.getInstance();
 
-        orderItemsData = app.getOrderItems();
+        binding.textTotalItems.setText(String.valueOf("Total " + MyApplication.getTotalItems()) + " items");
+        binding.textTotalAmountItems.setText("Price: " + numberFormat.format(MyApplication.getTotalPrice()));
 
-        presenter.getOrderItems();
+        orderItemsData = MyApplication.getCartItems();
 
         binding.btnProceed.setOnClickListener(v -> proceedCheckout());
+
+        binding.btnBack.setOnClickListener(v -> finish());
 
         binding.orderItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -66,7 +71,7 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
                     .map(item -> new OrderItemView(
                             item.getImage(),
                             item.getName(),
-                            item.getQty(),
+                            item.getQuantity(),
                             item.getPrice()
                     ))
                     .collect(Collectors.toList()));
@@ -87,8 +92,6 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
 
         Intent intent = new Intent(this, PaymentQRCodeActivity.class);
         startActivity(intent);
-        finish();
-
     }
 
     private void getUserInputShippingAddress() {
