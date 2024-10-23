@@ -2,7 +2,7 @@ package com.bookstore.presenter;
 
 import com.bookstore.MyApplication;
 import com.bookstore.api.AuthApi;
-import com.bookstore.constract.AuthContract;
+import com.bookstore.contract.AuthContract;
 import com.bookstore.model.SignInRequest;
 import com.bookstore.model.SignInResponse;
 import com.bookstore.model.SignUpRequest;

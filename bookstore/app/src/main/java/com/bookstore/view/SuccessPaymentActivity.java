@@ -1,6 +1,7 @@
 package com.bookstore.view;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.constract.SuccessPaymentContract;
+import com.bookstore.contract.SuccessPaymentContract;
 import com.bookstore.databinding.SuccessPaymentBinding;
 import com.bookstore.model.SuccessPaymentModel;
 import com.bookstore.presenter.SuccessPaymentPresenter;
@@ -44,9 +45,7 @@ public class SuccessPaymentActivity extends AppCompatActivity implements Success
     }
 
     private void redirectHomeActivity() {
-        Toast.makeText(this, "Back To Home Page", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent();
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 }

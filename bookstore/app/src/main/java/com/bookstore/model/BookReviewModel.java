@@ -1,6 +1,6 @@
 package com.bookstore.model;
 
-import com.bookstore.api.BookReviewContract;
+import com.bookstore.contract.BookReviewContract;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

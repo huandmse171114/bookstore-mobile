@@ -5,7 +5,7 @@ import java.util.List;
 public class BookDetail {
     private String id;
     private String name;
-    private String price;
+    private float price;
     private float rating;
     private int reviewCount;
     private String image;
@@ -20,7 +20,7 @@ public class BookDetail {
     private String updatedAt;
     private int v;
 
-    public BookDetail(String id, String name, String price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<Reviews> reviews, String createdAt, String updatedAt, int v) {
+    public BookDetail(String id, String name, float price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<Reviews> reviews, String createdAt, String updatedAt, int v) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -55,11 +55,11 @@ public class BookDetail {
         this.name = name;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

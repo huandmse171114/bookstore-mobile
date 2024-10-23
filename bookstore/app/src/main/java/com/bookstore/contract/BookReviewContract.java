@@ -1,4 +1,4 @@
-package com.bookstore.api;
+package com.bookstore.contract;
 import java.util.List;
 import com.bookstore.model.UserReview;
 

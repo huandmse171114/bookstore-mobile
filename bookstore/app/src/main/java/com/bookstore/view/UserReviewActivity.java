@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.R;
-import com.bookstore.api.BookReviewContract;
+import com.bookstore.contract.BookReviewContract;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookReviewModel;
 import com.bookstore.model.UserReview;
