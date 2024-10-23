@@ -15,6 +15,7 @@ import com.bookstore.R;
 import com.bookstore.api.AuthApi;
 import com.bookstore.databinding.ProfileLayoutBinding; // Import the generated binding class
 import com.bookstore.model.UserProfile;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +47,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Handle logout button click
         binding.btnLogout.setOnClickListener(v -> logout());
+
+        // Set up bottom navigation behavior
+        setupBottomNavigation();
     }
 
     // Fetch user profile from API using the userId
@@ -100,5 +104,41 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(ProfileActivity.this, "Error during logout!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // Setup BottomNavigationView actions
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            // Handle navigation based on the selected item
+            if (itemId == R.id.nav_home) {
+                // Handle navigation to Home
+                return true;
+            } else if (itemId == R.id.nav_explore) {
+                // Handle navigation to Explore/Search
+                Intent exploreIntent = new Intent(ProfileActivity.this, SearchBookActivity.class);
+                startActivity(exploreIntent);
+                return true;
+            } else if (itemId == R.id.nav_login) {
+                if (userId == null || userId.isEmpty()) {
+                    Intent loginIntent = new Intent(ProfileActivity.this, AuthActivity.class);
+                    startActivity(loginIntent);
+                } else {
+                    Intent profileIntent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                    startActivity(profileIntent);
+                }
+                return true;
+            }
+            return false;
+        });
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null; // Prevent memory leaks
     }
 }
