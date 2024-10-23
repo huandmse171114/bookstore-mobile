@@ -1,38 +1,37 @@
 package com.bookstore.model;
 
 public class CartRequest {
-    private String bookId;
-    private int quantity;
-    private String userId;
+    private String product;
+    private int qty;
+    private String user;
 
-    public CartRequest(String bookId, int quantity, String userId) {
-        this.bookId = bookId;
-        this.quantity = quantity;
-        this.userId = userId;
+    public CartRequest(String product, int qty, String user) {
+        this.product = product;
+        this.qty = qty;
+        this.user = user;
     }
 
-    public String getBookId() {
-        return bookId;
+    public String getProduct() {
+        return product;
     }
 
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
+    public int getQty() {
+        return qty;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getUser() {
+        return user;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
-    public String getUserId() {
-        return userId;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setProduct(String product) {
+        this.product = product;
     }
-
 }
