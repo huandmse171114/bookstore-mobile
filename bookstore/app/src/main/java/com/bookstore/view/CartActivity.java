@@ -103,7 +103,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void updateCartItemsRecyclerView(List<CartItemResponse> data) {
         cartAdapter.setCartItems(data.stream()
-                .map(item -> new CartItem(item.getId(), item.getName(), item.getImage(), item.getPrice(), item.getQty()))
+                .map(item -> new CartItem(item.getProduct().getId(), item.getName(), item.getImage(), item.getPrice(), item.getQty()))
                 .collect(Collectors.toList()));
 
         totalPrice = 0;
