@@ -1,4 +1,4 @@
-package com.bookstore.model;
+package com.bookstore.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,12 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.bookstore.MainActivity;
 import com.bookstore.R;
 import com.bookstore.databinding.SlideScreenBinding;
-import com.bookstore.view.AuthActivity;
 import com.bookstore.view.HomePageActivity;
-import com.bookstore.view.SliderActivity;
 
 
 public class SliderViewAdapter extends PagerAdapter {

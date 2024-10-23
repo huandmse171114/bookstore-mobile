@@ -16,11 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bookstore.adapter.BookAdapter; // Nếu cần thiết
 import com.bookstore.api.SearchBookApi;
 import com.bookstore.databinding.SearchLayoutBinding;
 import com.bookstore.model.LatestSearchAdapter;
-import com.bookstore.model.PopularBooksAdapter;
+import com.bookstore.adapter.PopularBooksAdapter;
 import com.bookstore.model.SearchBook;
 import com.bookstore.model.SearchBookResponse;
 

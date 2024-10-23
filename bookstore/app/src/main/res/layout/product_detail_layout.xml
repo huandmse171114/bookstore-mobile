@@ -31,11 +31,11 @@
             android:layout_gravity="center"
             android:text="Book Detail"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
 
         <ImageButton
             android:id="@+id/btnCart_toolbar"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginRight="16dp"

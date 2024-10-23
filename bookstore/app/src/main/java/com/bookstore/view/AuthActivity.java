@@ -95,9 +95,9 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
     @Override
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
-        // Redirect to HomePageActivity after successful sign in
-        Intent intent = new Intent(this, HomePageActivity.class);
-        startActivity(intent);
+//        // Redirect to HomePageActivity after successful sign in
+//        Intent intent = new Intent(this, HomePageActivity.class);
+//        startActivity(intent);
         finish();
     }
 

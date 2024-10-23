@@ -1,4 +1,4 @@
-package com.bookstore.model;
+package com.bookstore.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.R;
 import com.bookstore.databinding.ItemOtherProductBinding;
+import com.bookstore.model.BookDetail;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdapter.ViewHolder> {
@@ -33,7 +35,8 @@ public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         BookDetail book = products.get(position);
         holder.binding.tvTitle.setText(book.getName());
-        holder.binding.tvPrice.setText(book.getPrice() + " VND");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        holder.binding.tvPrice.setText(numberFormat.format(book.getPrice()) + " VND");
         // Load image using Glide
         Glide.with(holder.binding.getRoot().getContext())
                 .load(book.getImage())

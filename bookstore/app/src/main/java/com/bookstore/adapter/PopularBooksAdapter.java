@@ -1,4 +1,4 @@
-package com.bookstore.model;
+package com.bookstore.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.R;
 import com.bookstore.databinding.ItemPopularBookBinding;
+import com.bookstore.model.SearchBook;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapter.ViewHolder> {
@@ -43,9 +45,11 @@ public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SearchBook book = books.get(position);
         holder.binding.bookTitleTextView.setText(book.getName());
-        holder.binding.PriceTextView.setText(book.getPrice() + " VND");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        holder.binding.PriceTextView.setText(numberFormat.format(book.getPrice()) + " VND");
         holder.binding.bookRatingBar.setRating(book.getRating());
-        holder.binding.bookRatingTextView.setText(String.valueOf(book.getReviewCount()));
+        holder.binding.bookId.setText(book.getId());
+        holder.binding.bookRatingTextView.setText(String.valueOf(book.getNumReviews()) + " Reviews");
 
         // Load image using Glide
         Glide.with(holder.binding.getRoot().getContext())

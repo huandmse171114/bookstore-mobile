@@ -1,9 +1,9 @@
 package com.bookstore.model;
 import java.util.List;
 public class SearchBook {
-    private String id;
+    private String _id;
     private String name;
-    private String price;
+    private float price;
     private float rating;
     private int reviewCount;
     private String image;
@@ -18,8 +18,8 @@ public class SearchBook {
     private String updatedAt;
     private int v;
 
-    public SearchBook(String id, String name, String price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<Reviews> reviews, String createdAt, String updatedAt, int v) {
-        this.id = id;
+    public SearchBook(String id, String name, float price, float rating, int reviewCount, String image, String brand, String category, int quantity, String description, int numReviews, int countInStock, List<Reviews> reviews, String createdAt, String updatedAt, int v) {
+        this._id = id;
         this.name = name;
         this.price = price;
         this.rating = rating;
@@ -38,11 +38,11 @@ public class SearchBook {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName() {
@@ -53,11 +53,11 @@ public class SearchBook {
         this.name = name;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
