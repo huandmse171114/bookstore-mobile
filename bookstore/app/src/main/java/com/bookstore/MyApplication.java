@@ -2,6 +2,7 @@ package com.bookstore;
 
 import android.app.Application;
 
+import com.bookstore.model.CartItem;
 import com.bookstore.model.CartItemResponse;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.ShippingAddress;
@@ -19,6 +20,9 @@ public class MyApplication extends Application {
     private static ShippingAddress shippingAddress;
     private static List<OrderItemData> orderItems = new ArrayList<>();
     private static List<CartItemResponse> cartItemResponses = new ArrayList<>();
+    private static List<CartItem> cartItems = new ArrayList<>();
+    private static int totalItems = 0;
+    private static int totalPrice = 0;
 
     @Override
     public void onCreate() {
@@ -62,5 +66,30 @@ public class MyApplication extends Application {
     public void setCartItemResponses(List<CartItemResponse> cartItemResponses) {
         if (!MyApplication.cartItemResponses.isEmpty()) MyApplication.cartItemResponses.clear();
         MyApplication.cartItemResponses.addAll(cartItemResponses);
+    }
+
+    public static List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public static void setCartItems(List<CartItem> cartItems) {
+        if (!MyApplication.cartItems.isEmpty()) MyApplication.cartItems.clear();
+        MyApplication.cartItems.addAll(cartItems);
+    }
+
+    public static int getTotalItems() {
+        return totalItems;
+    }
+
+    public static void setTotalItems(int totalItems) {
+        MyApplication.totalItems = totalItems;
+    }
+
+    public static int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public static void setTotalPrice(int totalPrice) {
+        MyApplication.totalPrice = totalPrice;
     }
 }

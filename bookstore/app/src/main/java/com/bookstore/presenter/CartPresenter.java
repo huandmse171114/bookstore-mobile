@@ -44,8 +44,6 @@ public class CartPresenter implements CartContract.Presenter {
                     return;
                 }
                 List<CartItemResponse> data = response.body().getData();
-                data.addAll(data);
-                data.addAll(data);
                 app.setCartItemResponses(data);
                 view.updateCartItemsRecyclerView(data);
             }

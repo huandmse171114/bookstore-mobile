@@ -50,20 +50,7 @@ public class OrderPreviewPresenter implements OrderPreviewContract.Presenter {
             }
         });
 
-//        try {
-//            Response<OrderItemsGetResponse> responseRaw = orderItemApi.getAll().execute();
-//
-//            if (responseRaw.isSuccessful() && responseRaw.body() != null) {
-//                response = responseRaw.body().getData();
-//                view.showToastMessage("success get order items");
-//            }else {
-//                response = null;
-//                view.showToastMessage("failed get order items");
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 
         return response;
     }

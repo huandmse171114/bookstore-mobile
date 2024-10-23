@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -75,7 +75,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="16dp"
             android:text="Your order items"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,17 +84,17 @@
             android:id="@+id/order_item_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textTotalItems" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:text="Shipping Information"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -213,6 +213,32 @@
                 android:textSize="14dp"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTotalItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:text="TextTotalItems"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textTotalAmountItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
+            android:text="TextTotalPrices"
+            android:textColor="@color/greenmix"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

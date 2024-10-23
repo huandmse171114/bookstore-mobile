@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Successfully"
+            android:text="Done"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:background="@drawable/shap_border_radius_top_15">
 
         <TextView
@@ -61,7 +61,7 @@
             android:id="@+id/imageView2"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="208dp"
             android:src="@drawable/check_green_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
