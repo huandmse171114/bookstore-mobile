@@ -46,6 +46,14 @@ public class HomePageActivity extends AppCompatActivity {
         binding = HomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        String bookName = "Thay Đổi Một Suy Nghĩ";
+        String bookImage = "https://product.hstatic.net/1000237375/product/1080x1080_thay_doi_suy_nghi_b732e0443f9a4e0dbea8bffaf76fdd1b_large.jpg";
+        float bookPrice = 90000;
+        String bookName1 = "Vượt Qua Sự Chối Bỏ";
+        String bookImage1 = "https://product.hstatic.net/1000237375/product/1_01043a8867ef41288874e48bf8c61ab9_master.png";
+        float bookPrice1 = 309000;
+
+
         // Retrieve userId from MyApplication or SharedPreferences
         userId = ((MyApplication) getApplication()).getUserId();
 
@@ -89,6 +97,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void showCategories(List<Category> categories) {
                 categoryAdapter.setCategories(categories);
+                binding.categoryRecyclerView.setAdapter(categoryAdapter);
             }
 
             @Override
@@ -100,6 +109,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void showBooks(List<Book> books) {
                 bookAdapter.setBooks(books);
+                binding.categoryRecyclerView.setAdapter(categoryAdapter);
             }
         });
 
@@ -124,6 +134,8 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Cart and search actions
         binding.cartIcon.setOnClickListener(v -> openCart());
+
+        // Search icon click listener
         binding.searchIcon.setOnClickListener(v -> openSearch());
 
         // Xử lý sự kiện khi người dùng nhấn vào nút Load More
@@ -132,6 +144,21 @@ public class HomePageActivity extends AppCompatActivity {
         // Xử lý sự kiện khi người dùng nhấn vào nút see all
         binding.seeAllButton.setOnClickListener(v -> openProductList());
 
+        binding.shopNow.setOnClickListener(book -> {
+            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            intent.putExtra("book_image",bookImage );
+            intent.putExtra("book_title",bookName);
+            intent.putExtra("book_price",bookPrice);
+            startActivity(intent);
+        });
+
+        binding.shopNow1.setOnClickListener(book -> {
+            Intent intent = new Intent(HomePageActivity.this, ProductDetailActivity.class);
+            intent.putExtra("book_image",bookImage1 );
+            intent.putExtra("book_title",bookName1);
+            intent.putExtra("book_price",bookPrice1);
+            startActivity(intent);
+        });
 
         // Profile image click listener
         profileImage.setOnClickListener(v -> {
