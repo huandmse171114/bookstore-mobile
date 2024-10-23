@@ -5,6 +5,7 @@ import com.bookstore.api.OrderApi;
 import com.bookstore.api.PaymentBillApi;
 import com.bookstore.api.RetrofitClient;
 import com.bookstore.contract.PaymentInfoConfirmContract;
+import com.bookstore.model.CartItem;
 import com.bookstore.model.OrderCreateRequest;
 import com.bookstore.model.OrderCreateResponse;
 import com.bookstore.model.OrderItem;
@@ -59,12 +60,12 @@ public class PaymentInfoConfirmPresenter implements PaymentInfoConfirmContract.P
                 MyApplication app = (MyApplication) view.getApplicationContext();
                 String userId = app.getUserId();
 
-                List<OrderItemData> orderItemsData = app.getOrderItems();
+                List<CartItem> orderItemsData = MyApplication.getCartItems();
 
                 if (orderItemsData != null) {
                     List<OrderItem> orderItems = orderItemsData
                             .stream()
-                            .map(item -> new OrderItem(item.getProduct().getId(), item.getQty()))
+                            .map(item -> new OrderItem(item.getProductId(), item.getQuantity()))
                             .collect(Collectors.toList());
 
                     ShippingAddress defaultShippingAddress = app.getShippingAddress();
