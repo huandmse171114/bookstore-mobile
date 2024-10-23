@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.contract.PaymentInfoConfirmContract;
+import com.bookstore.constract.PaymentInfoConfirmContract;
 import com.bookstore.databinding.PaymentInfoConfirmBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.PaymentInfoConfirmModel;

@@ -51,7 +51,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/email_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
@@ -68,7 +69,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/lock_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
 
     <Button
         android:id="@+id/signinbtn"
@@ -82,7 +84,7 @@
         android:textStyle="bold"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="#393E75"
+        android:background="@drawable/rounded_square"
         />
 
     <TextView

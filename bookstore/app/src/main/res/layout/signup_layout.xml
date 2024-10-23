@@ -50,7 +50,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/account_avatar_man_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -67,7 +68,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/email_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
 
     <EditText
         android:id="@+id/password"
@@ -85,7 +87,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/lock_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
     <EditText
         android:id="@+id/cfpassword"
         android:layout_width="match_parent"
@@ -102,7 +105,8 @@
         android:minHeight="48sp"
         android:selectAllOnFocus="true"
         android:drawableStart="@drawable/lock_svgrepo_com"
-        android:drawablePadding="10dp" />
+        android:drawablePadding="10dp"
+        android:background="@drawable/rounded_square"/>
 
     <Button
         android:id="@+id/signupbtn"
@@ -113,10 +117,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:background="#393E75"
         android:text="@string/signup"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="@drawable/rounded_square"/>
 
     <TextView
         android:id="@+id/alreadyaccount"

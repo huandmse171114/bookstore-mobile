@@ -2,7 +2,7 @@ package com.bookstore.presenter;
 
 import android.util.Log;
 import com.bookstore.api.AuthApi;
-import com.bookstore.contract.CategoryContract;
+import com.bookstore.constract.CategoryContract;
 import com.bookstore.model.BookRequest;
 import com.bookstore.model.Category;
 import com.bookstore.CongfigAPI.RetrofitClient;

@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bookstore.contract.PaymentQRCodeContract;
+import com.bookstore.constract.PaymentQRCodeContract;
 import com.bookstore.databinding.PaymentQrcodeBinding;
 
 public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQRCodeContract.View {
