@@ -53,10 +53,6 @@ public class HomePageActivity extends AppCompatActivity {
         String bookImage1 = "https://product.hstatic.net/1000237375/product/1_01043a8867ef41288874e48bf8c61ab9_master.png";
         float bookPrice1 = 309000;
 
-
-        // Retrieve userId from MyApplication or SharedPreferences
-        userId = ((MyApplication) getApplication()).getUserId();
-
         // Find the profileImage view
         profileImage = binding.profileImage; // Assuming you have this in your binding
 
@@ -191,6 +187,8 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(exploreIntent);
                 return true;
             } else if (itemId == R.id.nav_login) {
+                // Retrieve userId from MyApplication or SharedPreferences
+                userId = MyApplication.getUserId();
                 if (userId == null || userId.isEmpty()) {
                     Intent loginIntent = new Intent(HomePageActivity.this, AuthActivity.class);
                     startActivity(loginIntent);

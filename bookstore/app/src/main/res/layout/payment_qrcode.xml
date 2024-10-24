@@ -78,6 +78,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/payment_qrcode_back_btn"
                 android:textSize="18sp"
+                app:cornerRadius="10dp"
                 tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
             <Button
                 android:id="@+id/btnForward"
@@ -87,9 +88,23 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/payment_qrcode_next_btn"
                 android:textSize="18sp"
+                app:cornerRadius="10dp"
                 tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Footer Navigation Bar -->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="411dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@color/colorPrimaryDark"-->
+<!--        app:itemIconTint="@color/white"-->
+<!--        app:itemTextColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:menu="@menu/bottom_nav_menu" />-->
 
 </LinearLayout>

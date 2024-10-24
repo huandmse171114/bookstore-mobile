@@ -11,17 +11,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bookstore.MyApplication;
+import com.bookstore.R;
 import com.bookstore.contract.PaymentInfoConfirmContract;
 import com.bookstore.databinding.PaymentInfoConfirmBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.PaymentInfoConfirmModel;
 import com.bookstore.presenter.PaymentInfoConfirmPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PaymentInfoConfirmActivity extends AppCompatActivity implements PaymentInfoConfirmContract.View {
 
     private PaymentInfoConfirmBinding binding;
     private PaymentInfoConfirmContract.Presenter presenter;
     private PaymentGPTResponse response;
+    private String userId; // User ID for checking login status
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
         binding = PaymentInfoConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         presenter = new PaymentInfoConfirmPresenter(this, new PaymentInfoConfirmModel());
+        userId = ((MyApplication) getApplication()).getUserId();
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.paymentInfoConfirm.getId()), (v, insets) -> {
@@ -48,6 +53,7 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
         binding.imgBtnBack.setOnClickListener(v -> finish());
 
         binding.btnConfirm.setOnClickListener(v -> confirmPaymentInfo());
+
     }
 
     private void confirmPaymentInfo() {
@@ -60,7 +66,7 @@ public class PaymentInfoConfirmActivity extends AppCompatActivity implements Pay
         Intent intent = new Intent(this, SuccessPaymentActivity.class);
 
         // Attach the PaymentGPTResponse object to the intent
-        intent.putExtra("order_id", orderId);
+        intent.putExtra("order_id", id);
 
         startActivity(intent);
     }
