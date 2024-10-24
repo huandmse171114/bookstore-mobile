@@ -2,9 +2,6 @@ package com.bookstore.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +10,16 @@ import com.bookstore.R;
 import com.bookstore.api.AuthApi;
 import com.bookstore.api.RetrofitClient;
 import com.bookstore.contract.AuthContract;
+import com.bookstore.databinding.SigninLayoutBinding;
+import com.bookstore.databinding.SignupLayoutBinding;
 import com.bookstore.presenter.AuthPresenter;
 
 import retrofit2.Retrofit;
 
 public class AuthActivity extends AppCompatActivity implements AuthContract.View {
 
-    private EditText usernameField, passwordField, emailField, confirmPasswordField;
-    private Button signInButton, signUpButton;
-    private TextView toggleText;
+    private SigninLayoutBinding signinBinding; // For sign-in layout binding
+    private SignupLayoutBinding signupBinding; // For sign-up layout binding
     private AuthPresenter presenter;
     private boolean isSignIn = true;
 
@@ -37,45 +35,33 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
     }
 
     private void loadSignInLayout() {
-        setContentView(R.layout.signin_layout); // Load login layout
+        signinBinding = SigninLayoutBinding.inflate(getLayoutInflater()); // Initialize view binding for sign-in
+        setContentView(signinBinding.getRoot()); // Set the root view
 
-        // Initialize input fields for sign in
-        usernameField = findViewById(R.id.email);
-        passwordField = findViewById(R.id.password);
-        signInButton = findViewById(R.id.signinbtn);
-        toggleText = findViewById(R.id.didntaccount);
-
-        // Set click listener for sign in button
-        signInButton.setOnClickListener(v -> {
-            String username = usernameField.getText().toString().trim();
-            String password = passwordField.getText().toString().trim();
+        // Set click listener for sign-in button
+        signinBinding.signinbtn.setOnClickListener(v -> {
+            String username = signinBinding.email.getText().toString().trim();
+            String password = signinBinding.password.getText().toString().trim();
             presenter.signIn(username, password);
         });
 
         // Set click listener for switching to sign up
-        toggleText.setOnClickListener(v -> {
+        signinBinding.didntaccount.setOnClickListener(v -> {
             isSignIn = false;
             loadSignUpLayout();
         });
     }
 
     private void loadSignUpLayout() {
-        setContentView(R.layout.signup_layout); // Load sign up layout
+        signupBinding = SignupLayoutBinding.inflate(getLayoutInflater()); // Initialize view binding for sign-up
+        setContentView(signupBinding.getRoot()); // Set the root view
 
-        // Initialize input fields for sign up
-        usernameField = findViewById(R.id.username);
-        emailField = findViewById(R.id.email);
-        passwordField = findViewById(R.id.password);
-        confirmPasswordField = findViewById(R.id.cfpassword);
-        signUpButton = findViewById(R.id.signupbtn);
-        toggleText = findViewById(R.id.alreadyaccount);
-
-        // Set click listener for sign up button
-        signUpButton.setOnClickListener(v -> {
-            String username = usernameField.getText().toString().trim();
-            String email = emailField.getText().toString().trim();
-            String password = passwordField.getText().toString().trim();
-            String confirmPassword = confirmPasswordField.getText().toString().trim();
+        // Set click listener for sign-up button
+        signupBinding.signupbtn.setOnClickListener(v -> {
+            String username = signupBinding.username.getText().toString().trim();
+            String email = signupBinding.email.getText().toString().trim();
+            String password = signupBinding.password.getText().toString().trim();
+            String confirmPassword = signupBinding.cfpassword.getText().toString().trim();
 
             // Check password confirmation
             if (password.equals(confirmPassword)) {
@@ -85,8 +71,8 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
             }
         });
 
-        // Set click listener for switching back to sign in
-        toggleText.setOnClickListener(v -> {
+        // Set click listener for switching back to sign-in
+        signupBinding.alreadyaccount.setOnClickListener(v -> {
             isSignIn = true;
             loadSignInLayout();
         });
@@ -95,9 +81,9 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.View
     @Override
     public void showSignInSuccess() {
         Toast.makeText(this, "Sign-in successful", Toast.LENGTH_SHORT).show();
-//        // Redirect to HomePageActivity after successful sign in
-//        Intent intent = new Intent(this, HomePageActivity.class);
-//        startActivity(intent);
+        // Redirect to HomePageActivity after successful sign in
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
         finish();
     }
 
