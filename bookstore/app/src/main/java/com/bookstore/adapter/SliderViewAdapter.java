@@ -9,20 +9,22 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bookstore.R;
 import com.bookstore.databinding.SlideScreenBinding;
 import com.bookstore.view.HomePageActivity;
+import com.bookstore.view.SliderActivity;
 
 
 public class SliderViewAdapter extends PagerAdapter {
-
-    Context mContext;
+    private Context mContext;
     private SlideScreenBinding binding;
+    private ViewPager viewPager;  // Thêm reference đến ViewPager
 
-
-    public SliderViewAdapter(Context mContext) {
+    public SliderViewAdapter(Context mContext, ViewPager viewPager) {
         this.mContext = mContext;
+        this.viewPager = viewPager;
 
     }
 
@@ -33,20 +35,22 @@ public class SliderViewAdapter extends PagerAdapter {
         binding = SlideScreenBinding.inflate(LayoutInflater.from(mContext), container, false);
 
         binding.btnGetStarted.setOnClickListener(v -> {
-            //open main activity
             Intent intent = new Intent(mContext, HomePageActivity.class);
-            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         });
 
-//        binding.next.setOnClickListener(v -> {
-//            //forwards to the next screen
-//            SliderActivity.screenPager.setCurrentItem(position + 1);
-//        });
-//        binding.back.setOnClickListener(v -> {
-//            //backwards to the next screen
-//            SliderActivity.screenPager.setCurrentItem(position - 1);
-//        });
+        binding.next.setOnClickListener(v -> {
+            if (viewPager != null) {
+                viewPager.setCurrentItem(position + 1);
+            }
+        });
+
+        binding.back.setOnClickListener(v -> {
+            if (viewPager != null) {
+                viewPager.setCurrentItem(position - 1);
+            }
+        });
         switch (position){
             case 0:
                 binding.logo.setImageResource(R.drawable.bookslider);

@@ -8,7 +8,8 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewPager">
+        android:id="@+id/viewPager"
+        tools:ignore="MissingClass">
 
     </androidx.viewpager.widget.ViewPager>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -10,7 +11,7 @@
         android:layout_height="24dp"
         android:src="@drawable/ic_clock"
         android:layout_marginEnd="8dp"
-        android:contentDescription="Biểu tượng lịch sử tìm kiếm"/>
+        android:contentDescription="@string/bi_u_t_ng_l_ch_s_t_m_ki_m"/>
 
     <TextView
         android:id="@+id/tvSearch"
@@ -23,8 +24,9 @@
         android:id="@+id/btnRemove"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_close"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Xóa tìm kiếm"/>
+        android:contentDescription="@string/x_a_t_m_ki_m"
+        android:src="@drawable/ic_close"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </LinearLayout>
