@@ -1,13 +1,15 @@
 package com.bookstore.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bookstore.api.CartApiService;
 import com.bookstore.api.SearchBookApi;
 import com.bookstore.contract.ProductDetailContract;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
@@ -33,9 +35,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     private ProductDetailLayoutBinding binding;
     private ProductDetailContract.Presenter presenter;
     private OtherProductsAdapter otherProductsAdapter;
-    private List<BookDetail> products = new ArrayList<>();
-    private SearchBookApi apiService;
-    private CartApiService cartApiService;
+    private final List<BookDetail> products = new ArrayList<>();
 
 
     @Override
@@ -78,10 +78,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        apiService = retrofit.create(SearchBookApi.class);
+        SearchBookApi apiService = retrofit.create(SearchBookApi.class);
         apiService.getAllBooks().enqueue(new Callback<ProductDetailResponse>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(Call<ProductDetailResponse> call, Response<ProductDetailResponse> response) {
+            public void onResponse(@NonNull Call<ProductDetailResponse> call, @NonNull Response<ProductDetailResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     products.clear();
                     products.addAll(response.body().getProducts());
@@ -92,12 +93,13 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
             }
 
             @Override
-            public void onFailure(Call<ProductDetailResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ProductDetailResponse> call, @NonNull Throwable t) {
                 showError("Lỗi kết nối: " + t.getMessage());
             }
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void displayBookDetails() {
         Intent intent = getIntent();
         String bookImage = intent.getStringExtra("book_image");
@@ -145,7 +147,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     @Override
     public void showAddToCartSuccess() {
-        showToast("Sách đã được thêm vào giỏ hàng thành công!");
+        showToast();
     }
 
     @Override
@@ -170,8 +172,8 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         return getApplicationContext();
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    private void showToast() {
+        Toast.makeText(this, "Sách đã được thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
     }
 
     private void showError(String message) {

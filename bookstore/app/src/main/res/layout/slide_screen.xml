@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.116"
-        app:srcCompat="@drawable/bookslider" />
+        app:srcCompat="@drawable/bookslider"
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -28,7 +29,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Varity of books"
+        android:text="@string/varity_of_books"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -42,11 +43,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="45dp"
         android:gravity="center"
-        android:text="This is random text taking form lorem"
+        android:text="@string/this_is_random_text_taking_form_lorem"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -60,35 +62,39 @@
         android:background="@drawable/btn_bg"
         android:backgroundTint="@color/colorPrimaryDark"
         android:hapticFeedbackEnabled="true"
-        android:text="GET STARTED"
-        android:textColor="#000000"
+        android:text="@string/get_started"
+        android:textColor="#37474F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
     <ImageView
         android:id="@+id/ind1"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toStartOf="@+id/ind2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc"
-        app:srcCompat="@drawable/selected" />
+        app:srcCompat="@drawable/selected"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/ind2"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/no"
         app:layout_constraintEnd_toStartOf="@+id/ind3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ind1"
         app:layout_constraintTop_toBottomOf="@+id/desc"
-        app:srcCompat="@drawable/selected" />
+        app:srcCompat="@drawable/selected"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/ind3"
@@ -99,17 +105,20 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ind2"
         app:layout_constraintTop_toTopOf="@+id/ind2"
-        app:srcCompat="@drawable/selected" />
+        app:srcCompat="@drawable/selected"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_back"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/next"
@@ -119,6 +128,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_next" />
+        app:srcCompat="@drawable/ic_next"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

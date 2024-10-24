@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookstore.api.SearchBookApi;
 import com.bookstore.databinding.SearchLayoutBinding;
 import com.bookstore.model.LatestSearchAdapter;
-import com.bookstore.adapter.PopularBooksAdapter;
+import com.bookstore.adapter.SearchBookApdater;
 import com.bookstore.model.SearchBook;
 import com.bookstore.model.SearchBookResponse;
 
@@ -38,7 +39,7 @@ public class SearchBookActivity extends AppCompatActivity {
     private RecyclerView rvLatestSearch;
     private RecyclerView rvPopularBooks;
     private LatestSearchAdapter latestSearchAdapter;
-    private PopularBooksAdapter popularBooksAdapter;
+    private SearchBookApdater searchBookApdater;
     private List<String> latestSearches;
     private List<SearchBook> books;
     private SearchLayoutBinding binding;
@@ -58,16 +59,17 @@ public class SearchBookActivity extends AppCompatActivity {
             return insets;
         });
 
-        etSearch = binding.etSearch;
-        rvLatestSearch = binding.rvLatestSearch;
-        rvPopularBooks = binding.rvPopularBooks;
-        latestSearches = new ArrayList<>();
-        books = new ArrayList<>();
-
+        // Khởi tạo các biến
+        Init();
+        // Thiết lập RecyclerView cho danh sách tìm kiếm gần đây
         setupLatestSearchRecyclerView();
         setupPopularBooksRecyclerView();
-        loadPopularBooks(etSearch.getText().toString().trim());
+        setUpListeners();
+        setUpOnEditorActionListener();
 
+    }
+    public void setUpOnEditorActionListener() {
+        loadPopularBooks(etSearch.getText().toString().trim());
         etSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                     (event != null && event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
@@ -81,13 +83,29 @@ public class SearchBookActivity extends AppCompatActivity {
             }
             return false;
         });
-
-        binding.btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(SearchBookActivity.this, HomePageActivity.class);
-            startActivity(intent);
-        });
+    }
+    public void setUpListeners() {
+        binding.btnCart.setOnClickListener(v -> navigateToViewCart());
+        binding.btnBack.setOnClickListener(v -> navigateToBack());
     }
 
+    private void navigateToViewCart() {
+        startActivity(new Intent(this, CartActivity.class));
+        finish();
+    }
+    private void navigateToBack() {
+        startActivity(new Intent(this, HomePageActivity.class));
+        finish();
+    }
+
+    public void Init() {
+        // Khởi tạo các biến
+        etSearch = binding.etSearch;
+        rvLatestSearch = binding.rvLatestSearch;
+        rvPopularBooks = binding.rvPopularBooks;
+        latestSearches = new ArrayList<>();
+        books = new ArrayList<>();
+    }
     private void setupLatestSearchRecyclerView() {
         latestSearchAdapter = new LatestSearchAdapter(latestSearches);
         rvLatestSearch.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -95,12 +113,12 @@ public class SearchBookActivity extends AppCompatActivity {
     }
 
     private void setupPopularBooksRecyclerView() {
-        popularBooksAdapter = new PopularBooksAdapter(books);
+        searchBookApdater = new SearchBookApdater(books);
         rvPopularBooks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvPopularBooks.setAdapter(popularBooksAdapter);
+        rvPopularBooks.setAdapter(searchBookApdater);
 
         // Thiết lập listener cho sự kiện click vào sách
-        popularBooksAdapter.setOnBookClickListener(book -> {
+        searchBookApdater.setOnBookClickListener(book -> {
             Intent intent = new Intent(SearchBookActivity.this, ProductDetailActivity.class);
             intent.putExtra("book_image", book.getImage());
             intent.putExtra("book_title", book.getName());
@@ -110,6 +128,8 @@ public class SearchBookActivity extends AppCompatActivity {
         });
     }
 
+    // Hàm này sẽ thêm query vào danh sách tìm kiếm gần đây
+    @SuppressLint("NotifyDataSetChanged")
     private void addToLatestSearches(String query) {
         if (!latestSearches.contains(query)) {
             latestSearches.add(0, query);
@@ -120,6 +140,7 @@ public class SearchBookActivity extends AppCompatActivity {
         }
     }
 
+    // Hàm này sẽ gọi API để lấy danh sách sách phổ biến
     private void loadPopularBooks(String query) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://bookstore-api-nodejs.onrender.com")
@@ -132,12 +153,12 @@ public class SearchBookActivity extends AppCompatActivity {
         call.enqueue(new Callback<SearchBookResponse>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(Call<SearchBookResponse> call, Response<SearchBookResponse> response) {
+            public void onResponse(@NonNull Call<SearchBookResponse> call, @NonNull Response<SearchBookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     books.clear();
                     books.addAll(response.body().getProducts());
-                    popularBooksAdapter.setBooks(books);
-                    popularBooksAdapter.notifyDataSetChanged();
+                    searchBookApdater.setBooks(books);
+                    searchBookApdater.notifyDataSetChanged();
                     Log.e("check", "Response successful: " + response.body().getProducts());
                 } else {
                     Log.e("check", "Response not successful: " + response.message());
@@ -145,7 +166,7 @@ public class SearchBookActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<SearchBookResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<SearchBookResponse> call, @NonNull Throwable t) {
                 Log.e("check", "API call failed", t);
             }
         });

@@ -14,12 +14,12 @@ import com.bumptech.glide.Glide;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class PopularBooksAdapter extends RecyclerView.Adapter<PopularBooksAdapter.ViewHolder> {
+public class SearchBookApdater extends RecyclerView.Adapter<SearchBookApdater.ViewHolder> {
 
     private List<SearchBook> books;
     private OnBookClickListener listener;
 
-    public PopularBooksAdapter(List<SearchBook> books) {
+    public SearchBookApdater(List<SearchBook> books) {
         this.books = books;
     }
 

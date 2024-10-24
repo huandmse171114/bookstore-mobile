@@ -83,4 +83,27 @@
     <string name="cart_item_item_image">Item image</string>
     <string name="cart_item_increase_quantity">Increase quantity</string>
     <string name="cart_item_5">5</string>
+    <string name="search">Search</string>
+    <string name="latest_search">Latest Search</string>
+    <string name="books">Books</string>
+    <string name="back">Back</string>
+    <string name="cart">Cart</string>
+    <string name="search_book">Search book...</string>
+    <string name="todo">TODO</string>
+    <string name="this_is_random_text_taking_form_lorem">This is random text taking form lorem</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="no">TODO</string>
+    <string name="varity_of_books">Varity of books</string>
+    <string name="book_detail">Book Detail</string>
+    <string name="_1_month_ago">1 Month ago</string>
+    <string name="see_all_reviews">See All Reviews</string>
+    <string name="another_product">Another Product</string>
+    <string name="review_96">Review (96)</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="madelina">Madelina</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="_189_000_vnd">189.000 VND</string>
+    <string name="atomic_habits_james_clear">Atomic Habits - James Clear</string>
+    <string name="bi_u_t_ng_l_ch_s_t_m_ki_m">Biểu tượng lịch sử tìm kiếm</string>
+    <string name="x_a_t_m_ki_m">Xóa tìm kiếm</string>
 </resources>
