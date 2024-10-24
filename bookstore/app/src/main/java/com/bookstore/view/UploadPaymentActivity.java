@@ -13,12 +13,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bookstore.MyApplication;
+import com.bookstore.R;
 import com.bookstore.contract.UploadPaymentContract;
 import com.bookstore.databinding.UploadPaymentBinding;
 import com.bookstore.model.PaymentGPTResponse;
 import com.bookstore.model.UploadPaymentModel;
 import com.bookstore.presenter.UploadPaymentPresenter;
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UploadPaymentActivity extends AppCompatActivity implements UploadPaymentContract.View {
 
@@ -27,6 +30,7 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
     private final int PICK_IMAGE_REQUEST = 22;
     private Uri filePath;
     private ProgressDialog progressDialog;
+    private String userId; // User ID for checking login status
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
         binding = UploadPaymentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         presenter = new UploadPaymentPresenter(new UploadPaymentModel(this), this);
+        userId = ((MyApplication) getApplication()).getUserId();
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.uploadPayment.getId()), (v, insets) -> {
@@ -122,4 +127,5 @@ public class UploadPaymentActivity extends AppCompatActivity implements UploadPa
             showSelectedImage(data.getData());
         }
     }
+
 }

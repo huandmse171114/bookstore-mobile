@@ -12,16 +12,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bookstore.MyApplication;
+import com.bookstore.R;
 import com.bookstore.contract.SuccessPaymentContract;
 import com.bookstore.databinding.SuccessPaymentBinding;
 import com.bookstore.model.SuccessPaymentModel;
 import com.bookstore.presenter.SuccessPaymentPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SuccessPaymentActivity extends AppCompatActivity implements SuccessPaymentContract.View {
 
     private SuccessPaymentBinding binding;
     private SuccessPaymentContract.Presenter presenter;
     private ProgressDialog progressDialog;
+    private String userId; // User ID for checking login status
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class SuccessPaymentActivity extends AppCompatActivity implements Success
         binding = SuccessPaymentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         presenter = new SuccessPaymentPresenter(this, new SuccessPaymentModel());
+        userId = ((MyApplication) getApplication()).getUserId();
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.successPayment.getId()), (v, insets) -> {
@@ -41,11 +46,11 @@ public class SuccessPaymentActivity extends AppCompatActivity implements Success
         binding.btnBack.setOnClickListener(v -> redirectHomeActivity());
 
         binding.btnHomePage.setOnClickListener(v -> redirectHomeActivity());
-
     }
 
     private void redirectHomeActivity() {
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
+
 }

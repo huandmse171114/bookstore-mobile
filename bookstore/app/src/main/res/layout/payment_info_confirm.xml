@@ -67,6 +67,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/payment_info_confirm_back_btn"
                 android:textSize="18sp"
+                app:cornerRadius="10dp"
                 tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
 
             <Button
@@ -77,6 +78,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/payment_info_confirm_confirm_btn"
                 android:textSize="18sp"
+                app:cornerRadius="10dp"
                 tools:ignore="ButtonStyle,TextContrastCheck,VisualLintButtonSize" />
         </LinearLayout>
 
@@ -85,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="64dp"
             android:text="@string/payment_info_confirm_confirm_payment"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -97,10 +99,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
             android:text="@string/payment_info_confirm_from"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -121,10 +123,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="68dp"
             android:text="@string/payment_info_confirm_to"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -145,10 +147,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="92dp"
             android:text="@string/payment_info_confirm_total_amount"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -181,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="116dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
             android:text="@string/payment_info_confirm_textview"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -203,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="136dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="68dp"
             android:text="@string/payment_info_confirm_textview"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -224,8 +226,8 @@
             android:id="@+id/textTotalAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="92dp"
             android:text="@string/payment_info_confirm_textview"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"

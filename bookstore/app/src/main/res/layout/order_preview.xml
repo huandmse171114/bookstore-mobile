@@ -43,11 +43,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:background="@drawable/shap_border_radius_top_15">
 
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -56,17 +57,17 @@
             android:paddingRight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="414dp">
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/btnProceed"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/order_preview_proceed_to_checkout"
                 android:textSize="18sp"
+                app:cornerRadius="10dp"
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
@@ -85,8 +86,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_item_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_width="422dp"
+            android:layout_height="233dp"
             android:layout_marginTop="24dp"
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/order_preview_shipping_information_title"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -260,8 +261,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             tools:ignore="TextContrastCheck" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Footer Navigation Bar -->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="411dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@color/colorPrimaryDark"-->
+<!--        app:itemIconTint="@color/white"-->
+<!--        app:itemTextColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:menu="@menu/bottom_nav_menu" />-->
 
 </LinearLayout>

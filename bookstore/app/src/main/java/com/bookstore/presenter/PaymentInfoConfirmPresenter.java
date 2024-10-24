@@ -83,6 +83,7 @@ public class PaymentInfoConfirmPresenter implements PaymentInfoConfirmContract.P
                                 .create(orderCreateRequest).execute();
 
                         if (orderCreateResponse.isSuccessful() && orderCreateResponse.body() != null) {
+                            id = orderCreateResponse.body().toString();
                             view.showToastMessage("success create order");
                         }else {
                             view.showToastMessage("failed create order");

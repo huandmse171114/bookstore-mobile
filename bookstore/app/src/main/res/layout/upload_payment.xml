@@ -124,4 +124,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--    &lt;!&ndash; Footer Navigation Bar &ndash;&gt;-->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="411dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@color/colorPrimaryDark"-->
+<!--        app:itemIconTint="@color/white"-->
+<!--        app:itemTextColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:menu="@menu/bottom_nav_menu" />-->
+
 </LinearLayout>

@@ -11,12 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bookstore.MyApplication;
+import com.bookstore.R;
 import com.bookstore.contract.PaymentQRCodeContract;
 import com.bookstore.databinding.PaymentQrcodeBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQRCodeContract.View {
 
     private PaymentQrcodeBinding binding;
+    private String userId; // User ID for checking login status
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public class PaymentQRCodeActivity extends AppCompatActivity implements PaymentQ
 
         binding = PaymentQrcodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        userId = ((MyApplication) getApplication()).getUserId();
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.qrCode.getId()), (v, insets) -> {

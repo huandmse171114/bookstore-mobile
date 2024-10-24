@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.MyApplication;
+import com.bookstore.R;
 import com.bookstore.adapter.OrderItemAdapter;
 import com.bookstore.contract.OrderPreviewContract;
 import com.bookstore.databinding.OrderPreviewBinding;
@@ -22,6 +23,7 @@ import com.bookstore.model.OrderItemView;
 import com.bookstore.model.OrderPreviewModel;
 import com.bookstore.model.ShippingAddress;
 import com.bookstore.presenter.OrderPreviewPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -35,6 +37,8 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
     private ShippingAddress shippingAddress;
     private OrderItemAdapter orderItemAdapter;
     private MyApplication app;
+    private String userId; // User ID for checking login status
+    private int totalItems = 0, totalAmount = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
         binding = OrderPreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         presenter = new OrderPreviewPresenter(this, new OrderPreviewModel());
+        userId = ((MyApplication) getApplication()).getUserId();
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.orderPreview.getId()), (v, insets) -> {
@@ -51,10 +56,15 @@ public class OrderPreviewActivity extends AppCompatActivity implements OrderPrev
             return insets;
         });
 
+        MyApplication.getCartItems().forEach(item -> {
+            totalAmount += item.getPrice() * item.getQuantity();
+            totalItems += item.getQuantity();
+        });
+
         NumberFormat numberFormat = NumberFormat.getInstance();
 
-        String totalItemsText = String.valueOf("Total " + MyApplication.getTotalItems() + " items");
-        String totalAmountItemsText = "Price: " + numberFormat.format(MyApplication.getTotalPrice());
+        String totalItemsText = String.valueOf("Total " + totalItems + " items");
+        String totalAmountItemsText = numberFormat.format(totalAmount) + " VND";
 
         binding.textTotalItems.setText(totalItemsText);
         binding.textTotalAmountItems.setText(totalAmountItemsText);
