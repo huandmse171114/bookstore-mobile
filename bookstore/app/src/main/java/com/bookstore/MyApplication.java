@@ -16,7 +16,6 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private static String userId;
-//    private static String userId = "671226027478771599feaedf";
     private static ShippingAddress shippingAddress;
     private static List<OrderItemData> orderItems = new ArrayList<>();
     private static List<CartItemResponse> cartItemResponses = new ArrayList<>();
@@ -34,11 +33,11 @@ public class MyApplication extends Application {
         );
     }
 
-    public String getUserId() {
+    public static String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public static void setUserId(String userId) {
         MyApplication.userId = userId;
     }
 

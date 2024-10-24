@@ -75,8 +75,8 @@
     <string name="cart_layout_cart_title">Cart</string>
     <string name="cart_layout_proceed_to_checkout"><![CDATA[Proceed To Checkout >]]></string>
     <string name="cart_layout_back_button_desc">Back button</string>
-    <string name="cart_layout_total_item">Total item: 12 items</string>
-    <string name="cart_layout_120_000_vnd">120,000 VND</string>
+    <string name="cart_layout_total_item">Total item: 0 items</string>
+    <string name="cart_layout_120_000_vnd">0 VND</string>
     <string name="cart_item_title">Vi Than Cua Nhung Quyet Dinh</string>
     <string name="cart_item_price">12,000 VND</string>
     <string name="cart_item_decrease_quantity">Decrease quantity</string>

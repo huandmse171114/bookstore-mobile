@@ -21,6 +21,7 @@ import com.bookstore.model.CartItem;
 import com.bookstore.model.CartItemResponse;
 import com.bookstore.model.CartModel;
 import com.bookstore.presenter.CartPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,17 +39,20 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     private MyApplication app;
     private List<CartItemResponse> cartItems;
     private int totalItems = 0, totalPrice = 0;
+    private String userId; // User ID for checking login status
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        userId = MyApplication.getUserId();
         binding = CartLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         presenter = new CartPresenter(this, new CartModel());
-
-        presenter.getCartItems();
+        if (userId != null && !userId.isEmpty()) {
+            presenter.getCartItems();
+        } else {
+            showToastMessage("Please sign in to view cart");
+        }
 
         if (cartItems != null && !cartItems.isEmpty()) {
             cartAdapter = new CartAdapter(cartItems.stream()
@@ -64,16 +68,24 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         binding.imgBtnBack.setOnClickListener(v -> finish());
 
         binding.btnProceed.setOnClickListener(v -> redirectOrderPreviewActivity());
+
+        setupBottomNavigation();
     }
 
     private void redirectOrderPreviewActivity() {
-        Intent intent = new Intent(this, OrderPreviewActivity.class);
+        userId = MyApplication.getUserId();
+        if (userId != null && !userId.isEmpty()) {
+            if (!cartAdapter.getCartItems().isEmpty()) {
+                Intent intent = new Intent(this, OrderPreviewActivity.class);
+                MyApplication.setCartItems(cartAdapter.getCartItems());
+                startActivity(intent);
+            } else {
+                showToastMessage("Cart is empty");
+            }
+        } else {
+            showToastMessage("Please sign in to continue");
+        }
 
-        MyApplication.setCartItems(cartAdapter.getCartItems());
-        MyApplication.setTotalPrice(totalPrice);
-        MyApplication.setTotalItems(totalItems);
-
-        startActivity(intent);
     }
 
     @Override
@@ -120,5 +132,35 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         binding.recyclerViewCartItems.setAdapter(cartAdapter);
     }
 
+    // Setup BottomNavigationView actions
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            // Handle navigation based on the selected item
+            if (itemId == R.id.nav_home) {
+                // Handle navigation to Home
+                return true;
+            } else if (itemId == R.id.nav_explore) {
+                // Handle navigation to Explore/Search
+                Intent exploreIntent = new Intent(this, SearchBookActivity.class);
+                startActivity(exploreIntent);
+                return true;
+            } else if (itemId == R.id.nav_login) {
+                // Retrieve userId from MyApplication or SharedPreferences
+                userId = MyApplication.getUserId();
+                if (userId == null || userId.isEmpty()) {
+                    Intent loginIntent = new Intent(this, AuthActivity.class);
+                    startActivity(loginIntent);
+                } else {
+                    Intent profileIntent = new Intent(this, ProfileActivity.class);
+                    startActivity(profileIntent);
+                }
+                return true;
+            }
+            return false;
+        });
+    }
 
 }

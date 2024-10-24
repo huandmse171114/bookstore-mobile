@@ -50,7 +50,7 @@ public class CartPresenter implements CartContract.Presenter {
 
             @Override
             public void onFailure(Call<CartResponse> call, Throwable throwable) {
-
+                view.showToastMessage("Get user's cart failed");
             }
         });
 
