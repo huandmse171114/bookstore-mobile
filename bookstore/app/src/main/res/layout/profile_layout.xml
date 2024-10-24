@@ -39,10 +39,9 @@
     <!-- ImageView for Profile -->
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
         android:elevation="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_profile"
@@ -59,162 +58,110 @@
         app:layout_constraintGuide_begin="24dp" />
 
     <!-- TextView for ID -->
-    <TextView
-        android:id="@+id/tv_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        android:text="ID:"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
 
     <!-- TextView for Username -->
 
     <TextView
-        android:id="@+id/tv_id_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:text="123456"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/tv_id"
-        app:layout_constraintTop_toTopOf="@id/tv_id" />
-
-    <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:text="Username:"
+        android:layout_marginTop="16dp"
+        android:text="ID:"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_id" />
+        app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
     <!-- Dynamic TextView for Username Value -->
 
     <!-- TextView for Email -->
 
     <TextView
-        android:id="@+id/tv_username_value"
+        android:id="@+id/tv_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="0dp"
-        android:text="john_doe"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Username:"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/tv_username"
-        app:layout_constraintTop_toTopOf="@id/tv_username" />
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_id" />
 
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="8dp"
         android:text="Email:"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@id/tv_username" />
-
-    <TextView
-        android:id="@+id/tv_email_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="0dp"
-        android:text="johndoe@example.com"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/tv_email"
-        app:layout_constraintTop_toTopOf="@id/tv_email" />
-
-    <TextView
-        android:id="@+id/tv_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:text="Address:"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
     <!-- Dynamic TextView for Address Value -->
 
     <!-- TextView for Date of Birth -->
 
     <TextView
-        android:id="@+id/tv_address_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="0dp"
-        android:text="Nguyen Van Tang"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/tv_address"
-        app:layout_constraintTop_toTopOf="@id/tv_address" />
-
-    <TextView
-        android:id="@+id/tv_dob"
+        android:id="@+id/tv_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:text="Date of Birth:"
+        android:layout_marginTop="8dp"
+        android:text="Address:"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_address" />
+        app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
     <!-- Dynamic TextView for Date of Birth Value -->
 
     <!-- TextView for Gender -->
 
     <TextView
-        android:id="@+id/tv_dob_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="0dp"
-        android:text="01/01/1995"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/tv_dob"
-        app:layout_constraintTop_toTopOf="@id/tv_dob" />
-
-    <TextView
-        android:id="@+id/tv_gender"
+        android:id="@+id/tv_dob"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:text="Gender:"
+        android:layout_marginTop="12dp"
+        android:text="Date of Birth:"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_dob" />
+        app:layout_constraintTop_toBottomOf="@id/tv_address" />
 
     <!-- Dynamic TextView for Gender Value -->
 
     <!-- TextView for Phone Number -->
 
     <TextView
+        android:id="@+id/tv_gender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Gender:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_dob" />
+
+    <TextView
         android:id="@+id/tv_gender_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="4dp"
         android:text="Male"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -222,37 +169,121 @@
         app:layout_constraintTop_toTopOf="@id/tv_gender" />
 
     <TextView
-        android:id="@+id/tv_phone"
+        android:id="@+id/tv_id_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:text="Phone Number:"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="4dp"
+        android:text="123456"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_gender" />
+        app:layout_constraintStart_toEndOf="@id/tv_id"
+        app:layout_constraintTop_toTopOf="@id/tv_id" />
+
+    <TextView
+        android:id="@+id/tv_username_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="4dp"
+        android:text="john_doe"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_username"
+        app:layout_constraintTop_toTopOf="@id/tv_username" />
+
+    <TextView
+        android:id="@+id/tv_email_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
+        android:text="johndoe@example.com"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_email"
+        app:layout_constraintTop_toTopOf="@id/tv_email" />
+
+    <TextView
+        android:id="@+id/tv_address_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="4dp"
+        android:text="Nguyen Van Tang"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_address"
+        app:layout_constraintTop_toTopOf="@id/tv_address" />
+
+    <TextView
+        android:id="@+id/tv_dob_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="4dp"
+        android:text="01/01/1995"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_dob"
+        app:layout_constraintTop_toTopOf="@id/tv_dob" />
 
     <TextView
         android:id="@+id/tv_phone_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
         android:text="0328202721"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/tv_phone"
         app:layout_constraintTop_toTopOf="@id/tv_phone" />
 
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="Phone Number:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/tv_gender" />
+
     <!-- Footer Navigation Bar -->
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:text="Orders"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/order_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="68dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:drawableRight="@drawable/logout_svgrepo_com"
         android:drawablePadding="10dp"
@@ -263,7 +294,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

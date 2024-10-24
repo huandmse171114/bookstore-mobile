@@ -2,6 +2,7 @@ package com.bookstore.contract;
 
 import android.content.Context;
 
+import com.bookstore.MyApplication;
 import com.bookstore.model.OrderItemData;
 
 import java.util.List;
@@ -15,11 +16,13 @@ public interface OrderPreviewContract {
     }
 
     interface Presenter {
-        List<OrderItemData> getOrderItems();
+        void getOrderItems();
+        void showToastMessage(String message);
+        void updateOrderItemRecyclerView(List<OrderItemData> data);
     }
 
     interface Model {
-
+        void getOrderItems(OrderPreviewContract.Presenter presenter, MyApplication app);
     }
 
 }

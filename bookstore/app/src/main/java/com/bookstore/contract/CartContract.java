@@ -2,6 +2,7 @@ package com.bookstore.contract;
 
 import android.content.Context;
 
+import com.bookstore.MyApplication;
 import com.bookstore.model.CartItem;
 import com.bookstore.model.CartItemResponse;
 import com.bookstore.model.CartResponse;
@@ -18,12 +19,13 @@ public interface CartContract {
     }
 
     interface Presenter {
-        List<CartItemResponse> getCartItems();
-
+        void getCartItems();
+        void showViewMessage(String message);
+        void updateCartItemsRecyclerView(List<CartItemResponse> data);
     }
 
     interface Model {
-
+        void getCartItems(CartContract.Presenter presenter, MyApplication app);
     }
 
 }

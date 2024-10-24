@@ -20,41 +20,24 @@ public class CartPresenter implements CartContract.Presenter {
 
     private CartContract.View view;
     private CartContract.Model model;
-    private CartApiService cartApiService;
-    private Retrofit retrofit;
 
     public CartPresenter(CartContract.View view, CartContract.Model model) {
         this.view = view;
         this.model = model;
-        retrofit = RetrofitClient.getClient();
-        cartApiService = retrofit.create(CartApiService.class);
     }
 
     @Override
-    public List<CartItemResponse> getCartItems() {
+    public void getCartItems() {
+        model.getCartItems(this, (MyApplication) view.getApplicationContext());
+    }
 
-        List<CartItemResponse> response = new ArrayList<>();
+    @Override
+    public void showViewMessage(String message) {
+        view.showToastMessage(message);
+    }
 
-        MyApplication app = (MyApplication) view.getApplicationContext();
-
-        cartApiService.getUserItems(app.getUserId()).enqueue(new Callback<CartResponse>() {
-            @Override
-            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-                List<CartItemResponse> data = response.body().getData();
-                app.setCartItemResponses(data);
-                view.updateCartItemsRecyclerView(data);
-            }
-
-            @Override
-            public void onFailure(Call<CartResponse> call, Throwable throwable) {
-                view.showToastMessage("Get user's cart failed");
-            }
-        });
-
-        return response;
-
+    @Override
+    public void updateCartItemsRecyclerView(List<CartItemResponse> data) {
+        view.updateCartItemsRecyclerView(data);
     }
 }
