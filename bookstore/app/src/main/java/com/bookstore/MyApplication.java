@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.bookstore.model.CartItem;
 import com.bookstore.model.CartItemResponse;
+import com.bookstore.model.OrderCreateResponse;
 import com.bookstore.model.OrderItemData;
 import com.bookstore.model.ShippingAddress;
 import com.google.firebase.FirebaseApp;
@@ -22,6 +23,7 @@ public class MyApplication extends Application {
     private static List<CartItem> cartItems = new ArrayList<>();
     private static int totalItems = 0;
     private static int totalPrice = 0;
+    private static List<OrderCreateResponse> orderCreateResponses = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -90,5 +92,17 @@ public class MyApplication extends Application {
 
     public static void setTotalPrice(int totalPrice) {
         MyApplication.totalPrice = totalPrice;
+    }
+
+    public static List<OrderCreateResponse> getOrderCreateResponses() {
+        return orderCreateResponses;
+    }
+
+    public static void setOrderCreateResponses(List<OrderCreateResponse> orderCreateResponses) {
+        MyApplication.orderCreateResponses = orderCreateResponses;
+    }
+
+    public static void addOrderCreateResponse(OrderCreateResponse orderCreateResponse) {
+        MyApplication.orderCreateResponses.add(orderCreateResponse);
     }
 }

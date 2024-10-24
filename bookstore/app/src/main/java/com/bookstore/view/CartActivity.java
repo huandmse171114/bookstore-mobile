@@ -48,6 +48,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         binding = CartLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         presenter = new CartPresenter(this, new CartModel());
+
         if (userId != null && !userId.isEmpty()) {
             presenter.getCartItems();
         } else {

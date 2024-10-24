@@ -8,14 +8,20 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bookstore.CongfigAPI.RetrofitClient;
 import com.bookstore.MyApplication;
 import com.bookstore.R;
+import com.bookstore.adapter.OrderProfileAdapter;
 import com.bookstore.api.AuthApi;
 import com.bookstore.databinding.ProfileLayoutBinding; // Import the generated binding class
+import com.bookstore.model.OrderProfile;
 import com.bookstore.model.UserProfile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +32,27 @@ public class ProfileActivity extends AppCompatActivity {
     private ProfileLayoutBinding binding; // Declare the binding object
     private AuthApi userService;
     private String userId;
+    private OrderProfileAdapter orderProfileAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ProfileLayoutBinding.inflate(getLayoutInflater()); // Inflate the binding layout
         setContentView(binding.getRoot()); // Set the content view to the root of the binding
+
+        OrderProfile newOrderProfile = new OrderProfile(
+                MyApplication.getOrderCreateResponses().get(0),
+                MyApplication.getCartItems()
+        );
+
+        List<OrderProfile> orderProfiles = new ArrayList<>();
+        orderProfiles.add(newOrderProfile);
+
+        orderProfileAdapter = new OrderProfileAdapter(orderProfiles);
+
+        binding.orderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        binding.orderRecyclerView.setAdapter(orderProfileAdapter);
 
         // Get userId from MyApplication
         userId = ((MyApplication) getApplication()).getUserId();

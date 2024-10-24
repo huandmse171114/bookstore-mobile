@@ -19,39 +19,24 @@ public class OrderPreviewPresenter implements OrderPreviewContract.Presenter {
 
     private OrderPreviewContract.View view;
     private OrderPreviewContract.Model model;
-    private OrderItemApi orderItemApi;
-    private Retrofit retrofit;
 
     public OrderPreviewPresenter(OrderPreviewContract.View view, OrderPreviewContract.Model model) {
         this.view = view;
         this.model = model;
-        retrofit = RetrofitClient.getClient();
-        orderItemApi = retrofit.create(OrderItemApi.class);
     }
 
     @Override
-    public List<OrderItemData> getOrderItems() {
-        List<OrderItemData> response = new ArrayList<>();
+    public void getOrderItems() {
+        model.getOrderItems(this, (MyApplication) view.getApplicationContext());
+    }
 
-        MyApplication app = (MyApplication) view.getApplicationContext();
+    @Override
+    public void showToastMessage(String message) {
+        view.showToastMessage(message);
+    }
 
-        orderItemApi.getUserItems(app.getUserId()).enqueue(new Callback<OrderItemsGetResponse>() {
-            @Override
-            public void onResponse(Call<OrderItemsGetResponse> call, Response<OrderItemsGetResponse> response) {
-                List<OrderItemData> data = response.body().getData();
-                app.setOrderItems(data);
-                view.updateOrderItemRecyclerView(data);
-
-            }
-
-            @Override
-            public void onFailure(Call<OrderItemsGetResponse> call, Throwable throwable) {
-                view.showToastMessage("Get failed");
-            }
-        });
-
-
-
-        return response;
+    @Override
+    public void updateOrderItemRecyclerView(List<OrderItemData> data) {
+        view.updateOrderItemRecyclerView(data);
     }
 }
