@@ -18,9 +18,14 @@ import java.util.List;
 public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdapter.ViewHolder> {
 
     private List<BookDetail> products;
+    private OnProductClickListener listener;
 
-    public OtherProductsAdapter(List<BookDetail> products) {
+    public interface OnProductClickListener {
+        void onProductClick(BookDetail book);
+    }
+    public OtherProductsAdapter(List<BookDetail> products, OnProductClickListener listener) {
         this.products = products;
+        this.listener = listener;
     }
 
     @NonNull
@@ -43,6 +48,7 @@ public class OtherProductsAdapter extends RecyclerView.Adapter<OtherProductsAdap
                 .placeholder(R.drawable.book_placeholder)
                 .error(R.drawable.error_image)
                 .into(holder.binding.ivCover);
+        holder.itemView.setOnClickListener(v -> listener.onProductClick(book));
     }
 
     @Override

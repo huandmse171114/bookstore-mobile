@@ -15,6 +15,7 @@ import com.bookstore.contract.ProductDetailContract;
 import com.bookstore.databinding.ProductDetailLayoutBinding;
 import com.bookstore.model.BookDetail;
 import com.bookstore.adapter.OtherProductsAdapter;
+import com.bookstore.model.ProductDetailModel;
 import com.bookstore.model.ProductDetailResponse;
 import com.bookstore.model.TabAdapter;
 import com.bookstore.presenter.ProductDetailPresenter;
@@ -52,14 +53,15 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     }
 
     private void initViews() {
-        otherProductsAdapter = new OtherProductsAdapter(products);
+        otherProductsAdapter = new OtherProductsAdapter(products, this::onOtherProductClick);
         binding.rvOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rvOtherProducts.setAdapter(otherProductsAdapter);
     }
 
     private void setupPresenter() {
         // Initialize your presenter here
-        presenter = new ProductDetailPresenter(this);
+        ProductDetailContract.Model model = new ProductDetailModel();
+        presenter = new ProductDetailPresenter(this, model);
 
     }
 
@@ -150,6 +152,17 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         showToast();
     }
 
+    private void onOtherProductClick(BookDetail book) {
+        // Lưu lại thông tin sản phẩm mới được chọn
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra("book_id", book.getId());
+        intent.putExtra("book_title", book.getName());
+        intent.putExtra("book_price", book.getPrice());
+        intent.putExtra("book_image", book.getImage());
+        startActivity(intent);
+        finish(); // Kết thúc activity hiện tại để người dùng trở về trang chi tiết sản phẩm mới
+    }
+
     @Override
     public void showAddToCartError(String message) {
         showError(message + ": Vui lòng đăng nhập trước khi thêm vào giỏ hàng");
@@ -159,12 +172,14 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     @Override
     public void showLoading() {
-        // Implement loading UI
+        // Show loading UI
+        binding.progressBar.setVisibility(android.view.View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         // Hide loading UI
+        binding.progressBar.setVisibility(android.view.View.GONE);
     }
 
     @Override
@@ -178,5 +193,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
     private void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 }

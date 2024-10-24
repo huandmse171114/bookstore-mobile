@@ -19,6 +19,8 @@
     <string name="signup">Sign Up</string>
     <string name="username">Username</string>
     <string name="fullname">Fullname</string>
+    <string name="search_removed">Đã xóa tìm kiếm</string>
+    <string name="undo">Hoàn tác</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="upload_payment_next_btn">Next</string>

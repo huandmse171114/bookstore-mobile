@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/book_detail"
-            android:textColor="#795548"
+            android:textColor="@color/white"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="130dp"
             tools:layout_editor_absoluteY="12dp" />
